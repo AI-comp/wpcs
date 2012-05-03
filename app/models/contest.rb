@@ -6,6 +6,6 @@ class Contest
   field :name
   field :introduction
 
-  embeds_many :problems
+  has_many :problems
 
 end

@@ -16,4 +16,6 @@ class Problem
   field :large_answer
   field :published, type: Boolean, default: false
 
+  belongs_to :contest
+
 end
