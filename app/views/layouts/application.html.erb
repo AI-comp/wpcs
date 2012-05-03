@@ -11,10 +11,13 @@
 <div id="headerWrapper">
   <h1>Waseda Programming Contest</h1>
   <ul>
-    <li><%= nil %></li>
-    <li><%= nil %></li>
-    <li><%= nil %></li>
+    <li><%= link_to 'TOP', top_path %></li>
+    <li><%= link_to 'CONTESTS', contests_path %></li>
+    <li><%= link_to 'PROBLEMS', problems_path %></li>
   </ul>
+
+  <%= link_to 'Sign up', users_register_path %><br />
+  <%= link_to 'Login', users_login_path %>
 </div>
 
 <%= yield %>
