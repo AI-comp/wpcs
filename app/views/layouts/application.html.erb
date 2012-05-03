@@ -17,7 +17,11 @@
   </ul>
 
   <%= link_to 'Sign up', users_register_path %><br />
-  <%= link_to 'Login', users_login_path %>
+  <%= link_to 'Login', users_login_path %><br />
+
+  <p id="notice"><%= notice %></p>
+  <p id="alert"><%= alert %></p>
+
 </div>
 
 <%= yield %>

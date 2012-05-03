@@ -88,8 +88,21 @@ class UsersController < ApplicationController
     end
   end
 
-  # POST /users/login
+  # GET /users/login
   def login
+  end
+
+  # GET /users/register
+  def register
+    @user = User.new
+
+    respond_to do |format|
+      format.html
+    end
+  end
+
+  # POST /users/authorize
+  def authorize
     name = params[:name]
     raw_password = params[:password]
 
@@ -98,6 +111,10 @@ class UsersController < ApplicationController
 
     login_user(user)
     redirect_to user
+  end
+
+  # POST /users/signup
+  def signup
   end
 
 end

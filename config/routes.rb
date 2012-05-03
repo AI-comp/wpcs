@@ -3,10 +3,16 @@ Wpcs::Application.routes.draw do
   resources :contests
   resources :problems
 
-  resources :users
-  post 'users/login'
+  resources :users do
+    collection do
+      get  'login'
+      get  'register'
+      post 'signup'
+      post 'authorize'
+    end
+  end
 
-  get 'top', :to=>'top/index'
+  get 'top', :to=>'top#index'
 
   root :to => 'top#index'
 
