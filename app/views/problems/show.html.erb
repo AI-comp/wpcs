@@ -1,24 +1,46 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Title:</b>
-  <%= @problem.title %>
-</p>
+<h2><%= @problem.title %></h2>
 
 <p>
   <b>Content:</b>
-  <%= @problem.content %>
 </p>
+<%= @problem.content %>
+<br />
 
 <p>
   <b>Input:</b>
-  <%= @problem.input %>
 </p>
+<%= @problem.input %>
+<br />
 
 <p>
   <b>Output:</b>
-  <%= @problem.output %>
 </p>
+<%= @problem.output %>
+<br />
+
+<p>
+  <b>Limit:</b>
+</p>
+<%= @problem.limit %>
+<br />
+
+<p>
+  <b>Sample Input:</b>
+</p>
+<%= @problem.sample_input %>
+<br />
+
+<p>
+  <b>Sample Output:</b>
+</p>
+<%= @problem.sample_output %>
+<br />
+
+
+<br />
+<br />
 
 
 <%= link_to 'Edit', edit_problem_path(@problem) %> |
