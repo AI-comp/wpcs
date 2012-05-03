@@ -117,4 +117,10 @@ class UsersController < ApplicationController
   def signup
   end
 
+  # POST /users/logout
+  def logout
+    logout_user
+    redirect_to :root, :notice=>'Logout successfully' and return
+  end
+
 end

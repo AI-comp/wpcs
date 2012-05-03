@@ -9,6 +9,7 @@ Wpcs::Application.routes.draw do
       get  'register'
       post 'signup'
       post 'authorize'
+      post 'logout'
     end
   end
 
