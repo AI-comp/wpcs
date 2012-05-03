@@ -7,7 +7,6 @@ Wpcs::Application.routes.draw do
     collection do
       get  'login'
       get  'register'
-      post 'signup'
       post 'authorize'
       post 'logout'
     end

@@ -51,7 +51,8 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        login_user(@user)
+        format.html { redirect_to :root, notice: 'User was successfully created.' }
         format.json { render json: @user, status: :created, location: @user }
       else
         format.html { render action: "new" }
@@ -110,11 +111,7 @@ class UsersController < ApplicationController
     redirect_to :back, :alert=>'invalid name or password' and return if user.nil?
 
     login_user(user)
-    redirect_to user
-  end
-
-  # POST /users/signup
-  def signup
+    redirect_to :root, :notice=>'Login successfully'
   end
 
   # POST /users/logout
