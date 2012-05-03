@@ -1,9 +1,14 @@
 Wpcs::Application.routes.draw do
 
+  resources :contests
+  resources :problems
+
   resources :users
   post 'users/login'
 
-  root :to => 'users#index'
+  get 'top', :to=>'top/index'
+
+  root :to => 'top#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

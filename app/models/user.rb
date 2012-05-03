@@ -1,5 +1,5 @@
-
 class User
+
   include Mongoid::Document
   include Mongoid::Timestamps
 
@@ -18,7 +18,6 @@ class User
     return nil if encrypt_password(password, user.salt)!=user.encrypted_password
     user
   end
-
 
 end
 
