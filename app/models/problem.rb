@@ -4,16 +4,11 @@ class Problem
   include Mongoid::Timestamps
 
   field :title
-  field :content
-  field :input
-  field :output
-  field :limit
-  field :sample_input
-  field :sample_output
+  field :content_path
   field :small_input
-  field :small_answer
+  field :small_output
   field :large_input
-  field :large_answer
+  field :large_output
   field :published, type: Boolean, default: false
 
   belongs_to :contest

@@ -4,7 +4,7 @@ Wpcs::Application.routes.draw do
     resources :problems, :module => :contests
   end
 
-  resources :problems
+  # resources :problems
 
   resources :users do
     collection do

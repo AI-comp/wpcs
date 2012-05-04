@@ -3,16 +3,11 @@
 <table>
   <tr>
     <th>Title</th>
-    <th>Content</th>
-    <th>Input</th>
-    <th>Output</th>
-    <th>Limit</th>
-    <th>Sample Input</th>
-    <th>Sample Output</th>
+    <th>Content Path</th>
     <th>Small Input</th>
-    <th>Small Answer</th>
+    <th>Small Output</th>
     <th>Large Input</th>
-    <th>Large Answer</th>
+    <th>Large Output</th>
     <th>Published</th>
     <th></th>
     <th></th>
@@ -22,20 +17,15 @@
 <% @problems.each do |problem| %>
   <tr>
     <td><%= problem.title %></td>
-    <td><%= truncate(problem.content, {length: 30}) %></td>
-    <td><%= truncate(problem.input, {length: 30}) %></td>
-    <td><%= truncate(problem.output, {length: 30}) %></td>
-    <td><%= truncate(problem.limit, {length: 30}) %></td>
-    <td><%= truncate(problem.sample_input, {length: 30}) %></td>
-    <td><%= truncate(problem.sample_output, {length: 30}) %></td>
+    <td><%= link_to(problem.content_path) %></td>
     <td><%= truncate(problem.small_input, {length: 30}) %></td>
-    <td><%= truncate(problem.small_answer, {length: 30}) %></td>
+    <td><%= truncate(problem.small_output, {length: 30}) %></td>
     <td><%= truncate(problem.large_input, {length: 30}) %></td>
-    <td><%= truncate(problem.large_answer, {length: 30}) %></td>
+    <td><%= truncate(problem.large_output, {length: 30}) %></td>
     <td><%= problem.published %></td>
-    <td><%= link_to 'Show', problem %></td>
-    <td><%= link_to 'Edit', edit_problem_path(problem) %></td>
-    <td><%= link_to 'Destroy', problem, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to 'Show', contest_problem_path(@contest, problem) %></td>
+    <td><%= link_to 'Edit', edit_contest_problem_path(@contest, problem) %></td>
+    <td><%= link_to 'Destroy', contest_problem_path(@contest, problem), confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
 </table>
