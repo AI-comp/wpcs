@@ -1,6 +1,9 @@
 Wpcs::Application.routes.draw do
 
-  resources :contests
+  resources :contests do
+    resources :problems, :module => :contests
+  end
+
   resources :problems
 
   resources :users do
