@@ -1,0 +1,65 @@
+<%= form_for(@problem, url: {action: 'create'}) do |f| %>
+  <% if @problem.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@problem.errors.count, "error") %> prohibited this problem from being saved:</h2>
+
+      <ul>
+      <% @problem.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :content %><br />
+    <%= f.text_area :content %>
+  </div>
+  <div class="field">
+    <%= f.label :input %><br />
+    <%= f.text_area :input %>
+  </div>
+  <div class="field">
+    <%= f.label :output %><br />
+    <%= f.text_area :output %>
+  </div>
+  <div class="field">
+    <%= f.label :limit %><br />
+    <%= f.text_area :limit %>
+  </div>
+  <div class="field">
+    <%= f.label :sample_input %><br />
+    <%= f.text_area :sample_input %>
+  </div>
+  <div class="field">
+    <%= f.label :sample_output %><br />
+    <%= f.text_area :sample_output %>
+  </div>
+  <div class="field">
+    <%= f.label :small_input %><br />
+    <%= f.text_area :small_input %>
+  </div>
+  <div class="field">
+    <%= f.label :small_answer %><br />
+    <%= f.text_area :small_answer %>
+  </div>
+  <div class="field">
+    <%= f.label :large_input %><br />
+    <%= f.text_area :large_input %>
+  </div>
+  <div class="field">
+    <%= f.label :large_answer %><br />
+    <%= f.text_area :large_answer %>
+  </div>
+  <div class="field">
+    <%= f.label :published %>
+    <%= f.check_box :published %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
