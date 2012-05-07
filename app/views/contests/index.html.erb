@@ -14,10 +14,9 @@
   <tr>
     <td><%= contest.name %></td>
     <td><%= contest.introduction %></td>
-    <td><%= link_to 'Show', contest %></td>
+    <td><%= link_to 'Problems', contest_problems_path(contest) %></td>
     <td><%= link_to 'Edit', edit_contest_path(contest) %></td>
     <td><%= link_to 'Destroy', contest, confirm: 'Are you sure?', method: :delete %></td>
-    <td><%= link_to 'Problems', contest_problems_path(contest) %></td>
   </tr>
 <% end %>
 </table>

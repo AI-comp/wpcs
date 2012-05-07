@@ -3,12 +3,11 @@
 <table>
   <tr>
     <th>Title</th>
-    <th>Content Path</th>
-    <th>Small Input</th>
-    <th>Small Output</th>
-    <th>Large Input</th>
-    <th>Large Output</th>
-    <th>Published</th>
+    <th>Score</th>
+    <th>Submit Small</th>
+    <th>Submit Large</th>
+    <th>Wrong Count</th>
+    <th>Solved Time</th>
     <th></th>
     <th></th>
     <th></th>
@@ -16,13 +15,12 @@
 
 <% @problems.each do |problem| %>
   <tr>
-    <td><%= problem.title %></td>
-    <td><%= link_to(problem.content_path) %></td>
-    <td><%= truncate(problem.small_input, {length: 30}) %></td>
-    <td><%= truncate(problem.small_output, {length: 30}) %></td>
-    <td><%= truncate(problem.large_input, {length: 30}) %></td>
-    <td><%= truncate(problem.large_output, {length: 30}) %></td>
-    <td><%= problem.published %></td>
+    <td><%= link_to(problem.title, problem.content_path) %></td>
+    <td>100</td>
+    <td>Submit Small</td>
+    <td>Submit Large</td>
+    <td><%= @current_user.wrong_count(problem) %></td>
+    <td><%= @current_user.solved_time(problem) || 'Not yet' %></td>
     <td><%= link_to 'Show', contest_problem_path(@contest, problem) %></td>
     <td><%= link_to 'Edit', edit_contest_problem_path(@contest, problem) %></td>
     <td><%= link_to 'Destroy', contest_problem_path(@contest, problem), confirm: 'Are you sure?', method: :delete %></td>

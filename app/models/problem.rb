@@ -11,6 +11,7 @@ class Problem
   field :large_output
   field :published, type: Boolean, default: false
 
+  has_many :submits
   belongs_to :contest
 
 end
