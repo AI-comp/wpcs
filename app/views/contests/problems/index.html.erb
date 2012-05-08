@@ -15,7 +15,7 @@
 
 <% @problems.each do |problem| %>
   <tr>
-    <td><%= link_to(problem.title, problem.content_path) %></td>
+    <td><%= link_to(problem.title, problem.content_path, target: '_blank') %></td>
     <td>100</td>
     <td>Submit Small</td>
     <td>Submit Large</td>
