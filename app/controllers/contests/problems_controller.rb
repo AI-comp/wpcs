@@ -44,8 +44,9 @@ class Contests::ProblemsController < ApplicationController
   # POST /contests/1/problems/1/submit
   def submit
     problem = Problem.find(params[:id])
-    output = params[:output]
+    # output = params[:output]
     input_type = params[:input_type]
+
     @solved = if input_type == 'small'
                problem.small_output
              else
@@ -130,9 +131,9 @@ class Contests::ProblemsController < ApplicationController
 
     case type
     when :small
-      send_data(p.small_input)
+      send_data(p.small_input, filename: 'small.txt')
     when :large
-      send_data(p.small_input)
+      send_data(p.small_input, filename: 'large.txt')
     end
   end
     

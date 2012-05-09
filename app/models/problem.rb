@@ -9,7 +9,6 @@ class Problem
   field :small_output
   field :large_input
   field :large_output
-  field :published, type: Boolean, default: false
   field :score, type: Integer
 
   has_many :submits

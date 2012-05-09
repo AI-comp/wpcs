@@ -30,4 +30,17 @@ class ApplicationController < ActionController::Base
     @current_user
   end
 
+  def login_filter
+    if !@current_user
+      redirect_to controller: 'users', action: 'login'
+    end
+  end
+
+  def admin_filter
+    if(@current_user && !@current_user.is_admin)
+      redirect_to controller: 'top', action: 'index'
+    end
+  end
+
+
 end

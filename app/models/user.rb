@@ -7,6 +7,7 @@ class User
   field :email
   field :encrypted_password
   field :salt
+  field :is_admin, type: Boolean, default: false
 
   has_many :submits
 
@@ -31,6 +32,7 @@ class User
     target = time ? submits.where(:created_at.lt => time) : submits
     target.count
   end
+
 
 end
 

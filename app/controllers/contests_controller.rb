@@ -1,7 +1,9 @@
 class ContestsController < ApplicationController
+  before_filter :admin_filter, only: ['new','edit', 'create', 'update']
   # GET /contests
   def index
-    @contests = Contest.all
+    # 開催期間に当てはまるコンテストだけ表示する
+    @contests = Contest.all.select{|c| c.start_time <= Time.now && Time.now <= c.end_time}
   end
 
   # GET /contests/1
@@ -21,8 +23,21 @@ class ContestsController < ApplicationController
 
   # POST /contests
   def create
-    @contest = Contest.new(params[:contest])
+    # 作り方がわからないので無理やり
+    s = DateTime.new(
+      *((1..5).map{|i| params[:contest]["start_time(#{i}i)".to_sym].to_i}),
+      0,
+      0.375
+    )
+    e = DateTime.new(
+      *((1..5).map{|i| params[:contest]["end_time(#{i}i)".to_sym].to_i}),
+      0,
+      0.375
+    )
+    params[:contest][:start_time] = s
+    params[:contest][:end_time] = e
 
+    @contest = Contest.new(params[:contest])
     if @contest.save
       redirect_to @contest, notice: 'Contest was successfully created.'
     else
