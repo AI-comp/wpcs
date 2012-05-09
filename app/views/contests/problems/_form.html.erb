@@ -1,8 +1,7 @@
-<%= form_for(@problem, url: {action: action}) do |f| %>
+<%= form_for(@problem, :url => new_contest_problem_path) do |f| %>
   <% if @problem.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@problem.errors.count, "error") %> prohibited this problem from being saved:</h2>
-
       <ul>
       <% @problem.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>

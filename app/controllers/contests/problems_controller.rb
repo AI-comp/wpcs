@@ -10,6 +10,19 @@ class Contests::ProblemsController < ApplicationController
   # GET /contests/1/problems.json
   def index
     @problems = @contest.problems
+    u = current_user
+    
+    # before_filter かぶせたらこの if いらない
+    if(u)
+      score = 0
+      prob_ids = @problems.map{|c| c.id}
+      submits = Submit.where(user_id: u.id, solved: true).select{|s| prob_ids.include?(s.problem_id)}
+      submits.each do |s|
+        score += s.problem.score
+      end
+
+      @score = score
+    end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -103,4 +116,25 @@ class Contests::ProblemsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def download_small
+    download(:small)
+  end
+
+  def download_large
+    download(:large)
+  end
+
+  def download(type)
+    p = Problem.find(params[:id])
+
+    case type
+    when :small
+      send_data(p.small_input)
+    when :large
+      send_data(p.small_input)
+    end
+  end
+    
+
 end

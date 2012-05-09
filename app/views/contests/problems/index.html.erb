@@ -4,8 +4,8 @@
   <tr>
     <th>Title</th>
     <th>Score</th>
-    <th>Submit Small</th>
-    <th>Submit Large</th>
+    <th>Small Input</th>
+    <th>Large Input</th>
     <th>Wrong Count</th>
     <th>Solved Time</th>
     <th></th>
@@ -16,9 +16,13 @@
 <% @problems.each do |problem| %>
   <tr>
     <td><%= link_to(problem.title, problem.content_path, target: '_blank') %></td>
-    <td>100</td>
-    <td>Submit Small</td>
-    <td>Submit Large</td>
+    <td><%= problem.score %></td>
+    <td>
+      <%= link_to('Download', download_small_contest_problem_path(@contest, problem)) %>
+    </td>
+    <td>
+      <%= link_to('Download', download_large_contest_problem_path(@contest, problem)) %>
+    </td>
     <td><%= @current_user.wrong_count(problem) %></td>
     <td><%= @current_user.solved_time(problem) || 'Not yet' %></td>
     <td><%= link_to 'Show', contest_problem_path(@contest, problem) %></td>

@@ -4,6 +4,9 @@ Wpcs::Application.routes.draw do
     resources :problems, :module => :contests do
       member do
         post 'submit'
+        # GET パラメータがうまくつかないので，やむなく2つに分けた．
+        get 'download_large'
+        get 'download_small'
       end
     end
   end

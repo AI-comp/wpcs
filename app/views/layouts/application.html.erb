@@ -3,32 +3,61 @@
 <head>
   <title>Wpcs</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= stylesheet_link_tag "bootstrap.css" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-<div id="headerWrapper">
-  <h1>Waseda Programming Contest</h1>
-  <ul>
-    <li><%= link_to 'TOP', top_path %></li>
-    <li><%= link_to 'CONTESTS', contests_path %></li>
-  </ul>
+  <div class="navbar">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
 
-  <% if @authorized %>
-    <p>login user : <%= @current_user.name %></p>
-    <%= link_to 'Logout', logout_users_path, {:method=>'POST'} %>
-  <% else %>
-    <%= link_to 'Sign up', register_users_path %><br />
-    <%= link_to 'Login', login_users_path %><br />
-  <% end %>
+        <a class="brand" href="#">Waseda Programming Contest</a>
 
-  <p id="notice"><%= notice %></p>
-  <p id="alert"><%= alert %></p>
+        <div class='nav-collapse collapse'>
+          <ul class='nav'>
+            <li class=''><%= link_to 'TOP', top_path %></li>
+            <li class=''><%= link_to 'CONTESTS', contests_path %></li>
+          </ul>
+          <ul class='nav pull-right'>
+            <% if @authorized %>
+              <li><a><%= @current_user.name %></a></li>
+              <% if @score %>
+                <li><a>Socre: <%= @score %> </a></li>
+              <% end %>
+              <li><%= link_to 'Logout', logout_users_path, {:method=>'POST'} %></li>
+            <% else %>
+              <li><%= link_to 'Sign up', register_users_path %></li>
+              <li><%= link_to 'Login', login_users_path %></li>
+            <% end %>
+            <li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
 
-</div>
 
-<%= yield %>
+  <div class='container'>
+    <% if notice %>
+      <div class="alert alert-success">
+        <p id="notice"><%= notice %></p>
+      </div>
+    <% end %>
+    <% if alert %>
+      <div class="alert alert-error">
+        <p id="alert"><%= alert %></p>
+      </div>
+    <% end %>
+
+    <%= yield %>
+  </div>
 
 </body>
 </html>
