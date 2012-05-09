@@ -1,13 +1,8 @@
-<h2><%= @problem.title %></h2>
+<h1>Submit your output</h1>
 
-<p>
-  <b>Content Path:</b>
-</p>
-<%= link_to(@problem.content_path, @problem.content_path) %>
-<br />
-<br />
-<br />
-
-
-<%= link_to 'Edit', edit_contest_problem_path(@contest, @problem) %> |
-<%= link_to 'Back', contest_problems_path(@contest) %>
+<%= form_tag(action: 'submit') do %>
+  <%= select_tag('input_type',
+                 options_for_select({ 'small' => :small, 'large' => :large })) %>
+  <%= text_area_tag('output') %>
+  <%= submit_tag() %>
+<% end %>

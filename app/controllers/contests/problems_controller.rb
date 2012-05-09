@@ -28,6 +28,21 @@ class Contests::ProblemsController < ApplicationController
     end
   end
 
+  # POST /contests/1/problems/1/submit
+  def submit
+    problem = Problem.find(params[:id])
+    output = params[:output]
+    input_type = params[:input_type]
+    @solved = if input_type == 'small'
+               problem.small_output
+             else
+               problem.large_output
+             end == output
+    submit = Submit.new(solved: @solved, user: current_user, problem: problem)
+    submit.save
+    redirect_to action: 'index'
+  end
+
   # GET /contests/1/problems/new
   # GET /contests/1/problems/new.json
   def new

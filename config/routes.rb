@@ -1,7 +1,11 @@
 Wpcs::Application.routes.draw do
 
   resources :contests do
-    resources :problems, :module => :contests
+    resources :problems, :module => :contests do
+      member do
+        post 'submit'
+      end
+    end
   end
 
   # resources :problems
