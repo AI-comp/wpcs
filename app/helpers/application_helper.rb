@@ -4,8 +4,7 @@ module ApplicationHelper
   end
 
   def format_date(date_time)
-    # date_time = (date_time + 7.hour).new_offset(Rational(9, 24))
-    return date_time.localtime.strftime("%Y/%m/%d %H:%M")
+    return date_time.strftime("%Y/%m/%d %H:%M")
   end
 
 end
