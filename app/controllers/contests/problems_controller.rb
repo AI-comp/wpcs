@@ -16,9 +16,9 @@ class Contests::ProblemsController < AuthController
     submits = Submit.where(user_id: u.id, solved: true).select{|s| prob_ids.include?(s.problem_id)}
     score = submits.inject(0) do |sum, s|
       if s.problem_type == 'small'
-        sum + s.problem.small_score
+        s.solved ? (sum + s.problem.small_score) : 0
       else
-        sum + s.problem.large_score
+        s.solved ? (sum + s.problem.large_score) : 0
       end
     end
 
@@ -52,8 +52,13 @@ class Contests::ProblemsController < AuthController
               else
                 problem.large_output
               end == output
-    submit = Submit.new(solved: @solved, user: current_user, problem: problem, problem_type: input_type)
-    submit.save
+    submit = Submit.where(user_id: @current_user.id, problem_id: problem.id, problem_type: input_type).first
+    if submit.nil?
+      Submit.create(solved: @solved, user: @current_user, problem: problem, problem_type: input_type, wrong_count: @solved ? 0 : 1)
+    else
+      submit.update_attributes(solved: @solved, wrong_count: submit.wrong_count+(@solved ? 0 : 1)) if not submit.solved
+    end
+
     redirect_to action: 'index'
   end
 

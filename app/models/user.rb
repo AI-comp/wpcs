@@ -24,13 +24,11 @@ class User
 
   def solved_time(problem)
     submit = submits.where(:problem_id => problem.id).where(:solved => true).first or return nil
-    submit.created_at
+    submit.updated_at
   end
 
   def wrong_count(problem)
-    time = solved_time(problem)
-    target = time ? submits.where(:created_at.lt => time) : submits
-    target.count
+    submit = submits.where(problem_id: problem.id).inject(0) {|sum,s| sum + s.wrong_count }
   end
 
 
