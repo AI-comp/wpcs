@@ -12,17 +12,14 @@ class Contests::ProblemsController < AuthController
     @problems = @contest.problems
     u = current_user
     
-    # before_filter かぶせたらこの if いらない
-    if(u)
-      score = 0
-      prob_ids = @problems.map{|c| c.id}
-      submits = Submit.where(user_id: u.id, solved: true).select{|s| prob_ids.include?(s.problem_id)}
-      submits.each do |s|
-        score += s.problem.score
-      end
-
-      @score = score
+    score = 0
+    prob_ids = @problems.map{|c| c.id}
+    submits = Submit.where(user_id: u.id, solved: true).select{|s| prob_ids.include?(s.problem_id)}
+    submits.each do |s|
+      score += s.problem.score || 0
     end
+
+    @score = score
 
     respond_to do |format|
       format.html # index.html.erb
@@ -44,14 +41,14 @@ class Contests::ProblemsController < AuthController
   # POST /contests/1/problems/1/submit
   def submit
     problem = Problem.find(params[:id])
-    # output = params[:output]
+    output = params[:output]
     input_type = params[:input_type]
 
     @solved = if input_type == 'small'
-               problem.small_output
-             else
-               problem.large_output
-             end == output
+                problem.small_output
+              else
+                problem.large_output
+              end == output
     submit = Submit.new(solved: @solved, user: current_user, problem: problem)
     submit.save
     redirect_to action: 'index'
