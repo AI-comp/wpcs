@@ -24,7 +24,7 @@ Wpcs::Application.routes.draw do
 
   get 'top', :to=>'top#index'
 
-  root :to => 'top#index'
+  root :to => 'users#login'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
