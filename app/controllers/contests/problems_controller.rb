@@ -14,11 +14,6 @@ class Contests::ProblemsController < AuthController
     
     prob_ids = @problems.map{|c| c.id}
     submits = Submit.where(user_id: u.id, solved: true).select{|s| prob_ids.include?(s.problem_id)}
-    puts '########################################'
-    puts '########################################'
-    puts submits.inspect
-    puts '########################################'
-    puts '########################################'
     score = submits.inject(0) do |sum, s|
       if s.problem_type == 'small'
         sum + s.problem.small_score
