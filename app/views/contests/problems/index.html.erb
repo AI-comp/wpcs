@@ -3,7 +3,8 @@
 <table>
   <tr>
     <th>Title</th>
-    <th>Score</th>
+    <th>Small Score</th>
+    <th>Large Score</th>
     <th>Small Input</th>
     <th>Large Input</th>
     <th>Wrong Count</th>
@@ -16,7 +17,8 @@
 <% @problems.each do |problem| %>
   <tr>
     <td><%= link_to(problem.title, problem.content_path, target: '_blank') %></td>
-    <td><%= problem.score %></td>
+    <td><%= problem.small_score %></td>
+    <td><%= problem.large_score %></td>
     <td>
       <%= link_to('Download', download_small_contest_problem_path(@contest, problem)) %>
     </td>
