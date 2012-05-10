@@ -73,7 +73,7 @@ class Contests::ProblemsController < AuthController
 
     respond_to do |format|
       if @problem.save
-        format.html { redirect_to action: 'show' }
+        format.html { redirect_to action: 'index' }
         format.json { render json: @problem, status: :created, location: @problem }
       else
         format.html { render action: 'new' }
@@ -94,7 +94,7 @@ class Contests::ProblemsController < AuthController
 
     respond_to do |format|
       if @problem.update_attributes(params[:problem])
-        format.html { redirect_to action: 'show' }
+        format.html { redirect_to action: 'index' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
