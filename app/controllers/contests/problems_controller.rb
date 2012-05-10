@@ -47,11 +47,8 @@ class Contests::ProblemsController < AuthController
     output = params[:output]
     input_type = params[:input_type]
 
-    @solved = if input_type == 'small'
-                problem.small_output
-              else
-                problem.large_output
-              end == output
+    @solved = problem.correct?(output, input_type)
+
     submit = Submit.where(user_id: @current_user.id, problem_id: problem.id, problem_type: input_type).first
     if submit.nil?
       Submit.create(solved: @solved, user: @current_user, problem: problem, problem_type: input_type, wrong_count: @solved ? 0 : 1)
