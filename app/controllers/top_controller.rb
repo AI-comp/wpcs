@@ -1,4 +1,4 @@
-class TopController < ApplicationController
+class TopController < AuthController
 
   # GET /top
   def index

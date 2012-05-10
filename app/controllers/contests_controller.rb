@@ -1,4 +1,4 @@
-class ContestsController < ApplicationController
+class ContestsController < AuthController
   before_filter :admin_filter, only: ['new','edit', 'create', 'update']
   # GET /contests
   def index

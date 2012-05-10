@@ -1,4 +1,4 @@
-class ProblemsController < ApplicationController
+class ProblemsController < AuthController
   # GET /problems
   # GET /problems.json
   def index

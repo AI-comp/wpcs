@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_filter :login_filter, :except=>['login', 'register', 'authorize', 'create']
   # GET /users
   # GET /users.json
   def index
@@ -91,6 +92,7 @@ class UsersController < ApplicationController
 
   # GET /users/login
   def login
+    redirect_to contests_path and return if @authorized
   end
 
   # GET /users/register

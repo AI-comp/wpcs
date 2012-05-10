@@ -1,4 +1,4 @@
-class Contests::ProblemsController < ApplicationController
+class Contests::ProblemsController < AuthController
   before_filter :load_contest
   private
   def load_contest
