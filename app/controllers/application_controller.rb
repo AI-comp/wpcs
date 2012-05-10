@@ -31,11 +31,6 @@ class ApplicationController < ActionController::Base
   end
 
   def login_filter
-    puts '########################################'
-    puts '########################################'
-    puts 'login check'
-    puts '########################################'
-    puts '########################################'
     if !@authorized
       redirect_to controller: 'users', action: 'login'
     end
