@@ -10,8 +10,7 @@ class Contests::ScoresController < ApplicationController
   # GET /contests/1/score.json
   def index
     @users = User.all
-    @scores = Score.where(contest: @contest)
-      .asc(:score)
+    @scores = Score.where(contest: @contest).asc(:score)
 
     respond_to do |format|
       format.html # index.html.erb

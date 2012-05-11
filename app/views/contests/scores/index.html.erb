@@ -9,7 +9,7 @@
 <% @users.each do |user| %>
   <tr>
     <td><%= user.name %></td>
-    <td><%= user.scores.where(contest_id: @contest.id).first.score %></td>
+    <td><%= user.scores.select{|s| s.contest_id == @contest.id}.first.score %></td>
   </tr>
 <% end %>
 </table>
