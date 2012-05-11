@@ -28,14 +28,14 @@
       <%= link_to('Download Large', download_large_contest_problem_path(@contest, problem)) %>
     </td>
     <td>
-      Small: <%= @current_user.wrong_count(problem, 'small') %>
+      Small: <%= @score.wrong_count(problem, 'small') %>
       <br />
-      Large: <%= @current_user.wrong_count(problem, 'large') %>
+      Large: <%= @score.wrong_count(problem, 'large') %>
     </td>
     <td>
-      Small: <%= @current_user.solved_time(problem, 'small') || 'Not yet' %>
+      Small: <%= @score.solved_time(problem, 'small') || 'Not yet' %>
       <br />
-      Large: <%= @current_user.solved_time(problem, 'large') || 'Not yet' %>
+      Large: <%= @score.solved_time(problem, 'large') || 'Not yet' %>
     </td>
     <td><%= link_to 'Submit', contest_problem_path(@contest, problem) %></td>
     <% if @current_user && @current_user.is_admin %>
@@ -60,10 +60,10 @@
     <th>Score</th>
   </tr>
 
-<% @users.asc(:score).each do |user| %>
+<% @users.each do |user| %>
   <tr>
     <td><%= user.name %></td>
-    <td><%= user.score %></td>
+    <td><%= user.scores.where(contest_id: @contest.id).first.score %></td>
   </tr>
 <% end %>
 </table>

@@ -3,6 +3,13 @@ class Contests::ProblemsController < AuthController
   private
   def load_contest
     @contest = Contest.find(params[:contest_id])
+    @score = @current_user.scores
+      .where(contest_id: @contest.id)
+      .first
+    unless @score
+      @score = Score.new(contest_id: @contest.id, user: @current_user)
+      @score.save
+    end
   end
 
   public
@@ -10,7 +17,7 @@ class Contests::ProblemsController < AuthController
   # GET /contests/1/problems.json
   def index
     @problems = @contest.problems
-    @users = User.where(is_admin: false)
+    @users = User.where(is_admin: false, 'scores.contest_id' => @contest.id)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -36,12 +43,12 @@ class Contests::ProblemsController < AuthController
     input_type = params[:input_type]
 
     @solved = problem.correct?(output, input_type)
-    unless @current_user.solved_time(problem, input_type)
-      score = @current_user.score +
+    if @solved && !@score.solved_time(problem, input_type)
+      score = @score.score +
         (input_type == 'small' ? problem.small_score : problem.large_score)
-      @current_user.update_attributes(score: score)
+      @score.update_attributes(score: score)
     end
-    Submit.create(solved: @solved, user: @current_user, problem: problem, problem_type: input_type)
+    Submit.create(solved: @solved, problem_id: problem.id, problem_type: input_type, score: @score)
 
     redirect_to action: 'index'
   end

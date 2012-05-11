@@ -8,7 +8,6 @@ class Contest
   field :start_time, type: Time 
   field :end_time, type: Time
 
-
   has_many :problems
 
 end

@@ -11,7 +11,7 @@
     <% end %>
   </tr>
 
-<% @contests.asc(:start_time).each do |contest| %>
+<% @contests.each do |contest| %>
   <tr>
     <td><%= link_to contest.name, contest_problems_path(contest) %></td>
     <td><%= contest.introduction %></td>

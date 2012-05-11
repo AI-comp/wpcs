@@ -4,9 +4,9 @@ class Submit
   include Mongoid::Timestamps
 
   field :solved, type: Boolean, default: false
+  field :problem_id
   field :problem_type
 
-  belongs_to :user
-  belongs_to :problem
+  embedded_in :score
 
 end

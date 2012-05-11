@@ -12,7 +12,6 @@ class Problem
   field :small_score, type: Integer
   field :large_score, type: Integer
 
-  has_many :submits
   belongs_to :contest
 
   def correct?(answer, problem_type)
