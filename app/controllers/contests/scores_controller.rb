@@ -1,4 +1,4 @@
-class Contests::ScoreController < ApplicationController
+class Contests::ScoresController < ApplicationController
   before_filter :load_contest
   private
   def load_contest
@@ -9,6 +9,7 @@ class Contests::ScoreController < ApplicationController
   # GET /contests/1/score
   # GET /contests/1/score.json
   def index
+    @users = User.all
     @scores = Score.where(contest: @contest)
       .asc(:score)
 

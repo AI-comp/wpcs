@@ -1,2 +1,0 @@
-module Contests::ScoreHelper
-end

@@ -1,7 +1,13 @@
 Wpcs::Application.routes.draw do
 
+
   resources :contests do
-    resource :score
+    resources :scores, only: ['index'], module: 'contests' do
+      collection do
+        get 'ranking'
+      end
+    end
+      
     resources :problems, :module => :contests do
       member do
         post 'submit'
