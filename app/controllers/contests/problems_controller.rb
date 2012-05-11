@@ -55,7 +55,7 @@ class Contests::ProblemsController < AuthController
     end
 
     @solved = problem.correct?(output, input_type)
-    if @solved && !@score.solved_time(problem, input_type)
+    if @solved && !@score.solved_time(problem, input_type) && @contest.start_time <= Time.now && @contests.end_time <= Time.now
       score = @score.score +
         (input_type == 'small' ? problem.small_score : problem.large_score)
       @score.update_attributes(score: score)
