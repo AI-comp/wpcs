@@ -43,11 +43,16 @@ class Contests::ProblemsController < AuthController
     input_type = params[:input_type]
 
     file = params[:files]
-    if(file.size > 100.kilobyte)
-      raise 'Too large file size'
-    end
+    output = ""
 
-    output = file.read
+    if file
+      if(file.size > 100.kilobyte)
+        raise 'Too large file size'
+      end
+      output = file.read
+    else
+      output = params[:text_area]
+    end
 
     @solved = problem.correct?(output, input_type)
     if @solved && !@score.solved_time(problem, input_type)
