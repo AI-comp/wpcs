@@ -16,7 +16,7 @@ Please update by pressing your F5 key.
 <% end %>
   </tr>
 
-<% @scores.each_with_index do |score, index| %>
+<% @scores.select{|s| !s.user.is_admin}.each_with_index do |score, index| %>
   <tr>
     <td><%= index + 1 %></td>
     <td><%= score.user.name %></td>
