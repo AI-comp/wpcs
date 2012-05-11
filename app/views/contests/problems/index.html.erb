@@ -51,3 +51,19 @@
 <% if @current_user && @current_user.is_admin %>
   <%= link_to 'New Problem', new_contest_problem_path %>
 <% end %>
+
+<h1>Score board</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Score</th>
+  </tr>
+
+<% @users.asc(:score).each do |user| %>
+  <tr>
+    <td>user.name</td>
+    <td>user.score</td>
+  </tr>
+<% end %>
+</table>

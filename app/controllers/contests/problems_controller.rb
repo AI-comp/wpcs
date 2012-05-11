@@ -10,19 +10,7 @@ class Contests::ProblemsController < AuthController
   # GET /contests/1/problems.json
   def index
     @problems = @contest.problems
-    u = current_user
-    
-    prob_ids = @problems.map{|c| c.id}
-    submits = Submit.where(user_id: u.id, solved: true).select{|s| prob_ids.include?(s.problem_id)}
-    score = submits.inject(0) do |sum, s|
-      if s.problem_type == 'small'
-        s.solved ? (sum + s.problem.small_score) : 0
-      else
-        s.solved ? (sum + s.problem.large_score) : 0
-      end
-    end
-
-    @score = score
+    @users = User.where(is_admin: false)
 
     respond_to do |format|
       format.html # index.html.erb
