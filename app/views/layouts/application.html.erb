@@ -27,7 +27,7 @@
             <% if @authorized %>
               <li><a><%= @current_user.name %></a></li>
               <% if @score %>
-                <li><a>Socre: <%= @score.score %> </a></li>
+                <li><a>Score: <%= @score.score %> </a></li>
               <% end %>
               <li><%= link_to 'Logout', logout_users_path, {:method=>'POST'} %></li>
             <% else %>
