@@ -4,9 +4,14 @@ class ContestsController < AuthController
   def index
     # 開催期間に当てはまるコンテストだけ表示する
     now = Time.now
-    @contests = Contest
-      .where(:start_time.lte => now, :end_time.gte => now)
-      .asc(:start_time)
+    if @current_user.is_admin
+      @contests = Contest
+        .asc(:start_time)
+    else
+      @contests = Contest
+        .where(:start_time.lte => now, :end_time.gte => now)
+        .asc(:start_time)
+    end
   end
 
   # GET /contests/1
