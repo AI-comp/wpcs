@@ -62,8 +62,8 @@
 
 <% @users.asc(:score).each do |user| %>
   <tr>
-    <td>user.name</td>
-    <td>user.score</td>
+    <td><%= user.name %></td>
+    <td><%= user.score %></td>
   </tr>
 <% end %>
 </table>
