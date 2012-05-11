@@ -15,7 +15,7 @@ class Problem
   has_many :submits
   belongs_to :contest
 
-  def correct?(answer,problem_type)
+  def correct?(answer, problem_type)
     if problem_type=='small'
       small_output.split == answer.split
     else

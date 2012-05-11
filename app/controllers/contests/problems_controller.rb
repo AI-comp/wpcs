@@ -48,13 +48,12 @@ class Contests::ProblemsController < AuthController
     input_type = params[:input_type]
 
     @solved = problem.correct?(output, input_type)
-
-    submit = Submit.where(user_id: @current_user.id, problem_id: problem.id, problem_type: input_type).first
-    if submit.nil?
-      Submit.create(solved: @solved, user: @current_user, problem: problem, problem_type: input_type, wrong_count: @solved ? 0 : 1)
-    else
-      submit.update_attributes(solved: @solved, wrong_count: submit.wrong_count+(@solved ? 0 : 1)) if not submit.solved
+    unless @current_user.solved_time(problem, input_type)
+      score = @current_user.score +
+        (input_type == 'small' ? problem.small_score : problem.large_score)
+      @current_user.update_attributes(score: score)
     end
+    Submit.create(solved: @solved, user: @current_user, problem: problem, problem_type: input_type)
 
     redirect_to action: 'index'
   end
@@ -135,7 +134,7 @@ class Contests::ProblemsController < AuthController
     when :small
       send_data(p.small_input, filename: 'small.txt')
     when :large
-      send_data(p.small_input, filename: 'large.txt')
+      send_data(p.large_input, filename: 'large.txt')
     end
   end
 

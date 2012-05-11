@@ -3,12 +3,10 @@
 <table>
   <tr>
     <th>Title</th>
-    <th>Small Score</th>
-    <th>Large Score</th>
-    <th>Small Input</th>
-    <th>Large Input</th>
-    <th>Wrong Count</th>
-    <th>Solved Time</th>
+    <th>Scores</th>
+    <th>Inputs</th>
+    <th>Wrong Counts</th>
+    <th>Solved Times</th>
     <th></th>
     <% if @current_user && @current_user.is_admin %>
       <th></th>
@@ -19,16 +17,26 @@
 <% @problems.asc(:title).each do |problem| %>
   <tr>
     <td><%= link_to(problem.title, problem.content_path, target: '_blank') %></td>
-    <td><%= problem.small_score %></td>
-    <td><%= problem.large_score %></td>
     <td>
-      <%= link_to('Download', download_small_contest_problem_path(@contest, problem)) %>
+      Small: <%= problem.small_score %>
+      <br />
+      Large: <%= problem.small_score %>
     </td>
     <td>
-      <%= link_to('Download', download_large_contest_problem_path(@contest, problem)) %>
+      <%= link_to('Small', download_small_contest_problem_path(@contest, problem)) %>
+      <br />
+      <%= link_to('Large', download_large_contest_problem_path(@contest, problem)) %>
     </td>
-    <td><%= @current_user.wrong_count(problem) %></td>
-    <td><%= @current_user.solved_time(problem) || 'Not yet' %></td>
+    <td>
+      Small: <%= @current_user.wrong_count(problem, 'small') %>
+      <br />
+      Large: <%= @current_user.wrong_count(problem, 'large') %>
+    </td>
+    <td>
+      Small: <%= @current_user.solved_time(problem, 'small') || 'Not yet' %>
+      <br />
+      Large: <%= @current_user.solved_time(problem, 'large') || 'Not yet' %>
+    </td>
     <td><%= link_to 'Submit', contest_problem_path(@contest, problem) %></td>
     <% if @current_user && @current_user.is_admin %>
       <td><%= link_to 'Edit', edit_contest_problem_path(@contest, problem) %></td>
