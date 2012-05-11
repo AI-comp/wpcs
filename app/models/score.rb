@@ -5,8 +5,9 @@ class Score
   field :score, type: Integer, default: 0
   field :contest_id
 
-  embedded_in :user
-  embeds_many :submits
+  belongs_to :contest
+  belongs_to :user
+  has_many :submits
 
   def solved_time(problem, problem_type)
     submit = submits.where(

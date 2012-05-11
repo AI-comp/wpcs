@@ -3,11 +3,10 @@ class Contests::ProblemsController < AuthController
   private
   def load_contest
     @contest = Contest.find(params[:contest_id])
-    @score = @current_user.scores
-      .where(contest_id: @contest.id)
+    @score = @contest.scores.where(user_id: @current_user.id)
       .first
     unless @score
-      @score = Score.new(contest_id: @contest.id, user: @current_user)
+      @score = Score.new(contest: @contest, user: @current_user)
       @score.save
     end
   end
@@ -57,7 +56,7 @@ class Contests::ProblemsController < AuthController
         (input_type == 'small' ? problem.small_score : problem.large_score)
       @score.update_attributes(score: score)
     end
-    Submit.create(solved: @solved, problem_id: problem.id, problem_type: input_type, score: @score)
+    Submit.create(solved: @solved, problem_type: input_type, problem: problem, score: @score)
 
     redirect_to action: 'index'
   end

@@ -9,5 +9,6 @@ class Contest
   field :end_time, type: Time
 
   has_many :problems
+  has_many :scores
 
 end

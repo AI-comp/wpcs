@@ -1,0 +1,15 @@
+<h1>Score board (Please update by pressing your F5 key）</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Score</th>
+  </tr>
+
+<% @users.each do |user| %>
+  <tr>
+    <td><%= user.name %></td>
+    <td><%= user.scores.where(contest_id: @contest.id).first.score %></td>
+  </tr>
+<% end %>
+</table>

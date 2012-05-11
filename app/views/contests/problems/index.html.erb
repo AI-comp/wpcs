@@ -57,19 +57,3 @@
 <% if @current_user && @current_user.is_admin %>
   <%= link_to 'New Problem', new_contest_problem_path %>
 <% end %>
-
-<h1>ランキング（F5で更新してください）</h1>
-
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Score</th>
-  </tr>
-
-<% @users.each do |user| %>
-  <tr>
-    <td><%= user.name %></td>
-    <td><%= user.scores.where(contest_id: @contest.id).first.score %></td>
-  </tr>
-<% end %>
-</table>

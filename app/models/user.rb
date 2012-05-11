@@ -9,7 +9,7 @@ class User
   field :salt
   field :is_admin, type: Boolean, default: false
 
-  embeds_many :scores
+  has_many :scores
 
   def self.encrypt_password(password, salt)
     key = '6bgEVBuWqD'
