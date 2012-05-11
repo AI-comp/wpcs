@@ -117,12 +117,13 @@ class Contests::ProblemsController < AuthController
 
   def download(type)
     p = Problem.find(params[:id])
+    head = p.name.gsub(' ', '_')
 
     case type
     when :small
-      send_data(p.small_input, filename: 'small.txt')
+      send_data(p.small_input, filename: head + '_small.txt')
     when :large
-      send_data(p.large_input, filename: 'large.txt')
+      send_data(p.large_input, filename: head + '_large.txt')
     end
   end
 

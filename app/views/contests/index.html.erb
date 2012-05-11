@@ -11,11 +11,11 @@
     <% end %>
   </tr>
 
-<% @contests.each do |contest| %>
+<% @contests.asc(:start_time).each do |contest| %>
   <tr>
     <td><%= link_to contest.name, contest_problems_path(contest) %></td>
     <td><%= contest.introduction %></td>
-    <td><%= format_date(contest.start_time) %> 〜 <%= format_date(contest.end_time) %>
+    <td><%= format_date(contest.start_time) %> - <%= format_date(contest.end_time) %>
     <% if @current_user && @current_user.is_admin %>
       <td><%= link_to 'Edit', edit_contest_path(contest) %></td>
       <td><%= link_to 'Destroy', contest, confirm: 'Are you sure?', method: :delete %></td>
