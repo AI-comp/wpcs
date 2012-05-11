@@ -5,7 +5,6 @@
     <th>コンテスト名</th>
     <th>説明</th>
     <th>開催期間</th>
-    <th></th>
     <% if @current_user && @current_user.is_admin %>
       <th></th>
       <th></th>
@@ -14,10 +13,9 @@
 
 <% @contests.each do |contest| %>
   <tr>
-    <td><%= contest.name %></td>
+    <td><%= link_to contest.name, contest_problems_path(contest) %></td>
     <td><%= contest.introduction %></td>
     <td><%= format_date(contest.start_time) %> 〜 <%= format_date(contest.end_time) %>
-    <td><%= link_to '問題一覧', contest_problems_path(contest) %></td>
     <% if @current_user && @current_user.is_admin %>
       <td><%= link_to 'Edit', edit_contest_path(contest) %></td>
       <td><%= link_to 'Destroy', contest, confirm: 'Are you sure?', method: :delete %></td>

@@ -138,6 +138,5 @@ class Contests::ProblemsController < AuthController
       send_data(p.small_input, filename: 'large.txt')
     end
   end
-    
 
 end

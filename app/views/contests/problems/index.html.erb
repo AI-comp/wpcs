@@ -10,8 +10,10 @@
     <th>Wrong Count</th>
     <th>Solved Time</th>
     <th></th>
-    <th></th>
-    <th></th>
+    <% if @current_user && @current_user.is_admin %>
+      <th></th>
+      <th></th>
+    <% end %>
   </tr>
 
 <% @problems.each do |problem| %>
@@ -27,13 +29,17 @@
     </td>
     <td><%= @current_user.wrong_count(problem) %></td>
     <td><%= @current_user.solved_time(problem) || 'Not yet' %></td>
-    <td><%= link_to 'Show', contest_problem_path(@contest, problem) %></td>
-    <td><%= link_to 'Edit', edit_contest_problem_path(@contest, problem) %></td>
-    <td><%= link_to 'Destroy', contest_problem_path(@contest, problem), confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to 'Submit', contest_problem_path(@contest, problem) %></td>
+    <% if @current_user && @current_user.is_admin %>
+      <td><%= link_to 'Edit', edit_contest_problem_path(@contest, problem) %></td>
+      <td><%= link_to 'Destroy', contest_problem_path(@contest, problem), confirm: 'Are you sure?', method: :delete %></td>
+    <% end %>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Problem', new_contest_problem_path %>
+<% if @current_user && @current_user.is_admin %>
+  <%= link_to 'New Problem', new_contest_problem_path %>
+<% end %>
