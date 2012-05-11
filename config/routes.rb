@@ -1,6 +1,7 @@
 Wpcs::Application.routes.draw do
 
   resources :contests do
+    resource :score
     resources :problems, :module => :contests do
       member do
         post 'submit'
