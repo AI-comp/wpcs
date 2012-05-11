@@ -53,10 +53,10 @@
     </td>
     <td>
       <div>
-      <%= link_to 'Submit small', contest_problem_path(@contest, problem, input_type: 'small') %>
+      <%= link_to 'Submit Small', contest_problem_path(@contest, problem, input_type: 'small') %>
       </div>
       <div>
-      <%= link_to 'Submit large', contest_problem_path(@contest, problem, input_type: 'large') %>
+      <%= link_to 'Submit Large', contest_problem_path(@contest, problem, input_type: 'large') %>
       </div>
     </td>
     <% if @current_user && @current_user.is_admin %>
