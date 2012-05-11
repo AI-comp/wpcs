@@ -133,7 +133,9 @@ class Contests::ProblemsController < AuthController
 
   def download(type)
     p = Problem.find(params[:id])
-    head = p.title.gsub(' ', '_') + '_'
+    #head = p.title.gsub(' ', '_') + '_'
+    words = p.title.split
+    head = words[0] + '_' + words[1] + '_'
 
     case type
     when :small

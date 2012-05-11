@@ -5,6 +5,7 @@
     <%= select_tag('input_type', options_for_select(
       { 'Small Input' => :small, 'Large Input' => :large })) %>
   </div>
+  テキストエリアに答えを書き込むか、もしくは、答えが記入されているテキストファイルをアップロードしてください。
   <div class="field">
     <%= file_field_tag('files') %>
   </div>
