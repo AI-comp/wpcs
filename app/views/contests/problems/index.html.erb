@@ -33,9 +33,9 @@
       Large: <%= @score.wrong_count(problem, 'large') %>
     </td>
     <td>
-      Small: <%= @score.solved_time(problem, 'small') || 'Not yet' %>
+      Small: <%= @score.solved_time(problem, 'small') ? format_date(@score.solved_time(problem, 'small')) : 'Not yet' %>
       <br />
-      Large: <%= @score.solved_time(problem, 'large') || 'Not yet' %>
+      Large: <%= @score.solved_time(problem, 'large') ? format_date(@score.solved_time(problem, 'large')) : 'Not yet' %>
     </td>
     <td><%= link_to 'Submit', contest_problem_path(@contest, problem) %></td>
     <% if @current_user && @current_user.is_admin %>

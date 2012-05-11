@@ -1,12 +1,12 @@
 <h1>Submit your output</h1>
 
-<%= form_tag(action: 'submit') do %>
+<%= form_tag({action: 'submit'}, multipart: true) do %>
   <div class="field">
     <%= select_tag('input_type', options_for_select(
       { 'Small Input' => :small, 'Large Input' => :large })) %>
   </div>
   <div class="field">
-    <%= text_area_tag('output') %>
+    <%= file_field_tag('files') %>
   </div>
   <div class="field">
     <%= submit_tag('Submit') %>

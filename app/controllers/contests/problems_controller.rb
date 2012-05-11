@@ -39,8 +39,15 @@ class Contests::ProblemsController < AuthController
   # POST /contests/1/problems/1/submit
   def submit
     problem = Problem.find(params[:id])
-    output = params[:output]
+    # output = params[:output]
     input_type = params[:input_type]
+
+    file = params[:files]
+    if(file.size > 100.kilobyte)
+      raise 'Too large file size'
+    end
+
+    output = file.read
 
     @solved = problem.correct?(output, input_type)
     if @solved && !@score.solved_time(problem, input_type)

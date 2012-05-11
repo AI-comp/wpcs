@@ -3,8 +3,9 @@ module ApplicationHelper
     link_to('https://docs.google.com/document/d/' + id)
   end
 
-  def format_date(date_time)
-    return date_time.strftime("%Y/%m/%d %H:%M")
+  def format_date(date_time, format = nil)
+    format = "%Y/%m/%d %H:%M" unless format
+    return date_time.strftime(format)
   end
 
 end
