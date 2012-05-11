@@ -16,7 +16,7 @@
     <% end %>
   </tr>
 
-<% @problems.each do |problem| %>
+<% @problems.asc(:title).each do |problem| %>
   <tr>
     <td><%= link_to(problem.title, problem.content_path, target: '_blank') %></td>
     <td><%= problem.small_score %></td>
