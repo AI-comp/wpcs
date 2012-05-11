@@ -9,7 +9,8 @@ class Contests::ScoresController < ApplicationController
   # GET /contests/1/score
   # GET /contests/1/score.json
   def index
-    @users = User.all
+    @users = User.all.select{|u| u.scores.any?{|s| s.contest_id.to_s == params[:contest_id]}}
+    #  @users = User.all
     @scores = Score.where(contest: @contest).asc(:score)
 
     respond_to do |format|
