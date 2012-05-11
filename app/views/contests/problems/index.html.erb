@@ -20,12 +20,12 @@
     <td>
       Small: <%= problem.small_score %>
       <br />
-      Large: <%= problem.small_score %>
+      Large: <%= problem.large_score %>
     </td>
     <td>
-      <%= link_to('Small', download_small_contest_problem_path(@contest, problem)) %>
+      <%= link_to('Download Small', download_small_contest_problem_path(@contest, problem)) %>
       <br />
-      <%= link_to('Large', download_large_contest_problem_path(@contest, problem)) %>
+      <%= link_to('Download Large', download_large_contest_problem_path(@contest, problem)) %>
     </td>
     <td>
       Small: <%= @current_user.wrong_count(problem, 'small') %>
