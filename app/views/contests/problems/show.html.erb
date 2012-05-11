@@ -1,18 +1,22 @@
 <h1>Submit your output</h1>
 
 <%= form_tag({action: 'submit'}, multipart: true) do %>
-  <div class="field">
-    <%= select_tag('input_type', options_for_select(
-      { 'Small Input' => :small, 'Large Input' => :large })) %>
+  <p class="field">
+    Input type: <%= select_tag('input_type', options_for_select(
+      { 'Small' => 'small', 'Large' => 'large' }, @input_type)) %>
+  </p>
+  <div>
+    Please submit your answer writing it on the 'Output text' or uploading a answer file (not source code!).
+    <br />
+    答えをテキストボックスに入力するか、答えが記載されたファイル（ソースコードは不要）をアップロードしてください。
   </div>
-  テキストエリアに答えを書き込むか、もしくは、答えが記入されているテキストファイルをアップロードしてください。
-  <div class="field">
-    <%= file_field_tag('files') %>
-  </div>
-  <div class="field">
-    <%= text_area_tag('text_area') %>
-  </div>
-  <div class="field">
+  <p class="field">
+    Output file: <%= file_field_tag('files') %>
+  </p>
+  <p class="field">
+    Output text: <%= text_area_tag('text_area') %>
+  </p>
+  <p class="field">
     <%= submit_tag('Submit') %>
-  </div>
+  </p>
 <% end %>

@@ -1,10 +1,11 @@
-<h1>コンテスト一覧</h1>
+<h1>Contest list</h1>
 
+<p>
 <table class='table table-striped'>
   <tr>
-    <th>コンテスト名</th>
-    <th>説明</th>
-    <th>開催期間</th>
+    <th>Contest name</th>
+    <th>Description</th>
+    <th>Contest period</th>
     <% if @current_user && @current_user.is_admin %>
       <th></th>
       <th></th>
@@ -23,8 +24,7 @@
   </tr>
 <% end %>
 </table>
-
-<br />
+</p>
 
 <% if @current_user && @current_user.is_admin %>
   <%= link_to 'New Contest', new_contest_path %>

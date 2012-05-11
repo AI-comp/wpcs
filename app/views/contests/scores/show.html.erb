@@ -1,0 +1,46 @@
+<h1>Score board</h1>
+
+<p>
+Please update by pressing your F5 key.
+</p>
+
+<p>
+<table class='table table-striped'>
+  <tr>
+    <th>Place</th>
+    <th>Team name</th>
+    <th>Score</th>
+    <th>Last solved time</th>
+<% @contest.problems.each do |problem| %>
+    <th><%= problem.title %></th>
+<% end %>
+  </tr>
+
+<% @scores.each_with_index do |score, index| %>
+  <tr>
+    <td><%= index + 1 %></td>
+    <td><%= score.user.name %></td>
+    <td><%= score.score %></td>
+    <td><%= score.updated_at %></td>
+<% @contest.problems.each do |problem| %>
+    <td>
+        <%=
+          submits = score.submits.where(solved: true, problem_id: problem.id)
+          small = submits.where(problem_type: 'small').exists?
+          large = submits.where(problem_type: 'large').exists?
+          if small && large
+            'Solved both'
+          elsif small
+            'Solved small'
+          elsif large
+            'Solved large'
+          else
+            'Unsolved'
+          end
+        %>
+    </td>
+<% end %>
+  </tr>
+<% end %>
+</table>
+</p>

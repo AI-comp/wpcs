@@ -8,12 +8,13 @@ class Contests::ScoresController < ApplicationController
   public
   # GET /contests/1/score
   # GET /contests/1/score.json
-  def index
-    @users = User.all
-    @scores = Score.where(contest: @contest).asc(:score)
+  def show
+    @scores = Score
+      .where(contest_id: @contest.id)
+      .order_by([[:score, :desc], [:updated_at, :asc]])
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html # show.html.erb
       format.json { render json: @problems }
     end
   end

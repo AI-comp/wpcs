@@ -1,9 +1,9 @@
 class Score
 
   include Mongoid::Document
+  include Mongoid::Timestamps
 
   field :score, type: Integer, default: 0
-  field :contest_id
 
   belongs_to :contest
   belongs_to :user

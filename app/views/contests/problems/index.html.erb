@@ -1,13 +1,17 @@
-<h1>問題一覧</h1>
+<h1>Problem list</h1>
 
-<table>
+<p>
+<%= link_to 'Score board', contest_score_path %>
+</p>
+
+<p>
+<table class='table table-striped'>
   <tr>
-    <th>Title</th>
-    <th>Input Types</th>
+    <th>Problem name</th>
+    <th>Input sizes</th>
     <th>Scores</th>
-    <th>Inputs</th>
-    <th>Wrong Counts</th>
-    <th>Solved Times</th>
+    <th>Download inputs</th>
+    <th>Solved time</th>
     <th></th>
     <% if @current_user && @current_user.is_admin %>
       <th></th>
@@ -24,26 +28,37 @@
       Large
     </td>
     <td>
+      <div>
       <%= problem.small_score %>
-      <br />
+      </div>
+      <div>
       <%= problem.large_score %>
+      </div>
     </td>
     <td>
+      <div>
       <%= link_to('Download Small', download_small_contest_problem_path(@contest, problem)) %>
-      <br />
+      </div>
+      <div>
       <%= link_to('Download Large', download_large_contest_problem_path(@contest, problem)) %>
+      </div>
     </td>
     <td>
-      <%= @score.wrong_count(problem, 'small') %>
-      <br />
-      <%= @score.wrong_count(problem, 'large') %>
-    </td>
-    <td>
+      <div>
       <%= @score.solved_time(problem, 'small') ? format_date(@score.solved_time(problem, 'small')) : 'Not yet' %>
-      <br />
+      </div>
+      <div>
       <%= @score.solved_time(problem, 'large') ? format_date(@score.solved_time(problem, 'large')) : 'Not yet' %>
+      </div>
     </td>
-    <td><%= link_to 'Submit', contest_problem_path(@contest, problem) %></td>
+    <td>
+      <div>
+      <%= link_to 'Submit small', contest_problem_path(@contest, problem, input_type: 'small') %>
+      </div>
+      <div>
+      <%= link_to 'Submit large', contest_problem_path(@contest, problem, input_type: 'large') %>
+      </div>
+    </td>
     <% if @current_user && @current_user.is_admin %>
       <td><%= link_to 'Edit', edit_contest_problem_path(@contest, problem) %></td>
       <td><%= link_to 'Destroy', contest_problem_path(@contest, problem), confirm: 'Are you sure?', method: :delete %></td>
@@ -51,8 +66,7 @@
   </tr>
 <% end %>
 </table>
-
-<br />
+</p>
 
 <% if @current_user && @current_user.is_admin %>
   <%= link_to 'New Problem', new_contest_problem_path %>

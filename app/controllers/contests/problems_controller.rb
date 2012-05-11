@@ -28,6 +28,7 @@ class Contests::ProblemsController < AuthController
   # GET /contests/1/problems/1.json
   def show
     @problem = Problem.find(params[:id])
+    @input_type = params[:input_type]
 
     respond_to do |format|
       format.html # show.html.erb
