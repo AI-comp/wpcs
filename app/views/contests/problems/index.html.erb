@@ -47,12 +47,12 @@
       <div>
         <%= @score.solved_time(problem, 'small')
           ? format_date(@score.solved_time(problem, 'small'))
-          : 'Not yet' + @score.wrong_count(problem, 'small').to_s %>
+          : 'Not yet (' + @score.wrong_count(problem, 'small').to_s + ')' %>
       </div>
       <div>
         <%= @score.solved_time(problem, 'large')
           ? format_date(@score.solved_time(problem, 'large'))
-          : 'Not yet' + @score.wrong_count(problem, 'large').to_s %>
+          : 'Not yet (' + @score.wrong_count(problem, 'large').to_s + ')' %>
       </div>
     </td>
     <td>
