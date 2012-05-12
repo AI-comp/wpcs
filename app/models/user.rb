@@ -9,6 +9,9 @@ class User
   field :salt
   field :is_admin, type: Boolean, default: false
 
+  validates_uniqueness_of :name, :message => 'was already taken.'
+  validates_uniqueness_of :email, :message => 'was already used.'
+
   has_many :scores
 
   def self.encrypt_password(password, salt)
