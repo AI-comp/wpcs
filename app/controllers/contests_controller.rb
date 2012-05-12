@@ -53,8 +53,19 @@ class ContestsController < AuthController
 
   # PUT /contests/1
   def update
-    @contest = Contest.find(params[:id])
+    # 作り方がわからないので無理やり
+    s = Time.new(
+      *((1..5).map{|i| params[:contest]["start_time(#{i}i)".to_sym].to_i}),
+      0
+    )
+    e = Time.new(
+      *((1..5).map{|i| params[:contest]["end_time(#{i}i)".to_sym].to_i}),
+      0
+    )
+    params[:contest][:start_time] = s
+    params[:contest][:end_time] = e
 
+    @contest = Contest.find(params[:id])
     if @contest.update_attributes(params[:contest])
       redirect_to @contest, notice: 'Contest was successfully updated.'
     else
