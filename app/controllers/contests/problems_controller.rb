@@ -52,12 +52,14 @@ class Contests::ProblemsController < AuthController
     end
 
     @solved = problem.correct?(output, input_type)
-    if @solved && !@score.solved_time(problem, input_type) && @contest.start_time <= Time.now && Time.now <= @contest.end_time
-      score = @score.score +
-        (input_type == 'small' ? problem.small_score : problem.large_score)
-      @score.update_attributes(score: score)
+    if @current_user.is_admin || (@contest.start_time <= Time.now && Time.now <= @contest.end_time)
+      if @solved && !@score.solved_time(problem, input_type)
+        score = @score.score +
+          (input_type == 'small' ? problem.small_score : problem.large_score)
+        @score.update_attributes(score: score)
+      end
+      Submit.create(solved: @solved, problem_type: input_type, problem: problem, score: @score)
     end
-    Submit.create(solved: @solved, problem_type: input_type, problem: problem, score: @score)
 
     redirect_to action: 'index'
   end
