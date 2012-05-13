@@ -2,6 +2,9 @@
 
 <%= form_tag({action: 'submit'}, multipart: true) do %>
   <p class="field">
+    Problem title: <%= @problem.title %>
+  </p>
+  <p class="field">
     Input type: <%= select_tag('input_type', options_for_select(
       { 'Small' => 'small', 'Large' => 'large' }, @input_type)) %>
   </p>
