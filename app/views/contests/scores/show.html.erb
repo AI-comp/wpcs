@@ -26,13 +26,13 @@ Please update by pressing your F5 key.
     <td>
       <div>
         <%= score.solved_time(problem, 'small') ?
-          format_date(@score.solved_time(problem, 'small')) :
-          'Not yet (' + @score.wrong_count(problem, 'small').to_s + ' failures)' %>
+          format_date(score.solved_time(problem, 'small')) :
+          'Not yet (' + score.wrong_count(problem, 'small').to_s + ' failures)' %>
       </div>
       <div>
         <%= score.solved_time(problem, 'large') ?
-          format_date(@score.solved_time(problem, 'large')) :
-          'Not yet (' + @score.wrong_count(problem, 'large').to_s + ' failures)' %>
+          format_date(score.solved_time(problem, 'large')) :
+          'Not yet (' + score.wrong_count(problem, 'large').to_s + ' failures)' %>
       </div>
     </td>
 <% end %>
