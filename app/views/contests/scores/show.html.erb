@@ -24,20 +24,16 @@ Please update by pressing your F5 key.
     <td><%= score.updated_at %></td>
 <% @contest.problems.each do |problem| %>
     <td>
-        <%=
-          submits = score.submits.where(solved: true, problem_id: problem.id)
-          small = submits.where(problem_type: 'small').exists?
-          large = submits.where(problem_type: 'large').exists?
-          if small && large
-            'Solved both'
-          elsif small
-            'Solved small'
-          elsif large
-            'Solved large'
-          else
-            'Unsolved'
-          end
-        %>
+      <div>
+        <%= score.solved_time(problem, 'small') ?
+          format_date(@score.solved_time(problem, 'small')) :
+          'Not yet (' + @score.wrong_count(problem, 'small').to_s + ' failures)' %>
+      </div>
+      <div>
+        <%= score.solved_time(problem, 'large') ?
+          format_date(@score.solved_time(problem, 'large')) :
+          'Not yet (' + @score.wrong_count(problem, 'large').to_s + ' failures)' %>
+      </div>
     </td>
 <% end %>
   </tr>
