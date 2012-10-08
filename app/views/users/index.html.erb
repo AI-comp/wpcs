@@ -7,6 +7,7 @@
 <table border="1">
   <tr>
     <th>ID</th>
+    <th>Admin</th>
     <th>Name</th>
     <th>Email</th>
     <th>Encrypted password</th>
@@ -19,6 +20,7 @@
 <% @users.each do |user| %>
   <tr>
     <td><%= user.id %></td>
+    <td><%= user.is_admin %></td>
     <td><%= user.name %></td>
     <td><%= user.email %></td>
     <td><%= user.encrypted_password %></td>
