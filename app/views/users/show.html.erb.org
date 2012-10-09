@@ -1,24 +1,24 @@
-<p lang="__pogen_63">
+<p>
   <b>ID:</b>
   <%= @user.id %>
 </p>
 
-<p lang="__pogen_64">
+<p>
   <b>Name:</b>
   <%= @user.name %>
 </p>
 
-<p lang="__pogen_65">
+<p>
   <b>Email:</b>
   <%= @user.email %>
 </p>
 
-<p lang="__pogen_66">
+<p>
   <b>Encrypted password:</b>
   <%= @user.encrypted_password %>
 </p>
 
-<p lang="__pogen_67">
+<p>
   <b>Created Date:</b>
   <%= @user.created_at %>	
 </p>

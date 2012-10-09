@@ -1,0 +1,6 @@
+<h1>Editing problem</h1>
+
+<%= render 'form', :action=>'update' %>
+
+<%= link_to 'Show', contest_problem_path(@contest, @problem) %> |
+<%= link_to 'Back', contest_problems_path(@contest) %>

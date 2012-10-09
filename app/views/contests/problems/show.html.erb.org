@@ -1,7 +1,7 @@
 <h1>Submit your output</h1>
 
 <%= form_tag({action: 'submit'}, multipart: true) do %>
-  <p class="field" lang="__pogen_15">
+  <p class="field">
     Problem title: <%= @problem.title %>
   </p>
   <p class="field">
@@ -13,13 +13,13 @@
     <br />
     答えをテキストボックスに入力するか、答えが記載されたファイル（ソースコードは不要）をアップロードしてください。
   </div>
-  <p class="field" lang="__pogen_16">
+  <p class="field">
     Output file: <%= file_field_tag('files') %>
   </p>
-  <p class="field" lang="__pogen_17">
+  <p class="field">
     Output text: <%= text_area_tag('text_area') %>
   </p>
-  <p class="field" lang="__pogen_18">
+  <p class="field">
     <%= submit_tag('Submit') %>
   </p>
 <% end %>

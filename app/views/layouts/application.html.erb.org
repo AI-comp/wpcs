@@ -21,18 +21,18 @@
 
         <div class='nav-collapse collapse'>
           <ul class='nav'>
-            <li class='' lang="__pogen_44"><%= link_to 'CONTESTS', contests_path %></li>
+            <li class=''><%= link_to 'CONTESTS', contests_path %></li>
           </ul>
           <ul class='nav pull-right'>
             <% if @authorized %>
-              <li><a lang="__pogen_45"><%= @current_user.name %></a></li>
+              <li><a><%= @current_user.name %></a></li>
               <% if @score %>
-                <li><a lang="__pogen_46">Score: <%= @score.score %> </a></li>
+                <li><a>Score: <%= @score.score %> </a></li>
               <% end %>
-              <li lang="__pogen_47"><%= link_to 'Logout', logout_users_path, {:method=>'POST'} %></li>
+              <li><%= link_to 'Logout', logout_users_path, {:method=>'POST'} %></li>
             <% else %>
-              <li lang="__pogen_48"><%= link_to 'Sign up', register_users_path %></li>
-              <li lang="__pogen_49"><%= link_to 'Login', login_users_path %></li>
+              <li><%= link_to 'Sign up', register_users_path %></li>
+              <li><%= link_to 'Login', login_users_path %></li>
             <% end %>
             <li>
           </ul>
@@ -42,15 +42,15 @@
   </div>
 
 
-  <div class='container' lang="__pogen_50">
+  <div class='container'>
     <% if notice %>
       <div class="alert alert-success">
-        <p id="notice" lang="__pogen_51"><%= notice %></p>
+        <p id="notice"><%= notice %></p>
       </div>
     <% end %>
     <% if alert %>
       <div class="alert alert-error">
-        <p id="alert" lang="__pogen_52"><%= alert %></p>
+        <p id="alert"><%= alert %></p>
       </div>
     <% end %>
 

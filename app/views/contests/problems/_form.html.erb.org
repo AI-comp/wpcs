@@ -1,48 +1,48 @@
 <%= form_for(@problem, :url => {:action=>action}) do |f| %>
   <% if @problem.errors.any? %>
     <div id="error_explanation">
-      <h2 lang="__pogen_19"><%= pluralize(@problem.errors.count, "error") %> prohibited this problem from being saved:</h2>
+      <h2><%= pluralize(@problem.errors.count, "error") %> prohibited this problem from being saved:</h2>
       <ul>
       <% @problem.errors.full_messages.each do |msg| %>
-        <li lang="__pogen_20"><%= msg %></li>
+        <li><%= msg %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="field" lang="__pogen_21">
+  <div class="field">
     <%= f.label :title %><br />
     <%= f.text_field :title %>
   </div>
-  <div class="field" lang="__pogen_22">
+  <div class="field">
     <%= f.label :content_path %><br />
     <%= f.text_field :content_path %>
   </div>
-  <div class="field" lang="__pogen_23">
+  <div class="field">
     <%= f.label :small_input %><br />
     <%= f.text_area :small_input %>
   </div>
-  <div class="field" lang="__pogen_24">
+  <div class="field">
     <%= f.label :small_output %><br />
     <%= f.text_area :small_output %>
   </div>
-  <div class="field" lang="__pogen_25">
+  <div class="field">
     <%= f.label :small_score %>
     <%= f.text_field :small_score %>
   </div>
-  <div class="field" lang="__pogen_26">
+  <div class="field">
     <%= f.label :large_input %><br />
     <%= f.text_area :large_input %>
   </div>
-  <div class="field" lang="__pogen_27">
+  <div class="field">
     <%= f.label :large_output %><br />
     <%= f.text_area :large_output %>
   </div>
-  <div class="field" lang="__pogen_28">
+  <div class="field">
     <%= f.label :large_score %>
     <%= f.text_field :large_score %>
   </div>
-  <div class="actions" lang="__pogen_29">
+  <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>

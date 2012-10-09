@@ -1,7 +1,7 @@
 <h1>Registerd users</h1>
 
 <% if @user %>
-  <p><%= @user.name %> is logged in</p>
+  <p lang="__pogen_53"><%= @user.name %> is logged in</p>
 <% end %>
 
 <table border="1">
@@ -19,15 +19,15 @@
 
 <% @users.each do |user| %>
   <tr>
-    <td><%= user.id %></td>
-    <td><%= user.is_admin %></td>
-    <td><%= user.name %></td>
-    <td><%= user.email %></td>
-    <td><%= user.encrypted_password %></td>
-    <td><%= user.salt %></td>
-    <td><%= link_to 'Show', user %></td>
-    <td><%= link_to 'Edit', edit_user_path(user) %></td>
-    <td><%= link_to 'Destroy', user, confirm: 'Are you sure?', method: :delete %></td>
+    <td lang="__pogen_54"><%= user.id %></td>
+    <td lang="__pogen_55"><%= user.is_admin %></td>
+    <td lang="__pogen_56"><%= user.name %></td>
+    <td lang="__pogen_57"><%= user.email %></td>
+    <td lang="__pogen_58"><%= user.encrypted_password %></td>
+    <td lang="__pogen_59"><%= user.salt %></td>
+    <td lang="__pogen_60"><%= link_to 'Show', user %></td>
+    <td lang="__pogen_61"><%= link_to 'Edit', edit_user_path(user) %></td>
+    <td lang="__pogen_62"><%= link_to 'Destroy', user, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
 </table>

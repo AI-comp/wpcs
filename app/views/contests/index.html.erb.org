@@ -14,12 +14,12 @@
 
 <% @contests.each do |contest| %>
   <tr>
-    <td lang="__pogen_0"><%= link_to contest.name, contest_problems_path(contest) %></td>
-    <td lang="__pogen_1"><%= contest.introduction %></td>
-    <td lang="__pogen_2"><%= format_date(contest.start_time) %> - <%= format_date(contest.end_time) %>
+    <td><%= link_to contest.name, contest_problems_path(contest) %></td>
+    <td><%= contest.introduction %></td>
+    <td><%= format_date(contest.start_time) %> - <%= format_date(contest.end_time) %>
     <% if @current_user && @current_user.is_admin %>
-      <td lang="__pogen_3"><%= link_to 'Edit', edit_contest_path(contest) %></td>
-      <td lang="__pogen_4"><%= link_to 'Destroy', contest, confirm: 'Are you sure?', method: :delete %></td>
+      <td><%= link_to 'Edit', edit_contest_path(contest) %></td>
+      <td><%= link_to 'Destroy', contest, confirm: 'Are you sure?', method: :delete %></td>
     <% end %>
   </tr>
 <% end %>

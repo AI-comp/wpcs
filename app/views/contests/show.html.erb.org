@@ -1,4 +1,4 @@
-<h2 lang="__pogen_35"><%= @contest.name %></h2>
+<h2><%= @contest.name %></h2>
 
 <p>
   <b>Introduction:</b>
@@ -17,7 +17,7 @@
 
   <% @contest.problems.each do |problem| %>
     <tr>
-      <td lang="__pogen_36">
+      <td>
         <%= link_to problem.title, contest_problem_path(@contest, problem) %>
       </td>
     </tr>

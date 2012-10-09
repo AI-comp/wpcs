@@ -1,6 +1,6 @@
 <h1>Problem list</h1>
 
-<p lang="__pogen_5">
+<p>
 <%= link_to 'Score board', contest_score_path %>
 </p>
 
@@ -21,25 +21,25 @@
 
 <% @problems.asc(:title).each do |problem| %>
   <tr>
-    <td lang="__pogen_6"><%= link_to(problem.title, problem.content_path, target: '_blank') %></td>
+    <td><%= link_to(problem.title, problem.content_path, target: '_blank') %></td>
     <td>
       Small
       <br />
       Large
     </td>
     <td>
-      <div lang="__pogen_7">
+      <div>
       <%= problem.small_score %>
       </div>
-      <div lang="__pogen_8">
+      <div>
       <%= problem.large_score %>
       </div>
     </td>
     <td>
-      <div lang="__pogen_9">
+      <div>
       <%= link_to('Download Small', download_small_contest_problem_path(@contest, problem)) %>
       </div>
-      <div lang="__pogen_10">
+      <div>
       <%= link_to('Download Large', download_large_contest_problem_path(@contest, problem)) %>
       </div>
     </td>
@@ -56,16 +56,16 @@
       </div>
     </td>
     <td>
-      <div lang="__pogen_11">
+      <div>
       <%= link_to 'Submit Small', contest_problem_path(@contest, problem, input_type: 'small') %>
       </div>
-      <div lang="__pogen_12">
+      <div>
       <%= link_to 'Submit Large', contest_problem_path(@contest, problem, input_type: 'large') %>
       </div>
     </td>
     <% if @current_user && @current_user.is_admin %>
-      <td lang="__pogen_13"><%= link_to 'Edit', edit_contest_problem_path(@contest, problem) %></td>
-      <td lang="__pogen_14"><%= link_to 'Destroy', contest_problem_path(@contest, problem), confirm: 'Are you sure?', method: :delete %></td>
+      <td><%= link_to 'Edit', edit_contest_problem_path(@contest, problem) %></td>
+      <td><%= link_to 'Destroy', contest_problem_path(@contest, problem), confirm: 'Are you sure?', method: :delete %></td>
     <% end %>
   </tr>
 <% end %>

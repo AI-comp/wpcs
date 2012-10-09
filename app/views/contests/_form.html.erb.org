@@ -1,33 +1,33 @@
 <%= form_for(@contest) do |f| %>
   <% if @contest.errors.any? %>
     <div id="error_explanation">
-      <h2 lang="__pogen_37"><%= pluralize(@contest.errors.count, "error") %> prohibited this contest from being saved:</h2>
+      <h2><%= pluralize(@contest.errors.count, "error") %> prohibited this contest from being saved:</h2>
 
       <ul>
       <% @contest.errors.full_messages.each do |msg| %>
-        <li lang="__pogen_38"><%= msg %></li>
+        <li><%= msg %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="field" lang="__pogen_39">
+  <div class="field">
     <%= f.label :name %><br />
     <%= f.text_field :name %>
   </div>
-  <div class="field" lang="__pogen_40">
+  <div class="field">
     <%= f.label :start_time%><br />
     <%= f.datetime_select :start_time%>
   </div>
-  <div class="field" lang="__pogen_41">
+  <div class="field">
     <%= f.label :end_time%><br />
     <%= f.datetime_select :end_time %>
   </div>
-  <div class="field" lang="__pogen_42">
+  <div class="field">
     <%= f.label :introduction %><br />
     <%= f.text_field :introduction %>
   </div>
-  <div class="actions" lang="__pogen_43">
+  <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>

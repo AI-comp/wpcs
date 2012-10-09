@@ -12,16 +12,16 @@ Please update by pressing your F5 key.
     <th>Score</th>
     <th>Last solved time</th>
 <% @contest.problems.each do |problem| %>
-    <th lang="__pogen_30"><%= problem.title %></th>
+    <th><%= problem.title %></th>
 <% end %>
   </tr>
 
 <% @scores.select{|s| !s.user.is_admin}.each_with_index do |score, index| %>
   <tr>
-    <td lang="__pogen_31"><%= index + 1 %></td>
-    <td lang="__pogen_32"><%= score.user.name %></td>
-    <td lang="__pogen_33"><%= score.score %></td>
-    <td lang="__pogen_34"><%= score.updated_at %></td>
+    <td><%= index + 1 %></td>
+    <td><%= score.user.name %></td>
+    <td><%= score.score %></td>
+    <td><%= score.updated_at %></td>
 <% @contest.problems.each do |problem| %>
     <td>
       <div>
