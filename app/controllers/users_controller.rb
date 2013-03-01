@@ -42,7 +42,6 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    return
     @user = User.new(params[:user])
     raw_password = params[:password]
     salt = generate_random_token(10)
