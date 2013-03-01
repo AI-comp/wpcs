@@ -7,7 +7,7 @@ class User
   field :email
   field :encrypted_password
   field :salt
-  field :is_admin, type: Boolean, default: false
+  field :is_admin, type: Boolean, default: true
 
   validates_uniqueness_of :name, :message => 'was already taken.'
   validates_uniqueness_of :email, :message => 'was already used.'
