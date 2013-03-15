@@ -8,8 +8,10 @@ class User
   field :encrypted_password
   field :salt
   field :is_admin, type: Boolean, default: true
+  field :provider
+  field :uid
 
-  validates_uniqueness_of :name, :message => 'was already taken.'
+  validates_uniqueness_of :name, :message => 'was already taken.', :if => :not_oauth?
   validates_uniqueness_of :email, :message => 'was already used.'
 
   has_many :scores
@@ -23,6 +25,20 @@ class User
     user = User.where(:name => name).first or return nil
     return nil if encrypt_password(password, user.salt)!=user.encrypted_password
     user
+  end
+
+  def self.find_or_create_from_auth_hash(auth_hash)
+    provider, uid = auth_hash['provider'], auth_hash['uid']
+    user = User.find_or_create_by(
+      :provider => provider,
+      :uid => uid
+    )
+    user.name = auth_hash['info']['name'].presence or uid
+    user
+  end
+
+  def not_oauth?
+    provider.nil?
   end
 
 end
