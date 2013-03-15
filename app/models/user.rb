@@ -34,6 +34,7 @@ class User
       :uid => uid
     )
     user.name = auth_hash['info']['name'].presence or uid
+    user.save
     user
   end
 
