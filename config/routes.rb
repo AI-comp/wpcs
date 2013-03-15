@@ -25,6 +25,8 @@ Wpcs::Application.routes.draw do
 
   root :to => 'users#login'
 
+  match 'auth/:provider/callback' => 'oauth#create'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
