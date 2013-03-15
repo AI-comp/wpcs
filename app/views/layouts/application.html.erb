@@ -25,7 +25,7 @@
           </ul>
           <ul class='nav pull-right'>
             <% if @authorized %>
-              <li><a><%= @current_user.name %></a></li>
+              <li><a><%= @current_user.name.presence or @current_user.uid %></a></li>
               <% if @score %>
                 <li><a>Score: <%= @score.score %> </a></li>
               <% end %>
