@@ -12,7 +12,7 @@ class User
   field :uid
 
   validates_uniqueness_of :name, :message => 'was already taken.', :if => :not_oauth?
-  validates_uniqueness_of :email, :message => 'was already used.'
+  validates_uniqueness_of :email, :message => 'was already used.', :if => :not_oauth?
 
   has_many :scores
 
