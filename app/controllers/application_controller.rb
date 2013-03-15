@@ -14,14 +14,24 @@ class ApplicationController < ActionController::Base
 
   def login_user(user)
     session[:user_name] = user.name
+    session[:provider] = user.provider
+    session[:uid] = user.uid
   end
 
   def logout_user
     session[:user_name] = nil
+    session[:provider] = nil
+    session[:uid] = nil
   end
 
   def current_user
-    @current_user = User.where(:name=>session[:user_name]).first
+    @current_user = if session[:user_name].nil? and session[:provider].nil?
+                      nil
+                    elsif session[:provider].nil? # not oauth
+                      User.where(:name=>session[:user_name]).first
+                    else # oauth
+                      User.where(:provider=>session[:provider], :uid=>session[:uid]).first
+                    end
     @authorized = if @current_user.nil?
                     false
                   else
