@@ -50,6 +50,9 @@ class UsersController < ApplicationController
     @user.salt = salt
     @user.encrypted_password = encrypted_password
 
+    @user.provider = "WPCS"
+    @user.name = @user.uid
+
     respond_to do |format|
       if @user.save
         login_user(@user)
