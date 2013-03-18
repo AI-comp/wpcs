@@ -1,8 +1,8 @@
 <h2>Login</h2>
 <%= form_tag({:controller=>:users, :action=>:authorize}) do %>
   <div class="field">
-    <%= label_tag :name %>
-    <%= text_field_tag :name %>
+    <%= label_tag :'user id' %>
+    <%= text_field_tag :uid %>
   </div>
   <div class="field">
     <%= label_tag :password %>

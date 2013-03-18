@@ -109,10 +109,10 @@ class UsersController < ApplicationController
 
   # POST /users/authorize
   def authorize
-    name = params[:name]
+    uid = params[:uid]
     raw_password = params[:password]
 
-    user = User.authenticate(name, raw_password)
+    user = User.authenticate(uid, raw_password)
     redirect_to :back, :alert=>'invalid name or password' and return if user.nil?
 
     login_user(user)

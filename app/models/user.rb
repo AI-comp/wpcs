@@ -19,8 +19,8 @@ class User
     Digest::SHA1.hexdigest(salt + password + key)
   end
 
-  def self.authenticate(name, password)
-    user = User.where(:name => name).first or return nil
+  def self.authenticate(uid, password)
+    user = User.where(provider: "WPCS", uid: uid).first or return nil
     return nil if encrypt_password(password, user.salt)!=user.encrypted_password
     user
   end
