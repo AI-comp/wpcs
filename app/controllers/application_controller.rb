@@ -13,25 +13,17 @@ class ApplicationController < ActionController::Base
   end
 
   def login_user(user)
-    session[:user_name] = user.name
     session[:provider] = user.provider
     session[:uid] = user.uid
   end
 
   def logout_user
-    session[:user_name] = nil
     session[:provider] = nil
     session[:uid] = nil
   end
 
   def current_user
-    @current_user = if session[:user_name].nil? and session[:provider].nil?
-                      nil
-                    elsif session[:provider].nil? # not oauth
-                      User.where(:name=>session[:user_name]).first
-                    else # oauth
-                      User.where(:provider=>session[:provider], :uid=>session[:uid]).first
-                    end
+    @current_user = User.where(provider: session[:provider], uid: session[:uid]).first
     @authorized = if @current_user.nil?
                     false
                   else
