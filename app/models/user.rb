@@ -27,12 +27,12 @@ class User
 
   def self.find_or_create_from_auth_hash(auth_hash)
     provider, uid = auth_hash['provider'], auth_hash['uid']
-    user = User.find_or_create_by(
-      :provider => provider,
-      :uid => uid
-    )
-    user.name = auth_hash['info']['name'].presence or uid
-    user.save
+    user = User.where(provider: provider, uid: uid).first
+    if user.nil?
+      user = User.where(provider: provider,
+                        uid: uid,
+                        name: (auth_hash['info']['name'].presence or uid)).create
+    end
     user
   end
 
