@@ -16,6 +16,8 @@ class User
   belongs_to :group
   has_many :scores
 
+  after_create :join_default_group
+
   def self.encrypt_password(password, salt)
     key = '6bgEVBuWqD'
     Digest::SHA1.hexdigest(salt + password + key)
@@ -31,11 +33,19 @@ class User
     provider, uid = auth_hash['provider'], auth_hash['uid']
     user = User.where(provider: provider, uid: uid).first
     if user.nil?
-      user = User.where(provider: provider,
-                        uid: uid,
-                        name: (auth_hash['info']['name'].presence or uid)).create
+      user = User.new(provider: provider,
+                      uid: uid,
+                      name: (auth_hash['info']['name'].presence or uid))
+      user.save
     end
     user
+  end
+
+  private
+  def join_default_group
+    default_group = Group.where(name: "").first
+    default_group.users.push(self)
+    default_group.save
   end
 
 end
