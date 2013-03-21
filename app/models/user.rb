@@ -6,6 +6,7 @@ class User
   field :provider
   field :uid
   field :name # display name
+  field :email
   field :encrypted_password
   field :salt
   field :is_admin, type: Boolean, default: true
