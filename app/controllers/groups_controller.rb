@@ -1,4 +1,5 @@
 class GroupsController < ApplicationController
+  before_filter :login_filter, :only=>['join']
   # GET /groups
   # GET /groups.json
   def index
@@ -80,4 +81,12 @@ class GroupsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def join
+    @group = Group.find(params[:id])
+    @group.users.push(current_user)
+    @group.save
+    redirect_to @group, notice: "Joined to #{@group.name}"
+  end
+
 end
