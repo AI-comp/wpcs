@@ -1,5 +1,7 @@
 Wpcs::Application.routes.draw do
 
+  resources :groups
+
   resources :contests do
     resource :score, :module => :contests
     resources :problems, :module => :contests do
