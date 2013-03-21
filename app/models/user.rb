@@ -13,6 +13,7 @@ class User
 
   validates_uniqueness_of :uid, :scope => :provider, :message => 'was already used'
 
+  belongs_to :group
   has_many :scores
 
   def self.encrypt_password(password, salt)
