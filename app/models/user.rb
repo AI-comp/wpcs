@@ -43,7 +43,7 @@ class User
 
   private
   def join_default_group
-    default_group = Group.where(name: "").first
+    default_group = Group.default
     default_group.users.push(self)
     default_group.save
   end
