@@ -1,10 +1,13 @@
+require 'redcarpet'
+
 class Problem
 
   include Mongoid::Document
   include Mongoid::Timestamps
 
   field :title
-  field :content_path
+  field :description
+  field :description_html
   field :small_input
   field :small_output
   field :large_input
@@ -15,6 +18,8 @@ class Problem
 
   belongs_to :contest
   has_many :submits
+
+  before_save :convert_html
 
   def convert_html
     self.description_html = Markdown.to_html(self.description)
