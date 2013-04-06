@@ -56,8 +56,10 @@ class Contests::ProblemsController < AuthController
     @solved = problem.correct?(output, input_type)
     if @current_user.is_admin || (@contest.start_time <= Time.now && Time.now <= @contest.end_time)
       if @solved && !@score.solved_time(problem, input_type)
-        score = @score.score +
-          (input_type == 'small' ? problem.small_score : problem.large_score)
+        time_length = @contest.end_time - @contest.start_time
+        time_diff = Time.now - @contest.start_time
+        default_score = input_type == 'small' ? problem.small_score : problem.large_score
+        score = @score.score + default_score - (0.5 * default_score * time_diff / time_length).to_int
         @score.update_attributes(score: score)
       end
       Submit.create(solved: @solved, problem_type: input_type, problem: problem, score: @score)
