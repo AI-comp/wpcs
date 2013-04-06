@@ -9,11 +9,9 @@
     <th>Problem name</th>
     <th>Input sizes</th>
     <th>Scores</th>
-    <th>Download inputs</th>
     <th>Solved time</th>
     <th></th>
     <% if @current_user && @current_user.is_admin %>
-      <th></th>
       <th></th>
     <% end %>
   </tr>
@@ -32,26 +30,6 @@
       </div>
       <div>
       <%= link_to('Download Large', download_large_contest_problem_path(@contest, problem)) %>
-      </div>
-    </td>
-    <td>
-      <div>
-        <%= @score.solved_time(problem, 'small') ?
-          format_date(@score.solved_time(problem, 'small')) :
-          'Not yet (' + @score.wrong_count(problem, 'small').to_s + ' failures)' %>
-      </div>
-      <div>
-        <%= @score.solved_time(problem, 'large') ?
-          format_date(@score.solved_time(problem, 'large')) :
-          'Not yet (' + @score.wrong_count(problem, 'large').to_s + ' failures)' %>
-      </div>
-    </td>
-    <td>
-      <div>
-      <%= link_to 'Submit Small', contest_problem_path(@contest, problem, input_type: 'small') %>
-      </div>
-      <div>
-      <%= link_to 'Submit Large', contest_problem_path(@contest, problem, input_type: 'large') %>
       </div>
     </td>
     <% if @current_user && @current_user.is_admin %>
