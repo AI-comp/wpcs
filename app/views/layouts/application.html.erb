@@ -24,6 +24,10 @@
             <li class=''><%= link_to 'CONTESTS', contests_path %></li>
           </ul>
           <ul class='nav pull-right'>
+            <% if @contest %>
+              <li><%= @contest.name %></li>
+              <li id='sec'></li>
+            <% end %>
             <% if @authorized %>
               <li><%= link_to (@current_user.name.presence or @current_user.uid), @current_user %></li>
               <% if @score %>
