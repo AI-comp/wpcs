@@ -1,3 +1,9 @@
 // Place all the styles related to the problems controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+div.problem_description {
+  padding: 4px 6px;
+  border: solid 1px #CCC;
+  background-color: #F8F8F8;
+}

@@ -5,6 +5,12 @@
     Problem title: <%= @problem.title %>
   </p>
   <p class="field">
+    Description:
+    <div class="problem_description">
+      <%= raw @problem.description_html %>
+    </div>
+  </p>
+  <p class="field">
     Input type: <%= select_tag('input_type', options_for_select(
       { 'Small' => 'small', 'Large' => 'large' }, @input_type)) %>
   </p>

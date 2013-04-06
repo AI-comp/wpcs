@@ -4,7 +4,6 @@
 <%= link_to 'Score board', contest_score_path %>
 </p>
 
-<p>
 <table class='table table-striped'>
   <tr>
     <th>Problem name</th>
@@ -21,19 +20,11 @@
 
 <% @problems.asc(:title).each do |problem| %>
   <tr>
-    <td><%= link_to(problem.title, problem.content_path, target: '_blank') %></td>
+    <td><%= link_to problem.title, contest_problem_path(problem.contest, problem) %></td>
+    <td>Small<br>Large</td>
     <td>
-      Small
-      <br />
-      Large
-    </td>
-    <td>
-      <div>
-      <%= problem.small_score %>
-      </div>
-      <div>
-      <%= problem.large_score %>
-      </div>
+      <div><%= problem.small_score %></div>
+      <div><%= problem.large_score %></div>
     </td>
     <td>
       <div>
@@ -70,7 +61,6 @@
   </tr>
 <% end %>
 </table>
-</p>
 
 <% if @current_user && @current_user.is_admin %>
   <%= link_to 'New Problem', new_contest_problem_path %>
