@@ -14,7 +14,7 @@ class User
   validates_uniqueness_of :uid, :scope => :provider, :message => 'was already used'
 
   belongs_to :group
-  has_many :scores
+  has_many :submits
 
   after_create :join_default_group
 
