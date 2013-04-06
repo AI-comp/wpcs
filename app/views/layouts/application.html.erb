@@ -25,8 +25,8 @@
           </ul>
           <ul class='nav pull-right'>
             <% if @contest %>
-              <li><%= @contest.name %></li>
-              <li id='sec'></li>
+              <li><a><%= @contest.name %></a></li>
+              <li><a id='sec'></a></li>
             <% end %>
             <% if @authorized %>
               <li><%= link_to (@current_user.name.presence or @current_user.uid), @current_user %></li>
