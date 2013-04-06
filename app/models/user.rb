@@ -14,7 +14,7 @@ class User
   validates_uniqueness_of :uid, :scope => :provider, :message => 'was already used'
 
   belongs_to :group
-  has_many :scores
+  has_many :submits
 
   after_create :join_default_group
 
@@ -39,6 +39,19 @@ class User
       user.save
     end
     user
+  end
+
+  def submit_for(problem, problem_type)
+    problem.submits.where(problem_id: problem.id, problem_type: problem_type).first
+  end
+
+  def score_for(contest)
+    problem_ids = contest.problems.map(&:id)
+    self.submits.in(problem_id: problem_ids).inject(0, &:+)
+  end
+
+  def solved?(problem, problem_type)
+    submit_for(problem, problem_type).first.present?
   end
 
   private

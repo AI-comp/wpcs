@@ -9,12 +9,12 @@ class Group
 
   has_many :users
 
-  def self.default_name
+  def self.default_group_name
     "No Group"
   end
 
   def self.default
-    Group.where(name: Group.default_name).first
+    Group.where(name: Group.default_group_name).first
   end
 
 end
