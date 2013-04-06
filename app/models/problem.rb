@@ -1,10 +1,13 @@
+require 'redcarpet'
+
 class Problem
 
   include Mongoid::Document
   include Mongoid::Timestamps
 
   field :title
-  field :content_path
+  field :description
+  field :description_html
   field :small_input
   field :small_output
   field :large_input
@@ -13,6 +16,13 @@ class Problem
   field :large_score, type: Integer
 
   belongs_to :contest
+
+  before_save :convert_html
+
+  def convert_html
+    md = Redcarpet::Markdown.new(Redcarpet::Render::HTML)
+    self.description_html = md.render(self.description)
+  end
 
   def correct?(answer, problem_type)
     if problem_type=='small'
