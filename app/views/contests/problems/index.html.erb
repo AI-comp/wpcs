@@ -1,5 +1,27 @@
 <h1>Problem list</h1>
 
+<script type="text/javascript">
+  var end_time = new Date(
+    <%= @contest.end_time.year%>,
+    <%= @contest.end_time.month - 1%>,
+    <%= @contest.end_time.day %>,
+    <%= @contest.end_time.hour %>,
+    <%= @contest.end_time.min %>,
+    <%= @contest.end_time.sec %>
+  );
+  function countDown() {
+    setInterval(function() {
+      var diff = (end_time - new Date())/ 1000;
+      $('#sec').html(
+        Math.round(diff / 3600) +
+        ":" + Math.round(diff % 3600 / 60) +
+        ":" + Math.round(diff % 3600 % 60)
+      );
+    }, 100);
+  }
+  $(countDown);
+</script>
+
 <p>
 <%= link_to 'Score board', contest_score_path %>
 </p>
