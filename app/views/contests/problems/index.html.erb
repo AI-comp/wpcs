@@ -28,14 +28,20 @@
     </td>
     <td>
       <div>
-        <%= @score.solved_time(problem, 'small') ?
-          format_date(@score.solved_time(problem, 'small')) :
-          'Not yet (' + @score.wrong_count(problem, 'small').to_s + ' failures)' %>
+      <%= link_to('Download Small', download_small_contest_problem_path(@contest, problem)) %>
       </div>
       <div>
-        <%= @score.solved_time(problem, 'large') ?
-          format_date(@score.solved_time(problem, 'large')) :
-          'Not yet (' + @score.wrong_count(problem, 'large').to_s + ' failures)' %>
+      <%= link_to('Download Large', download_large_contest_problem_path(@contest, problem)) %>
+      </div>
+    </td>
+    <td>
+      <div>
+        <% submit = @current_user.submit_for(problem, 'small') %>
+        <%= submit ? format_date(submit.solved_time) : 'Not yet' %>
+      </div>
+      <div>
+        <% submit = @current_user.submit_for(problem, 'large') %>
+        <%= submit ? format_date(submit.solved_time) : 'Not yet' %>
       </div>
     </td>
   </tr>
