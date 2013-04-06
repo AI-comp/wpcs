@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 class Contests::ProblemsController < AuthController
   before_filter :load_contest
   private
@@ -68,6 +70,7 @@ class Contests::ProblemsController < AuthController
   # GET /contests/1/problems/new.json
   def new
     @problem = Problem.new
+    @problem.description = "Markdownで書けるよ！\n-----\n* すげぇ！\n* マジパネェ"
 
     respond_to do |format|
       format.html # new.html.erb
