@@ -1,3 +1,20 @@
+<%= javascript_tag do %>
+  $(function () {
+    var timeoutId = null;
+    var get_converted_markdown = function () {
+      timeoutId = null;
+      var md_text = $("#markdown_textarea").val();
+      $.get("/", { markdown: md_text }, function (data) {
+        $("#markdown_preview").html(data);
+      });
+    };
+    $("#markdown_textarea").keydown(function (event) {
+      if (timeoutId) clearTimeout(timeoutId);
+      timeoutId = setTimeout(get_converted_markdown, 1000);
+    });
+  });
+<% end %>
+
 <%= form_for(@problem, :url => {:action=>action}) do |f| %>
   <% if @problem.errors.any? %>
     <div id="error_explanation">
@@ -16,7 +33,14 @@
   </div>
   <div class="field">
     <%= f.label :description %><br />
-    <%= f.text_area :description %>
+    <div class="row">
+      <div class="span6">
+        <%= f.text_area :description, {id: 'markdown_textarea'} %>
+      </div>
+      <div id="markdown_preview" class="problem_description span5">
+        <%= raw @problem.description_html %>
+      </div>
+    </div>
   </div>
   <div class="field">
     <%= f.label :small_input %><br />
