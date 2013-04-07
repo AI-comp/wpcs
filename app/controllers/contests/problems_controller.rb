@@ -13,6 +13,13 @@ class Contests::ProblemsController < AuthController
     end
   end
 
+  # score calculation: max_score * (1 - 0.5 * time_diff / time_length)
+  def calculate_score(max_score)
+    time_length = @contest.end_time - @contest.start_time
+    time_diff   = Time.now - @contest.start_time
+    (max_score * (1 - 0.5 * time_diff / time_length)).to_int
+  end
+
   public
   # GET /contests/1/problems
   # GET /contests/1/problems.json
@@ -56,10 +63,8 @@ class Contests::ProblemsController < AuthController
     @solved = problem.correct?(output, input_type)
     if @current_user.is_admin || (@contest.start_time <= Time.now && Time.now <= @contest.end_time)
       if @solved && !@score.solved_time(problem, input_type)
-        time_length = @contest.end_time - @contest.start_time
-        time_diff = Time.now - @contest.start_time
-        default_score = input_type == 'small' ? problem.small_score : problem.large_score
-        score = @score.score + default_score - (0.5 * default_score * time_diff / time_length).to_int
+        max_score = input_type == 'small' ? problem.small_score : problem.large_score
+        score = @score.score + calculate_score(max_score)
         @score.update_attributes(score: score)
       end
       Submit.create(solved: @solved, problem_type: input_type, problem: problem, score: @score)
