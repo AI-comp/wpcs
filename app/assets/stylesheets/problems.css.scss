@@ -2,8 +2,53 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+@mixin header_margin {
+  margin: 2px 0px 6px;
+}
+
+@mixin block_margin {
+  margin: 16px 0px 16px;
+}
+
 div.problem_description {
-  padding: 4px 6px;
+  padding: 6px 8px;
   border: solid 1px #CCC;
   background-color: #F8F8F8;
+
+  h1 {
+    @include header_margin;
+    font-size: 24px;
+  }
+
+  h2 {
+    @include header_margin;
+    font-size: 20px;
+  }
+
+  h3 {
+    @include header_margin;
+    font-size: 16px;
+  }
+
+  p {
+    margin: 4px 0px;
+  }
+
+  pre {
+    @include block_margin;
+  }
+
+  blockquote {
+    @include block_margin;
+  }
+
+  img {
+    @include block_margin;
+  }
+
+  ul, ol {
+    margin: 8px 0px 8px 24px;
+  }
+
 }
+
