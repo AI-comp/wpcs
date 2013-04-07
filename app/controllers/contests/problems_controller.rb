@@ -77,7 +77,73 @@ class Contests::ProblemsController < AuthController
   # GET /contests/1/problems/new.json
   def new
     @problem = Problem.new
-    @problem.description = "Markdownで書けるよ！\n-----\n* すげぇ！\n* マジパネェ"
+    @problem.description = <<EOL
+でかい見出し (h1)
+========
+
+普通の見出し (h2)
+--------
+普通の文章
+改行をこまめに入れると綺麗になるよ
+
+### リスト
+前後に空行を入れてね
+入れ子はスペース4つで
+
+* 1st
+* 2nd
+* 3rd
+    * uno
+    * due
+    * tre
+        * 壱
+        * 弐
+        * 参
+    * quattro
+
+### 番号付きリスト
+1. foo
+2. bar
+3. baz
+
+スペース4つを入れるとブロックっぽくくくられる
+これも前後に空行をいれて
+
+    def fib(n)
+      @memo = [1,1,2,3]
+      @memo[n] || @memo[n] = fib(n-1) + fib(n-2)
+    end
+
+
+画像も表示できるよ！
+
+![](http://cedec.cesa.or.jp/2012/images/speakers/303.jpg)
+
+でもサイズは指定できないから、その時は諦めてimgタグ使ってね
+
+<img src="http://murooka.me/mr.png" width="100">
+
+
+リンクとか
+
+[3Dげーむ](http://murooka.me/2/pc.html)
+
+引用とか
+
+
+> すげぇ！<br>
+> マジパネェ
+>
+> 杉本 元気
+
+
+# でかい見出し
+## そこそこな見出し
+### 普通の見出し
+#### 控えめな見出し
+##### 小さな見出し
+
+EOL
 
     respond_to do |format|
       format.html # new.html.erb
