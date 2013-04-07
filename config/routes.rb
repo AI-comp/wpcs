@@ -1,6 +1,7 @@
 Wpcs::Application.routes.draw do
 
   post "ajax/convert_markdown"
+  post "ajax/upload_image"
 
   resources :images
   resources :groups
