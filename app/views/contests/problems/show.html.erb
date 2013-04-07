@@ -1,31 +1,43 @@
 <h1>Submit your output</h1>
+<br>
+<br>
 
 <%= form_tag({action: 'submit'}, multipart: true) do %>
-  <p class="field">
-    Problem title: <%= @problem.title %>
-  </p>
-  <p class="field">
-    Description:
+  <div class="field">
+    <h3>Problem title</h3>
+    <%= @problem.title %>
+  </div>
+  <div class="field">
+    <h3>Description</h3>
     <div class="problem_description">
       <%= raw @problem.description_html %>
     </div>
+  </div>
+  <p class="field">
+    <%= link_to 'Download Small Input', download_small_contest_problem_path(@contest, @problem) %>
   </p>
   <p class="field">
-    Input type: <%= select_tag('input_type', options_for_select(
-      { 'Small' => 'small', 'Large' => 'large' }, @input_type)) %>
+    <%= link_to 'Download Large Input', download_large_contest_problem_path(@contest, @problem) %>
   </p>
-  <div>
-    Please submit your answer writing it on the 'Output text' or uploading a answer file (not source code!).
+  <br>
+  <div class="field">
+    <h3>Input type</h3>
+    <%= select_tag('input_type', options_for_select( { 'Small' => 'small', 'Large' => 'large' }, @input_type)) %>
+  </div>
+  <div class="field">
+    Please submit your answer writing it on the 'Submission text' or uploading a answer file (not source code!).
     <br />
     答えをテキストボックスに入力するか、答えが記載されたファイル（ソースコードは不要）をアップロードしてください。
   </div>
-  <p class="field">
-    Output file: <%= file_field_tag('files') %>
-  </p>
-  <p class="field">
-    Output text: <%= text_area_tag('text_area') %>
-  </p>
-  <p class="field">
-    <%= submit_tag('Submit') %>
-  </p>
+  <div class="field">
+    <h3>Submission file</h3>
+    <%= file_field_tag 'files' %>
+  </div>
+  <div class="field">
+    <h3>Submission text</h3>
+    <%= text_area_tag 'text_area' %>
+  </div>
+  <div class="field">
+    <%= submit_tag 'Submit', { class: 'btn' } %>
+  </div>
 <% end %>
