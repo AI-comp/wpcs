@@ -4,7 +4,7 @@
     var get_converted_markdown = function () {
       timeoutId = null;
       var md_text = $("#markdown_textarea").val();
-      $.get("<%= ajax_convert_markdown_path %>", { markdown: md_text }, function (data) {
+      $.post("<%= ajax_convert_markdown_path %>", { markdown: md_text }, function (data) {
         $("#markdown_preview").html(data);
       });
     };

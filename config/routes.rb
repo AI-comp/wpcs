@@ -1,6 +1,6 @@
 Wpcs::Application.routes.draw do
 
-  get "ajax/convert_markdown"
+  post "ajax/convert_markdown"
 
   resources :groups
   match 'groups/:id/join' => 'groups#join'
