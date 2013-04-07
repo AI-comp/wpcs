@@ -1,0 +1,16 @@
+<script type="text/javascript">
+  var end_time = new Date("<%= @contest.end_time.to_s %>");
+  function update()  {
+    var diff = (end_time - new Date())/ 1000;
+    $("#sec").html(
+      Math.round(diff / 3600) +
+      ":" + Math.round(diff % 3600 / 60) +
+      ":" + Math.round(diff % 3600 % 60)
+    );
+  }
+  function initilize() {
+    update();
+    setInterval(update, 500);
+  };
+  $(initilize);
+</script>
