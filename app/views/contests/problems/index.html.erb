@@ -47,5 +47,12 @@
 </table>
 
 <% if @current_user && @current_user.is_admin %>
-  <%= link_to 'New Problem', new_contest_problem_path %>
+<%= link_to 'New Problem', new_contest_problem_path %>
 <% end %>
+<br>
+<div id="resultLog">
+  <% Submit.desc("update_at").reverse.take(10).each do |m| %>
+    <%= "%s(group: %s) submitted for %s(%s), and result was %s at %s "%([m.score.user.name, m.score.user.group.name ,m.problem.title, m.problem_type, m.solved, m.updated_at.strftime('%H:%M:%S'), m.solved]) %>
+  <br>
+  <% end %>
+</div>
