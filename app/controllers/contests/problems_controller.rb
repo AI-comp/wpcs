@@ -63,7 +63,7 @@ class Contests::ProblemsController < AuthController
       Submit.create(solved: @solved, problem_type: input_type, problem: problem, score: @score)
     end
 
-    flash[:solved] = @solved
+    flash[:solved] = @solved ? Problem.ac_message : Problem.wa_message
     redirect_to action: 'index'
   end
 
