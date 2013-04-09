@@ -19,11 +19,11 @@ class Problem
 
   before_save :convert_html
 
-  def self.ac_message
+  def ac_message
     "Correct!"
   end
 
-  def self.wa_message
+  def wa_message
     "Wrong..."
   end
 
