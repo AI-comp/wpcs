@@ -19,6 +19,14 @@ class Problem
 
   before_save :convert_html
 
+  def self.ac_message
+    "Correct!"
+  end
+
+  def self.wa_message
+    "Wrong..."
+  end
+
   def convert_html
     md = Redcarpet::Markdown.new(Redcarpet::Render::HTML)
     self.description_html = md.render(self.description)
