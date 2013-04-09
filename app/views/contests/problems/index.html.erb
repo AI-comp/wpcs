@@ -17,6 +17,12 @@
   $(initilize);
 </script>
 
+<% unless flash[:solved].nil? %>
+  <div class="alert">
+    <%= flash[:solved] %>
+  </div>
+<% end %>
+
 <p>
 <%= link_to 'Score board', contest_score_path %>
 </p>
