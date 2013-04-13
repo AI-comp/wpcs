@@ -26,23 +26,14 @@ class ContestsController < AuthController
 
   # GET /contests/1/edit
   def edit
+    datetime_format = '%Y/%m/%d %H:%M'
     @contest = Contest.find(params[:id])
+    @contest.start_time = @contest.start_time.strftime(datetime_format)
+    @contest.end_time = @contest.end_time.strftime(datetime_format)
   end
 
   # POST /contests
   def create
-    # 作り方がわからないので無理やり
-    s = Time.new(
-      *((1..5).map{|i| params[:contest]["start_time(#{i}i)".to_sym].to_i}),
-      0
-    )
-    e = Time.new(
-      *((1..5).map{|i| params[:contest]["end_time(#{i}i)".to_sym].to_i}),
-      0
-    )
-    params[:contest][:start_time] = s
-    params[:contest][:end_time] = e
-
     @contest = Contest.new(params[:contest])
     if @contest.save
       redirect_to @contest, notice: 'Contest was successfully created.'
@@ -53,18 +44,6 @@ class ContestsController < AuthController
 
   # PUT /contests/1
   def update
-    # 作り方がわからないので無理やり
-    s = Time.new(
-      *((1..5).map{|i| params[:contest]["start_time(#{i}i)".to_sym].to_i}),
-      0
-    )
-    e = Time.new(
-      *((1..5).map{|i| params[:contest]["end_time(#{i}i)".to_sym].to_i}),
-      0
-    )
-    params[:contest][:start_time] = s
-    params[:contest][:end_time] = e
-
     @contest = Contest.find(params[:id])
     if @contest.update_attributes(params[:contest])
       redirect_to @contest, notice: 'Contest was successfully updated.'
