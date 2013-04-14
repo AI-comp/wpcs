@@ -19,7 +19,7 @@
 
 <% unless flash[:solved].nil? %>
   <div class="alert">
-    <%= flash[:solved] %>
+    <%= flash[:solved] ? "Correct!" : "Wrong..." %>
   </div>
 <% end %>
 

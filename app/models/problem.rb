@@ -19,14 +19,6 @@ class Problem
 
   before_save :convert_html
 
-  def ac_message
-    "Correct!"
-  end
-
-  def wa_message
-    "Wrong..."
-  end
-
   def convert_html
     md = Redcarpet::Markdown.new(Redcarpet::Render::HTML)
     self.description_html = md.render(self.description)
