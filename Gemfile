@@ -29,8 +29,45 @@ end
 gem 'jquery-rails'
 
 group :development do
-  gem 'factory_girl_rails'
   gem 'faker'
+end
+
+group :development do
+  # automatic reloader for changes
+  gem 'guard-livereload'
+  gem 'em-websocket'
+end
+
+group :test do
+  # mock for HTTP requests
+  gem 'webmock'
+
+  # Matcher utility for Rspec
+  gem "shoulda-matchers"
+end
+
+group :development, :test do
+  # Rspec
+  gem 'rspec-rails'
+
+  # instead of fixture
+  gem "factory_girl_rails"
+
+  gem 'database_cleaner'
+  # Fast server for testing
+  gem 'spork'
+
+  # Monitor for file changes
+  gem 'rb-fsevent'
+
+  # Notifier to Notification Center for Moutain Lion
+  gem 'terminal-notifier-guard'
+
+  # Guard for pow, rpsec, spork and bundler
+  gem 'guard-pow'
+  gem 'guard-rspec'
+  gem 'guard-spork'
+  gem 'guard-bundler'
 end
 
 # To use ActiveModel has_secure_password
