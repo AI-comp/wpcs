@@ -2,6 +2,12 @@
 
 <%= render "timer" %>
 
+<% unless flash[:solved].nil? %>
+  <div class="alert">
+    <%= flash[:solved] ? "Correct!" : "Wrong..." %>
+  </div>
+<% end %>
+
 <p>
 <%= link_to 'Score board', contest_score_path %>
 </p>
