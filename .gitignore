@@ -17,3 +17,6 @@
 .DS_Store
 *.swp
 tags
+
+# Mongoid-paperclip cache directory
+/public/system/
