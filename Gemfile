@@ -31,16 +31,16 @@ group :development do
 end
 
 group :development do
-  # viewやcssの変更を監視してブラウザを自動的にリロードする
+  # automatic reloader for changes
   gem 'guard-livereload'
   gem 'em-websocket'
 end
 
 group :test do
-  # HTTP requests用のモックアップを作ってくれる
+  # mock for HTTP requests
   gem 'webmock'
 
-  # 便利マッチャー集
+  # Matcher utility for Rspec
   gem "shoulda-matchers"
 end
 
@@ -48,31 +48,23 @@ group :development, :test do
   # Rspec
   gem 'rspec-rails'
 
-  # fixtureの代わり
+  # instead of fixture
   gem "factory_girl_rails"
 
-  # テスト環境のテーブルをきれいにする
   gem 'database_cleaner'
-
-  # 設定をロードしたサーバーによってテストを高速化
+  # Fast server for testing
   gem 'spork'
 
-  # ファイルの変更を検知する。OSX用
+  # Monitor for file changes
   gem 'rb-fsevent'
 
-  # テスト結果を通知センターに表示する(Mountain Lion向け)
+  # Notifier to Notification Center for Moutain Lion
   gem 'terminal-notifier-guard'
 
-  # ファイルの変更を監視してPowサーバを再起動
+  # Guard for pow, rpsec, spork and bundler
   gem 'guard-pow'
-
-  # ファイルの変更を監視してテストを自動化
   gem 'guard-rspec'
-
-  # 設定ファイルの変更を監視してテストサーバーを再起動
   gem 'guard-spork'
-
-  # Gemfileを監視して、変更があったら自動でbundle installを実行
   gem 'guard-bundler'
 end
 
