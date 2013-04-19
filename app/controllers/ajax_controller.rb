@@ -17,4 +17,11 @@ class AjaxController < ApplicationController
     render text: html, layout: false
   end
 
+  def upload_image
+    image = Image.new(params[:image])
+    image.save
+
+    render text: { url: image.attachment.url, thumbnail: image.attachment.url(:thumbnail) }.to_json
+  end
+
 end
