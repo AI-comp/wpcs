@@ -11,3 +11,7 @@ http://docs.mongodb.org/manual/installation/
 
 # Run
     rails s
+
+# Daily development
+- Please run the following command to clean up unused branches which don't exist the remote.
+    git remote prune origin
