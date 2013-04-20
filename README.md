@@ -15,8 +15,8 @@ http://docs.mongodb.org/manual/installation/
 # Daily development
 - Clean up unused branches which don't exist the remote
 
-    git remote prune origin
+        git remote prune origin
 
 - Start automatic Rspec tesing with Guard and Spork
 
-    guard
+        guard
