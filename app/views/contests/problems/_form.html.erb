@@ -13,6 +13,7 @@
       timeoutId = setTimeout(get_converted_markdown, 1000);
     });
     $(document).ready(function () {
+      $('#markdown_textarea').autosize();
       get_converted_markdown();
     });
 
