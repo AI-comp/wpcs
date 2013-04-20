@@ -12,6 +12,9 @@
       if (timeoutId) clearTimeout(timeoutId);
       timeoutId = setTimeout(get_converted_markdown, 1000);
     });
+    $(document).ready(function () {
+      get_converted_markdown();
+    });
 
     var dummy = $('#file_uploader_dummy'),
         uploader = $('#file_uploader'),
