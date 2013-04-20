@@ -56,13 +56,15 @@ group :development, :test do
   gem "factory_girl_rails"
 
   gem 'database_cleaner'
-  # Fast server for testing
+  # Fast rails server for testing
   gem 'spork'
 
   # Monitor for file changes
-  gem 'rb-fsevent'
+  gem 'rb-fsevent' # for MacOS
+  gem 'rb-inotify' # for Linux
+  gem 'rb-fchange' # for Windows
 
-  # Notifier to Notification Center for Moutain Lion
+  # Notifier to the Notification Center of Moutain Lion
   gem 'terminal-notifier-guard'
 
   # Guard for pow, rpsec, spork and bundler
