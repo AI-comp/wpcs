@@ -42,8 +42,9 @@ div.problem_description {
     @include block_margin;
   }
 
-  blockquote {
+  blockquote p {
     @include block_margin;
+    font-size: 13px;
   }
 
   img {
@@ -53,6 +54,32 @@ div.problem_description {
   ul, ol {
     margin: 8px 0px 8px 24px;
   }
+
+  table {
+    border-spacing: 0;
+  }
+
+  table th {
+    padding: 4px 10px;
+    font-weight: bold;
+    border:1px solid #ccc;
+    text-align: center;
+    background-color: #F4F4F4;
+  }
+
+  table td {
+    padding: 4px 10px;
+    border:1px solid #ccc;
+  }
+
+  table tr {
+    background-color: #F0F0F0;
+  }
+
+  table tr:nth-child(2n+1) {
+    background-color: #F8F8F8;
+  }
+
 
 }
 
