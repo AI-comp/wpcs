@@ -26,6 +26,7 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
   gem "jquery-ui-rails", "~> 4.0.2"
   gem "jquery-timepicker-addon-rails", "~> 1.2.2"
+  gem "autosize-rails", "~> 1.16.7"
 end
 
 gem 'jquery-rails'
