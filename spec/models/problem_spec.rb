@@ -30,7 +30,6 @@ describe Problem do
       expect(@problem.description_html).not_to be_nil
     end
 
-
   end
 
 end
