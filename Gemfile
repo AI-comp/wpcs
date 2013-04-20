@@ -24,6 +24,8 @@ group :assets do
   gem 'therubyracer', :platform => :ruby
 
   gem 'uglifier', '>= 1.0.3'
+  gem "jquery-ui-rails", "~> 4.0.2"
+  gem "jquery-timepicker-addon-rails", "~> 1.2.2"
 end
 
 gem 'jquery-rails'
