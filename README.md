@@ -9,10 +9,11 @@ http://docs.mongodb.org/manual/installation/
     rake db:drop
     rake db:init
 
-# Run
-    rails s
-
 # Daily development
+- Run a rails sever on your machine
+
+        rails s
+
 - Clean up unused branches which don't exist the remote
 
         git remote prune origin
