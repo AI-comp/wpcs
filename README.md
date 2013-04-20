@@ -13,5 +13,10 @@ http://docs.mongodb.org/manual/installation/
     rails s
 
 # Daily development
-- Please run the following command to clean up unused branches which don't exist the remote.
+- Clean up unused branches which don't exist the remote
+
     git remote prune origin
+
+- Start automatic Rspec tesing with Guard and Spork
+
+    guard
