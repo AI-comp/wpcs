@@ -1,5 +1,3 @@
-require 'redcarpet'
-
 class Problem
 
   include Mongoid::Document
@@ -20,8 +18,7 @@ class Problem
   before_save :convert_html
 
   def convert_html
-    md = Redcarpet::Markdown.new(Redcarpet::Render::HTML)
-    self.description_html = md.render(self.description)
+    self.description_html = Markdown.to_html(self.description)
   end
 
   def correct?(answer, problem_type)

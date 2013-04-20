@@ -1,5 +1,3 @@
-require 'redcarpet'
-
 class AjaxController < ApplicationController
   # before_filter :check_ajax
 
@@ -11,8 +9,7 @@ class AjaxController < ApplicationController
     md = params[:markdown]
     return redirect_to '/404.html' unless md
 
-    renderer = Redcarpet::Markdown.new(Redcarpet::Render::HTML)
-    html = renderer.render(md)
+    html = Markdown.to_html(md)
 
     render text: html, layout: false
   end
