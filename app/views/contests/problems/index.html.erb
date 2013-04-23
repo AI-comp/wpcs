@@ -2,11 +2,9 @@
 
 <%= render "timer" %>
 
-<% unless flash[:solved].nil? %>
-  <div class="alert">
-    <%= flash[:solved] ? "Correct!" : "Wrong..." %>
-  </div>
-<% end %>
+<%= flash[:solved].try { |b|
+  content_tag(:div, class: 'alert'){ b ? 'Correct!' : 'Wrong...' }
+} %>
 
 <p>
 <%= link_to 'Score board', contest_score_path %>
