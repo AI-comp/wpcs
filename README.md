@@ -9,6 +9,10 @@ http://docs.mongodb.org/manual/installation/
     rake db:drop
     rake db:init
 
+# Documents
+- Class diagram  
+https://cacoo.com/diagrams/zJncLkksT8WHeY4b
+
 # Daily development
 - Run a rails sever on your machine
 
