@@ -57,8 +57,8 @@
 <% end %>
 <br>
 <div id="resultLog">
-  <% Submit.desc("update_at").reverse.take(10).each do |m| %>
-    <%= "%s(group: %s) submitted for %s(%s), and result was %s at %s "%([m.score.user.name, m.score.user.group.name ,m.problem.title, m.problem_type, m.solved, m.updated_at.strftime('%H:%M:%S'), m.solved]) %>
+  <% Submit.desc("updated_at").take(10).each do |s| %>
+    <%= "#{s.score.user.name} (#{s.score.user.group}) submitted for #{s.problem.title}(#{s.problem_type}), and result was #{s.solved} and #{s.updated_at.strftime('%H:%M:%S')}" %>
   <br>
   <% end %>
 </div>
