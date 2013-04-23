@@ -5,7 +5,13 @@
 http://docs.mongodb.org/manual/installation/
 * ImageMagic
 
-# Set up
+# Install dependencies for general
+    bundle install
+
+# Install dependencies for only Linux
+    sudo apt-get install libnotify-bin
+
+# Initialize database
     rake db:drop
     rake db:init
 
