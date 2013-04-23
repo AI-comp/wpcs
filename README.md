@@ -17,6 +17,7 @@ http://docs.mongodb.org/manual/installation/
 # Initialize database
     rake db:drop
     rake db:init
+    rake db:setup
 
 # Documents
 - Class diagram  
