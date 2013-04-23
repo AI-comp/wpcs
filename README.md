@@ -10,7 +10,7 @@ http://docs.mongodb.org/manual/installation/
 
         bundle install
 
-- for only Linux
+- for only Linux (after gneral installation)
 
         sudo apt-get install libnotify-bin
 
