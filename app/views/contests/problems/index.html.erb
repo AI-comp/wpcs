@@ -56,9 +56,13 @@
 <%= link_to 'New Problem', new_contest_problem_path %>
 <% end %>
 <br>
+<br>
+
+<h2>Submission history</h2>
 <div id="resultLog">
   <% Submit.desc(:updated_at).take(10).each do |s| %>
-    <%= "#{s.score.user.name} (#{s.score.user.group}) submitted for #{s.problem.title}(#{s.problem_type}), and result was #{s.solved} and #{s.updated_at.strftime('%H:%M:%S')}" %>
+    <%= "#{s.score.user.name} (#{s.score.user.group.name}) submitted for #{s.problem.title} (#{s.problem_type}),
+and its result was #{s.solved ? "correct" : "wrong"} at #{s.updated_at.strftime('%H:%M:%S')}." %>
   <br>
   <% end %>
 </div>
