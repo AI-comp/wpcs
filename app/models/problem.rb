@@ -29,4 +29,8 @@ class Problem
     end
   end
 
+  def index
+    contest.problems.index(self)
+  end
+
 end
