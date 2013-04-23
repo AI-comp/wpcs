@@ -5,13 +5,13 @@ gem 'rails', '3.2.13'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem "mongoid"
-gem "bson_ext"
-gem "omniauth"
-gem "omniauth-google"
-gem "omniauth-twitter"
-gem "redcarpet"
-gem "mongoid-paperclip", :require => "mongoid_paperclip"
+gem 'mongoid'
+gem 'bson_ext'
+gem 'omniauth'
+gem 'omniauth-google'
+gem 'omniauth-twitter'
+gem 'redcarpet'
+gem 'mongoid-paperclip', :require => 'mongoid_paperclip'
 gem 'aws-sdk', '~> 1.3.4'
 gem 'settingslogic'
 
@@ -25,24 +25,44 @@ group :assets do
   gem 'therubyracer', :platform => :ruby
 
   gem 'uglifier', '>= 1.0.3'
-  gem "jquery-ui-rails", "~> 4.0.2"
-  gem "jquery-timepicker-addon-rails", "~> 1.2.2"
-  gem "autosize-rails", "~> 1.16.7"
+  gem 'jquery-ui-rails', '~> 4.0.2'
+  gem 'jquery-timepicker-addon-rails', '~> 1.2.2'
+  gem 'autosize-rails', '~> 1.16.7'
 end
 
 gem 'jquery-rails'
 
 group :development do
   gem 'faker'
-end
+  gem 'em-websocket'
 
-group :development do
+  # automatic reloader for changes
+  gem 'guard'
+
   # automatic reloader for changes
   gem 'guard-livereload'
-  gem 'em-websocket'
+
+  # Guard for pow, rpsec, spork and bundler
+  gem 'guard-pow'
+  gem 'guard-rspec'
+  gem 'guard-spork'
+  gem 'guard-bundler'
+
+  # Monitor for file changes (please install one of them by hand.)
+  gem 'rb-inotify', :require => false # for Linux
+  gem 'rb-fsevent', :require => false # for MacOS
+  gem 'rb-fchange', :require => false # for Windows
+
+  # Notifier to the Notification Center of Moutain Lion
+  gem 'libnotify'               # for Linux   
+  gem 'terminal-notifier-guard' # for MacOS (10.8)
+  gem 'rb-notifu'               # for Windows
 end
 
 group :test do
+  # Fast rails server for testing
+  gem 'spork'
+
   # mock for HTTP requests
   gem 'webmock'
 
@@ -61,24 +81,6 @@ group :development, :test do
   gem 'factory_girl_rails'
 
   gem 'database_cleaner'
-  # Fast rails server for testing
-  gem 'spork'
-
-  # Monitor for file changes (please install one of them by hand.)
-  gem 'rb-inotify', :require => false # for Linux
-  gem 'rb-fsevent', :require => false # for MacOS
-  gem 'rb-fchange', :require => false # for Windows
-
-  # Notifier to the Notification Center of Moutain Lion
-  gem 'libnotify'               # for Linux   
-  gem 'terminal-notifier-guard' # for MacOS (10.8)
-  gem 'rb-notifu'               # for Windows
-
-  # Guard for pow, rpsec, spork and bundler
-  gem 'guard-pow'
-  gem 'guard-rspec'
-  gem 'guard-spork'
-  gem 'guard-bundler'
 end
 
 # To use ActiveModel has_secure_password
