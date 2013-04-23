@@ -11,6 +11,8 @@ gem "omniauth"
 gem "omniauth-google"
 gem "omniauth-twitter"
 gem "redcarpet"
+gem "mongoid-paperclip", :require => "mongoid_paperclip"
+gem 'aws-sdk', '~> 1.3.4'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -22,13 +24,54 @@ group :assets do
   gem 'therubyracer', :platform => :ruby
 
   gem 'uglifier', '>= 1.0.3'
+  gem "jquery-ui-rails", "~> 4.0.2"
+  gem "jquery-timepicker-addon-rails", "~> 1.2.2"
 end
 
 gem 'jquery-rails'
 
 group :development do
-  gem 'factory_girl_rails'
   gem 'faker'
+end
+
+group :development do
+  # automatic reloader for changes
+  gem 'guard-livereload'
+  gem 'em-websocket'
+end
+
+group :test do
+  # mock for HTTP requests
+  gem 'webmock'
+
+  # Matcher utility for Rspec
+  gem "shoulda-matchers"
+end
+
+group :development, :test do
+  # Rspec
+  gem 'rspec-rails'
+
+  # instead of fixture
+  gem "factory_girl_rails"
+
+  gem 'database_cleaner'
+  # Fast rails server for testing
+  gem 'spork'
+
+  # Monitor for file changes
+  gem 'rb-fsevent' # for MacOS
+  gem 'rb-inotify' # for Linux
+  gem 'rb-fchange' # for Windows
+
+  # Notifier to the Notification Center of Moutain Lion
+  gem 'terminal-notifier-guard'
+
+  # Guard for pow, rpsec, spork and bundler
+  gem 'guard-pow'
+  gem 'guard-rspec'
+  gem 'guard-spork'
+  gem 'guard-bundler'
 end
 
 # To use ActiveModel has_secure_password

@@ -1,0 +1,11 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Attachment:</b>
+</p>
+<div>
+  <%= image_tag(@image.attachment.url) %>
+</div>
+
+<%= link_to 'Edit', edit_image_path(@image) %> |
+<%= link_to 'Back', images_path %>

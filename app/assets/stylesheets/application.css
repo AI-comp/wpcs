@@ -11,4 +11,7 @@
  *= require_self
  *= require_tree .
  *= require css-social-buttons/css/zocial
+ *= require jquery.ui.datepicker
+ *= require jquery.ui.slider
+ *= require jquery-ui-timepicker-addon
 */

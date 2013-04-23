@@ -1,3 +1,14 @@
+<%= javascript_tag do %>
+  $(document).ready(function () {
+    var opt = {
+      'dateFormat': 'yy/mm/dd',
+      'timeFormat': 'hh:mm'
+    };
+    $('#start_datetime_picker').datetimepicker(opt);
+    $('#end_datetime_picker').datetimepicker(opt);
+  });
+<% end %>
+
 <%= form_for(@contest) do |f| %>
   <% if @contest.errors.any? %>
     <div id="error_explanation">
@@ -12,19 +23,19 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br />
+    <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :start_time%><br />
-    <%= f.datetime_select :start_time%>
+    <%= f.label :start_time%><br>
+    <%= f.text_field :start_time, { id: 'start_datetime_picker' } %>
   </div>
   <div class="field">
-    <%= f.label :end_time%><br />
-    <%= f.datetime_select :end_time %>
+    <%= f.label :end_time%><br>
+    <%= f.text_field :end_time, { id: 'end_datetime_picker' } %>
   </div>
   <div class="field">
-    <%= f.label :introduction %><br />
+    <%= f.label :introduction %><br>
     <%= f.text_field :introduction %>
   </div>
   <div class="actions">

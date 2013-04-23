@@ -7,7 +7,11 @@
 }
 
 @mixin block_margin {
-  margin: 16px 0px 16px;
+  margin: 16px 0px;
+}
+
+.hidden_elem {
+  display: none;
 }
 
 div.problem_description {
