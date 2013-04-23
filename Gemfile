@@ -45,7 +45,7 @@ group :test do
   gem 'webmock'
 
   # Matcher utility for Rspec
-  gem "shoulda-matchers"
+  gem 'shoulda-matchers'
 end
 
 group :development, :test do
@@ -53,19 +53,21 @@ group :development, :test do
   gem 'rspec-rails'
 
   # instead of fixture
-  gem "factory_girl_rails"
+  gem 'factory_girl_rails'
 
   gem 'database_cleaner'
   # Fast rails server for testing
   gem 'spork'
 
-  # Monitor for file changes
-  gem 'rb-fsevent' # for MacOS
-  gem 'rb-inotify' # for Linux
-  gem 'rb-fchange' # for Windows
+  # Monitor for file changes (please install one of them by hand.)
+  gem 'rb-inotify', :require => false # for Linux
+  gem 'rb-fsevent', :require => false # for MacOS
+  gem 'rb-fchange', :require => false # for Windows
 
   # Notifier to the Notification Center of Moutain Lion
-  gem 'terminal-notifier-guard'
+  gem 'libnotify'               # for Linux   
+  gem 'terminal-notifier-guard' # for MacOS (10.8)
+  gem 'rb-notifu'               # for Windows
 
   # Guard for pow, rpsec, spork and bundler
   gem 'guard-pow'
