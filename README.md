@@ -1,3 +1,6 @@
+wpcs [![Build Status](https://travis-ci.org/TakenokoChocoHolic/wpcs.png?branch=master)](https://travis-ci.org/TakenokoChocoHolic/wpcs) [![Dependency Status](https://gemnasium.com/TakenokoChocoHolic/wpcs.png)](https://gemnasium.com/TakenokoChocoHolic/wpcs) [![Code Climate](https://codeclimate.com/github/TakenokoChocoHolic/wpcs.png)](https://codeclimate.com/github/TakenokoChocoHolic/wpcs) [![Coverage Status](https://coveralls.io/repos/TakenokoChocoHolic/wpcs/badge.png?branch=master)](https://coveralls.io/r/TakenokoChocoHolic/wpcs)
+=====
+
 # Requirements
 * Ruby
 * Rails
@@ -34,3 +37,7 @@ https://cacoo.com/diagrams/zJncLkksT8WHeY4b
 - Start automatic Rspec tesing with Guard and Spork
 
         guard
+        
+- Clean up precompiled javascript files
+
+        rake assets:clean
