@@ -34,3 +34,7 @@ https://cacoo.com/diagrams/zJncLkksT8WHeY4b
 - Start automatic Rspec tesing with Guard and Spork
 
         guard
+        
+- Clean up precompiled javascript files
+
+        rake assets:clean
