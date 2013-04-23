@@ -7,9 +7,11 @@ http://docs.mongodb.org/manual/installation/
 
 # Install dependencies
 - for general
+
         bundle install
 
 - for only Linux
+
         sudo apt-get install libnotify-bin
 
 # Initialize database
