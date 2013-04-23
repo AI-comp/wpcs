@@ -48,6 +48,9 @@ group :test do
 
   # Matcher utility for Rspec
   gem 'shoulda-matchers'
+
+  # For coveralls
+  gem 'coveralls', :require => false
 end
 
 group :development, :test do
