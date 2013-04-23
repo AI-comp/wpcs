@@ -13,6 +13,7 @@ gem "omniauth-twitter"
 gem "redcarpet"
 gem "mongoid-paperclip", :require => "mongoid_paperclip"
 gem 'aws-sdk', '~> 1.3.4'
+gem 'settingslogic'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -26,6 +27,7 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
   gem "jquery-ui-rails", "~> 4.0.2"
   gem "jquery-timepicker-addon-rails", "~> 1.2.2"
+  gem "autosize-rails", "~> 1.16.7"
 end
 
 gem 'jquery-rails'
