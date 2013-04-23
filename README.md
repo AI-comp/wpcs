@@ -2,7 +2,8 @@ wpcs
 [![Gem Version](https://badge.fury.io/rb/guard.png)](http://badge.fury.io/rb/guard)
 [![Build Status](https://travis-ci.org/TakenokoChocoHolic/wpcs.png?branch=master)](https://travis-ci.org/TakenokoChocoHolic/wpcs)
 [![Dependency Status](https://gemnasium.com/guard/guard.png)](https://gemnasium.com/guard/guard)
-[![Code Climate](https://codeclimate.com/github/guard/guard.png)](https://codeclimate.com/github/guard/guard) [![Coverage Status](https://coveralls.io/repos/guard/guard/badge.png?branch=master)](https://coveralls.io/r/guard/guard)
+[![Code Climate](https://codeclimate.com/github/guard/guard.png)](https://codeclimate.com/github/guard/guard)
+[![Coverage Status](https://coveralls.io/repos/guard/guard/badge.png?branch=master)](https://coveralls.io/r/guard/guard)
 =====
 
 # Requirements
