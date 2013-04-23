@@ -212,13 +212,13 @@ EOL
 
   def download(type)
     p = Problem.find(params[:id])
-    head = (p.index + 1).to_s + '. ' + p.title.gsub(' ', '_') + '_'
+    name = (p.index + 1).to_s + '. ' + p.title.gsub(' ', '_') + '_'
 
     case type
     when :small
-      send_data(p.small_input, filename: head + 'small.txt')
+      send_data(p.small_input, filename: name + 'small.txt')
     when :large
-      send_data(p.large_input, filename: head + 'large.txt')
+      send_data(p.large_input, filename: name + 'large.txt')
     end
   end
 
