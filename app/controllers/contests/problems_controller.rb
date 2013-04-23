@@ -212,9 +212,7 @@ EOL
 
   def download(type)
     p = Problem.find(params[:id])
-    #head = p.title.gsub(' ', '_') + '_'
-    words = p.title.split
-    head = words[0] + '_' + words[1] + '_'
+    head = (p.index + 1).to_s + '. ' + p.title.gsub(' ', '_') + '_'
 
     case type
     when :small
