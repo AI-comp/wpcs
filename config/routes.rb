@@ -21,7 +21,7 @@ Wpcs::Application.routes.draw do
 
   # resources :problems
 
-  resources :users do
+  resources :users, :except => [:new, :index] do
     collection do
       get  'login'
       get  'register'
