@@ -1,0 +1,39 @@
+<h1>Registerd users</h1>
+
+<% if @user %>
+  <p><%= @user.name %> is logged in</p>
+<% end %>
+
+<table border="1">
+  <tr>
+    <th>ID</th>
+    <th>Admin</th>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Encrypted password</th>
+    <th>Salt</th>
+    <th>Group</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @users.each do |user| %>
+  <tr>
+    <td><%= user.id %></td>
+    <td><%= user.is_admin %></td>
+    <td><%= user.name %></td>
+    <td><%= user.email %></td>
+    <td><%= user.encrypted_password %></td>
+    <td><%= user.salt %></td>
+    <td><%= user.group.name %></td>
+    <td><%= link_to 'Show', admin_user_path(user) %></td>
+    <td><%= link_to 'Edit', edit_admin_user_path(user) %></td>
+    <td><%= link_to 'Destroy', admin_user_path(user), confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br>
+
+<%= link_to 'New User', new_admin_user_path %>

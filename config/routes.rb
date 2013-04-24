@@ -30,6 +30,10 @@ Wpcs::Application.routes.draw do
     end
   end
 
+  namespace :admin do
+    resources :users
+  end
+
   root :to => 'users#login'
 
   match 'auth/:provider/callback' => 'oauth#create'
