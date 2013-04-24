@@ -2,7 +2,7 @@ wpcs [![Build Status](https://travis-ci.org/TakenokoChocoHolic/wpcs.png?branch=m
 =====
 
 # Requirements
-* Ruby
+* Ruby (it's recommended to use rbenv to install Ruby)
 * Rails
 * MongoDB  
 http://docs.mongodb.org/manual/installation/
