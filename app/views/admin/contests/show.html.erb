@@ -1,0 +1,32 @@
+<h2><%= @contest.name %></h2>
+
+<p>
+  <b>Introduction:</b>
+</p>
+<%= @contest.introduction %>
+<br>
+
+<p>
+  <b>Problems:</b>
+</p>
+
+<table>
+  <tr>
+    <th>name</th>
+  </tr>
+
+  <% @contest.problems.each do |problem| %>
+    <tr>
+      <td>
+        <%= link_to problem.title, contest_problem_path(@contest, problem) %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<br>
+<br>
+<br>
+
+<%= link_to 'Edit', edit_admin_contest_path(@contest) %> |
+<%= link_to 'Back', admin_contests_path %>
