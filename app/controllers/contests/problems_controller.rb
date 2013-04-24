@@ -74,68 +74,6 @@ class Contests::ProblemsController < AuthController
     redirect_to action: 'index'
   end
 
-  # GET /contests/1/problems/new
-  # GET /contests/1/problems/new.json
-  def new
-    @problem = Problem.new
-    @problem.description = Markdown.example
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @problem }
-    end
-  end
-
-  # POST /contests/1/problems
-  # POST /contests/1/problems.json
-  def create
-    @problem = Problem.new(params[:problem])
-    @problem.contest_id = params[:contest_id]
-
-    respond_to do |format|
-      if @problem.save
-        format.html { redirect_to action: 'index' }
-        format.json { render json: @problem, status: :created, location: @problem }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @problem.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # GET /contests/1/problems/1/edit
-  def edit
-    @problem = Problem.find(params[:id])
-  end
-
-  # PUT /contests/1/problems/1
-  # PUT /contests/1/problems/1.json
-  def update
-    @problem = Problem.find(params[:id])
-
-    respond_to do |format|
-      if @problem.update_attributes(params[:problem])
-        format.html { redirect_to action: 'index' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @problem.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /contests/1/problems/1
-  # DELETE /contests/1/problems/1.json
-  def destroy
-    @problem = Problem.find(params[:id])
-    @problem.destroy
-
-    respond_to do |format|
-      format.html { redirect_to action: 'index' }
-      format.json { head :no_content }
-    end
-  end
-
   def download_small
     download(:small)
   end

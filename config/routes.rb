@@ -9,7 +9,7 @@ Wpcs::Application.routes.draw do
 
   resources :contests, :only => [:index, :show] do
     resource :score, :module => :contests
-    resources :problems, :module => :contests do
+    resources :problems, :module => :contests, :only => [:index, :show] do
       member do
         post 'submit'
         # GET パラメータがうまくつかないので，やむなく2つに分けた．
