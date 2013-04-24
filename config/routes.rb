@@ -7,7 +7,7 @@ Wpcs::Application.routes.draw do
   resources :groups
   match 'groups/:id/join' => 'groups#join'
 
-  resources :contests do
+  resources :contests, :only => [:index, :show] do
     resource :score, :module => :contests
     resources :problems, :module => :contests do
       member do

@@ -6,10 +6,6 @@
     <th>Contest name</th>
     <th>Description</th>
     <th>Contest period</th>
-    <% if @current_user && @current_user.is_admin %>
-      <th></th>
-      <th></th>
-    <% end %>
   </tr>
 
 <% @contests.each do |contest| %>
@@ -17,15 +13,7 @@
     <td><%= link_to contest.name, contest_problems_path(contest) %></td>
     <td><%= contest.introduction %></td>
     <td><%= format_date(contest.start_time) %> - <%= format_date(contest.end_time) %>
-    <% if @current_user && @current_user.is_admin %>
-      <td><%= link_to 'Edit', edit_contest_path(contest) %></td>
-      <td><%= link_to 'Destroy', contest, confirm: 'Are you sure?', method: :delete %></td>
-    <% end %>
   </tr>
 <% end %>
 </table>
 </p>
-
-<% if @current_user && @current_user.is_admin %>
-  <%= link_to 'New Contest', new_contest_path %>
-<% end %>
