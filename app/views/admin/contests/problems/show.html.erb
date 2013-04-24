@@ -1,0 +1,23 @@
+<h1>Submit your output</h1>
+
+<%= render "timer" %>
+
+<br>
+<br>
+
+<div class="field">
+  <h3>Problem title</h3>
+  <%= @problem.title %>
+</div>
+<div class="field">
+  <h3>Description</h3>
+  <div class="problem_description">
+    <%= raw @problem.description_html %>
+  </div>
+</div>
+<p class="field">
+  <%= link_to 'Download Small Input', download_small_contest_problem_path(@contest, @problem) %>
+</p>
+<p class="field">
+  <%= link_to 'Download Large Input', download_large_contest_problem_path(@contest, @problem) %>
+</p>

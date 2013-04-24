@@ -12,7 +12,7 @@
 
 <% @contests.each do |contest| %>
   <tr>
-    <td><%= link_to contest.name, contest_problems_path(contest) %></td>
+    <td><%= link_to contest.name, admin_contest_problems_path(contest) %></td>
     <td><%= contest.introduction %></td>
     <td><%= format_date(contest.start_time) %> - <%= format_date(contest.end_time) %>
     <td><%= link_to 'Edit', edit_admin_contest_path(contest) %></td>

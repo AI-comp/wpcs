@@ -32,7 +32,9 @@ Wpcs::Application.routes.draw do
 
   namespace :admin do
     resources :users
-    resources :contests
+    resources :contests do
+      resources :problems, :module => :contests
+    end
   end
 
   root :to => 'users#login'
