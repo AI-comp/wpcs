@@ -16,8 +16,21 @@
   </div>
 </div>
 <p class="field">
-  <%= link_to 'Download Small Input', download_small_contest_problem_path(@contest, @problem) %>
+  <h3>Small input</h3>
+  <%= content_tag :pre, @problem.small_input %>
 </p>
+
 <p class="field">
-  <%= link_to 'Download Large Input', download_large_contest_problem_path(@contest, @problem) %>
+  <h3>Small output</h3>
+  <%= content_tag :pre, @problem.small_output %>
+</p>
+
+<p class="field">
+  <h3>Large input</h3>
+  <%= content_tag :pre, @problem.large_input %>
+</p>
+
+<p class="field">
+  <h3>Large output</h3>
+  <%= content_tag :pre, @problem.large_output %>
 </p>
