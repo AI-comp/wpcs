@@ -35,6 +35,7 @@ class Admin::UsersController < AdminController
 
   # POST /users
   def create
+    raise Error.new
     @user = User.new(params[:user])
     raw_password = params[:password]
     salt = generate_random_token(10)
@@ -44,7 +45,6 @@ class Admin::UsersController < AdminController
     @user.encrypted_password = encrypted_password
 
     @user.provider = "WPCS"
-    @user.name = @user.uid
 
     respond_to do |format|
       if @user.save
