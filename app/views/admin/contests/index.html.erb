@@ -6,14 +6,20 @@
     <th>Contest name</th>
     <th>Description</th>
     <th>Contest period</th>
+    <th></th>
+    <th></th>
   </tr>
 
 <% @contests.each do |contest| %>
   <tr>
-    <td><%= link_to contest.name, contest_problems_path(contest) %></td>
+    <td><%= link_to contest.name, admin_contest_problems_path(contest) %></td>
     <td><%= contest.introduction %></td>
     <td><%= format_date(contest.start_time) %> - <%= format_date(contest.end_time) %>
+    <td><%= link_to 'Edit', edit_admin_contest_path(contest) %></td>
+    <td><%= link_to 'Destroy', admin_contest_path(contest), confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
 </table>
 </p>
+
+<%= link_to 'New Contest', new_admin_contest_path %>

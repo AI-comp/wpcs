@@ -2,11 +2,15 @@ wpcs [![Build Status](https://travis-ci.org/TakenokoChocoHolic/wpcs.png?branch=m
 =====
 
 # Requirements
-* Ruby
+* Ruby (it's recommended to use rbenv to install Ruby)
 * Rails
 * MongoDB  
 http://docs.mongodb.org/manual/installation/
 * ImageMagic
+
+# Setup
+* for Ubuntu 12.10  
+https://gist.github.com/olistik/2627011
 
 # Install dependencies
 - for general

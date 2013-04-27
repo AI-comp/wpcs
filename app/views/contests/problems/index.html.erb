@@ -2,11 +2,9 @@
 
 <%= render "timer" %>
 
-<% unless flash[:solved].nil? %>
-  <div class="alert">
-    <%= flash[:solved] ? "Correct!" : "Wrong..." %>
-  </div>
-<% end %>
+<%= flash[:solved].try { |b|
+  content_tag(:div, class: 'alert'){ b ? 'Correct!' : 'Wrong...' }
+} %>
 
 <p>
 <%= link_to 'Score board', contest_score_path %>
@@ -18,10 +16,6 @@
     <th>Input sizes</th>
     <th>Scores</th>
     <th>Solved time</th>
-    <th></th>
-    <% if @current_user && @current_user.is_admin %>
-      <th></th>
-    <% end %>
   </tr>
 
 <% @problems.asc(:title).each do |problem| %>
@@ -44,17 +38,10 @@
           'Not yet (' + @score.wrong_count(problem, 'large').to_s + ' failures)' %>
       </div>
     </td>
-    <% if @current_user && @current_user.is_admin %>
-      <td><%= link_to 'Edit', edit_contest_problem_path(@contest, problem) %></td>
-      <td><%= link_to 'Destroy', contest_problem_path(@contest, problem), confirm: 'Are you sure?', method: :delete %></td>
-    <% end %>
   </tr>
 <% end %>
 </table>
 
-<% if @current_user && @current_user.is_admin %>
-<%= link_to 'New Problem', new_contest_problem_path %>
-<% end %>
 <br>
 <br>
 

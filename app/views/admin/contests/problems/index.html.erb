@@ -1,0 +1,30 @@
+<h1>Problem list</h1>
+
+<%= render "timer" %>
+
+<table class='table table-striped'>
+  <tr>
+    <th>Problem name</th>
+    <th>Input sizes</th>
+    <th>Scores</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @problems.asc(:title).each do |problem| %>
+  <tr>
+    <td><%= link_to problem.title, admin_contest_problem_path(@contest, problem) %></td>
+    <td>Small<br>Large</td>
+    <td>
+      <div><%= problem.small_score %></div>
+      <div><%= problem.large_score %></div>
+    </td>
+    <td><%= link_to 'Edit', edit_admin_contest_problem_path(@contest, problem) %></td>
+    <td><%= link_to 'Destroy', admin_contest_problem_path(@contest, problem), confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'New Problem', new_admin_contest_problem_path %>
+<br>
+<br>
