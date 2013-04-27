@@ -27,15 +27,13 @@
     <td><%= user.encrypted_password %></td>
     <td><%= user.salt %></td>
     <td><%= user.group.name %></td>
-    <td><%= link_to 'Show', user %></td>
-    <td><%= link_to 'Edit', edit_user_path(user) %></td>
-    <td><%= link_to 'Destroy', user, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to 'Show', admin_user_path(user) %></td>
+    <td><%= link_to 'Edit', edit_admin_user_path(user) %></td>
+    <td><%= link_to 'Destroy', admin_user_path(user), confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br>
 
-<%= render 'login_form' %>
-
-<%= link_to 'New User', new_user_path %>
+<%= link_to 'New User', new_admin_user_path %>
