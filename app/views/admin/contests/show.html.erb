@@ -18,7 +18,7 @@
   <% @contest.problems.each do |problem| %>
     <tr>
       <td>
-        <%= link_to problem.title, contest_problem_path(@contest, problem) %>
+        <%= link_to problem.title, admin_contest_problem_path(@contest, problem) %>
       </td>
     </tr>
   <% end %>
@@ -28,4 +28,5 @@
 <br>
 <br>
 
-<%= link_to 'Back', contests_path %>
+<%= link_to 'Edit', edit_admin_contest_path(@contest) %> |
+<%= link_to 'Back', admin_contests_path %>

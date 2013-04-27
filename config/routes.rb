@@ -7,9 +7,9 @@ Wpcs::Application.routes.draw do
   resources :groups
   match 'groups/:id/join' => 'groups#join'
 
-  resources :contests do
+  resources :contests, :only => [:index, :show] do
     resource :score, :module => :contests
-    resources :problems, :module => :contests do
+    resources :problems, :module => :contests, :only => [:index, :show] do
       member do
         post 'submit'
         # GET パラメータがうまくつかないので，やむなく2つに分けた．
@@ -21,12 +21,19 @@ Wpcs::Application.routes.draw do
 
   # resources :problems
 
-  resources :users do
+  resources :users, :except => [:new, :index] do
     collection do
       get  'login'
       get  'register'
       post 'authorize'
       post 'logout'
+    end
+  end
+
+  namespace :admin do
+    resources :users
+    resources :contests do
+      resources :problems, :module => :contests
     end
   end
 
