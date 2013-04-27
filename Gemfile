@@ -78,6 +78,9 @@ group :test do
 end
 
 group :development, :test do
+  # Diagram generator
+  gem 'railroady'
+
   # Rspec
   gem 'rspec-rails'
 
