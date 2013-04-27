@@ -9,7 +9,7 @@
   });
 <% end %>
 
-<%= form_for(@contest, url: { controller: 'admin/contests', action: 'create' }) do |f| %>
+<%= form_for(@contest, url: { controller: 'admin/contests', action: action }) do |f| %>
   <% if @contest.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@contest.errors.count, "error") %> prohibited this contest from being saved:</h2>
