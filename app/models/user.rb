@@ -29,6 +29,18 @@ class User
     user
   end
 
+  def self.new_with_password(params, raw_password)
+    user = User.new(params)
+    salt = self.generate_random_token(10)
+    encrypted_password = self.encrypt_password(raw_password, salt)
+
+    user.salt = salt
+    user.encrypted_password = encrypted_password
+    user.provider = 'WPCS'
+    user.name ||= user.uid
+    user
+  end
+
   def self.find_or_create_from_auth_hash(auth_hash)
     provider, uid = auth_hash['provider'], auth_hash['uid']
     user = User.where(provider: provider, uid: uid).first
@@ -59,6 +71,10 @@ class User
     default_group = Group.default
     default_group.users.push(self)
     default_group.save
+  end
+
+  def self.generate_random_token(length=10)
+    [*'a'..'z', *'A'..'Z', *'0'..'9'].sample(length).join
   end
 
 end

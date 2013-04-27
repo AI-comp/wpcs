@@ -20,16 +20,7 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    @user = User.new(params[:user])
-    raw_password = params[:password]
-    salt = generate_random_token(10)
-    encrypted_password = User.encrypt_password(raw_password, salt)
-
-    @user.salt = salt
-    @user.encrypted_password = encrypted_password
-
-    @user.provider = "WPCS"
-    @user.name = @user.uid
+    @user = User.new_with_password(params[:user], params[:password])
 
     respond_to do |format|
       if @user.save
