@@ -7,7 +7,7 @@
     if(b>=0)
       b > 0 ? 'Correct! You got ' + b.to_s + 'points!' : 'Wrong...'
     else
-      'Correct! but that problem has been already solved!'
+      b == -1 ? 'Correct! but that problem has been already solved ;)' : 'Wrong... but that problem has been already solved :)'
     end
   }
 } %>

@@ -72,14 +72,18 @@ class Contests::ProblemsController < AuthController
       Submit.create(solved: @solved, problem_type: input_type, problem: problem, score: @score)
     end
 
-    if(@solved)
+    if(@solved) # the problem was solved on this time
       if(now_solved)
-        flash[:problem_score] = input_type == 'small' ? problem.small_score : problem.large_score
+        flash[:problem_score] = score
       else #the problem has been already solved
         flash[:problem_score] = -1;
       end
-    else
-      flash[:problem_score] = 0
+    else # the problem was NOT solved on this time
+      if @score.solved_time(problem, input_type) #the problem has been already solved
+        flash[:problem_score] = -2
+      else #the problem has been already solved
+        flash[:problem_score] = 0
+      end
     end
 
     redirect_to action: 'index'
