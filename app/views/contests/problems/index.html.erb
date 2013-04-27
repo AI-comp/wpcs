@@ -2,8 +2,8 @@
 
 <%= render "timer" %>
 
-<%= flash[:solved].try { |b|
-  content_tag(:div, class: 'alert'){ b ? 'Correct!' : 'Wrong...' }
+<%= flash[:problem_score].try { |b|
+  content_tag(:div, class: 'alert'){ b > 0 ? 'Correct! You got ' + b.to_s + 'points!' : 'Wrong...' }
 } %>
 
 <p>

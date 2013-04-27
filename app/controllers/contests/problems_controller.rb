@@ -70,7 +70,12 @@ class Contests::ProblemsController < AuthController
       Submit.create(solved: @solved, problem_type: input_type, problem: problem, score: @score)
     end
 
-    flash[:solved] = @solved
+    if(@solved)
+      flash[:problem_score] = input_type == 'small' ? problem.small_score : problem.large_score
+    else
+      flash[:problem_score] = 0
+    end
+
     redirect_to action: 'index'
   end
 

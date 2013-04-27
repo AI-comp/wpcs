@@ -2,9 +2,11 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.13'
 
+
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
+gem 'railroady'
 gem 'mongoid'
 gem 'bson_ext'
 gem 'omniauth'
@@ -58,7 +60,9 @@ group :development do
   gem 'rb-fchange', :require => false # for Windows
 
   # Notifier to the Notification Center of Moutain Lion
-  gem 'libnotify'               # for Linux   
+  # gem 'libnotify'               # for Linux   
+  gem 'libnotify' if /linux/ =~ RUBY_PLATFORM
+  gem 'growl' if /darwin/ =~ RUBY_PLATFORM
   gem 'terminal-notifier-guard' # for MacOS (10.8)
   gem 'rb-notifu'               # for Windows
 end
