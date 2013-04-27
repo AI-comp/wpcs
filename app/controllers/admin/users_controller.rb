@@ -35,7 +35,6 @@ class Admin::UsersController < AdminController
 
   # POST /users
   def create
-    raise Error.new
     @user = User.new(params[:user])
     raw_password = params[:password]
     salt = generate_random_token(10)
