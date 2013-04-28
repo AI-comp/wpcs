@@ -24,6 +24,7 @@ FactoryGirl.define do
     introduction 'Waseda University Programming Contest'
     start_time Time.new(2012, 6, 2, 14, 0, 0)
     end_time Time.new(2012, 6, 2, 16, 0, 0)
+    problems { FactoryGirl.create_list(:addition, 1) }
   end
 
   factory :addition, class: Problem do
