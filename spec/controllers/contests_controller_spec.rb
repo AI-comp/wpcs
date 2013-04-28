@@ -2,6 +2,8 @@ require 'spec_helper'
 
 describe ContestsController do
 
+  # TODO
+  # check time
   describe 'GET /index' do
 
     it 'should respond failure' do
