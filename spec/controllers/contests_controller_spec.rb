@@ -46,7 +46,7 @@ describe ContestsController do
       end
 
     end
-    
+
   end
 
 end
