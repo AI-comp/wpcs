@@ -46,12 +46,15 @@ Spork.prefork do
 
     config.before(:suite) do
       DatabaseCleaner[:mongoid].strategy = :truncation
-      DatabaseCleaner[:mongoid].clean_with(:truncation)
     end
 
     config.before(:each) do
       DatabaseCleaner[:mongoid].start
       load "#{Rails.root}/db/seeds.rb"
+    end
+
+    config.after(:each) do
+      DatabaseCleaner[:mongoid].clean
     end
   end
 

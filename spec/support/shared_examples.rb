@@ -1,9 +1,14 @@
+shared_examples_for 'login contestant' do
 
-shared_examples_for 'respond success' do |action|
-  describe 'GET /'+action.to_s do
-    it 'should return 200 status code' do
-      get action
-      expect(response).to be_success
-    end
+  let(:user) { create(:alice) }
+
+  before do
+    controller.login_user(user)
   end
+
+  after do
+    controller.logout_user
+    user.destroy
+  end
+
 end

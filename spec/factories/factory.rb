@@ -19,6 +19,13 @@ FactoryGirl.define do
     is_admin false
   end
 
+  factory :wupc, class: Contest do
+    name 'WUPC'
+    introduction 'Waseda University Programming Contest'
+    start_time Time.new(2012, 6, 2, 14, 0, 0)
+    end_time Time.new(2012, 6, 2, 16, 0, 0)
+  end
+
   factory :addition, class: Problem do
     title        'addition'
     description  'A+B=?'

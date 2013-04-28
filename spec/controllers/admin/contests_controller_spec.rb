@@ -2,7 +2,22 @@ require 'spec_helper'
 
 describe Admin::ContestsController do
 
-  include_examples 'respond success', :index
-  include_examples 'respond success', :new
+  describe 'GET /index' do
+
+    it 'should respond success' do
+      get :index
+      expect(response).to be_success
+    end
+
+  end
+
+  describe 'GET /new' do
+
+    it 'should respond success' do
+      get :new
+      expect(response).to be_success
+    end
+
+  end
 
 end
