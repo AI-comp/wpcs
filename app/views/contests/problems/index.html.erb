@@ -47,9 +47,23 @@
 
 <h2>Submission history</h2>
 <div id="resultLog">
-  <% Submit.desc(:updated_at).take(10).each do |s| %>
-    <%= "#{s.score.user.name} (#{s.score.user.group.name}) submitted for #{s.problem.title} (#{s.problem_type}),
-and its result was #{s.solved ? "correct" : "wrong"} at #{s.updated_at.strftime('%H:%M:%S')}." %>
+  <table class='table table-striped'>
+    <tr>
+      <th>User</th>
+      <th>Group</th>
+      <th>Problem</th>
+      <th>Result</th>
+      <th>Submission time</th>
+    </tr>
+    <% Submit.desc(:updated_at).take(10).each do |s| %>
+    <tr>
+      <td><%= "#{s.score.user.name}" %></td>
+      <td><%= "#{s.score.user.group.name}" %></td>
+      <td><%= "#{s.problem.title} (#{s.problem_type})" %></td>
+      <td><%= "#{s.solved ? "correct" : "wrong"}" %></td>
+      <td><%= "#{s.updated_at.strftime('%H:%M:%S')}" %></td>
+    </tr>
   <br>
   <% end %>
+  </table>
 </div>
