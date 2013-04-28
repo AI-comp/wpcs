@@ -1,11 +1,22 @@
 
 FactoryGirl.define do
 
+  factory :admin, class: User do
+    uid 'admin'
+    name 'Admin'
+    email 'admin@wpcs.com'
+    encrypted_password [*'a'..'z'].sample(10).join
+    salt [*'a'..'z'].sample(10).join
+    is_admin true
+  end
+
   factory :alice, class: User do
     uid 'alice'
     name 'Alice'
     email 'alice@wpcs.com'
     encrypted_password [*'a'..'z'].sample(10).join
+    salt [*'a'..'z'].sample(10).join
+    is_admin false
   end
 
   factory :addition, class: Problem do
