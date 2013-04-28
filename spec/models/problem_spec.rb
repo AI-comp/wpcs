@@ -2,9 +2,13 @@ require 'spec_helper'
 
 describe Problem do
 
-  let(:addition) { create(:addition) }
+  let(:addition) { build(:addition) }
 
   describe 'after save' do
+
+    after do
+      addition.destroy
+    end
 
     it 'should have description_html' do
       addition.save!
