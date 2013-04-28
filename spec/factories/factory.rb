@@ -1,33 +1,40 @@
 
 FactoryGirl.define do
 
-  factory :admin, class: User do
-    uid 'admin'
-    name 'Admin'
-    email 'admin@wpcs.com'
+  factory :user do
+
+    trait :alice do
+      uid 'alice'
+      name 'Alice'
+      email 'alice@wpcs.com'
+      is_admin false
+    end
+
+    trait :bob do
+      uid 'bob'
+      name 'Bob'
+      email 'bob@wpcs.com'
+      is_admin true
+    end
+
     encrypted_password [*'a'..'z'].sample(10).join
     salt [*'a'..'z'].sample(10).join
-    is_admin true
+
+    factory :contestant, traits: [:alice]
+    factory :admin, traits: [:bob]
+
   end
 
-  factory :alice, class: User do
-    uid 'alice'
-    name 'Alice'
-    email 'alice@wpcs.com'
-    encrypted_password [*'a'..'z'].sample(10).join
-    salt [*'a'..'z'].sample(10).join
-    is_admin false
-  end
 
-  factory :wupc, class: Contest do
+  factory :contest, class: Contest do
     name 'WUPC'
     introduction 'Waseda University Programming Contest'
     start_time Time.new(2012, 6, 2, 14, 0, 0)
     end_time Time.new(2012, 6, 2, 16, 0, 0)
-    problems { FactoryGirl.create_list(:addition, 1) }
+    problems { FactoryGirl.create_list(:problem, 1) }
   end
 
-  factory :addition, class: Problem do
+  factory :problem, class: Problem do
     title        'addition'
     description  'A+B=?'
     small_input  '1 1'

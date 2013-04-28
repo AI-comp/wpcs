@@ -2,6 +2,8 @@ require 'spec_helper'
 
 describe Admin::UsersController do
 
+  let(:user) { create(:contestant) }
+
   describe 'GET /index' do
 
     before do
@@ -25,6 +27,24 @@ describe Admin::UsersController do
 
     it 'should respond success' do
       get :new
+      expect(response).to be_success
+    end
+
+  end
+
+  describe 'GET /show/:id' do
+
+    it 'should respond success' do
+      get :show, id: user
+      expect(response).to be_success
+    end
+
+  end
+
+  describe 'GET /edit/:id' do
+
+    it 'should respond success' do
+      get :edit, id: user
       expect(response).to be_success
     end
 

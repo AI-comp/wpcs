@@ -4,7 +4,7 @@ describe Contests::ProblemsController do
 
   # TODO
   # check time
-  let(:contest) { create(:wupc) }
+  let(:contest) { create(:contest) }
   let(:problem) { contest.problems[0] }
 
   describe 'GET /index' do

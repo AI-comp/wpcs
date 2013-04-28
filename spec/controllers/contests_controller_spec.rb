@@ -25,7 +25,7 @@ describe ContestsController do
   describe 'GET /show/:wupc' do
 
     before do
-      @contest =  build(:wupc)
+      @contest = build(:contest)
       @contest.save!
     end
 

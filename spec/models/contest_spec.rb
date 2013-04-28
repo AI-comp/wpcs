@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Contest do
 
-  let(:contest) { build(:wupc) }
+  let(:contest) { build(:contest) }
 
   it 'should have problems' do
     expect(contest.problems).not_to be_nil

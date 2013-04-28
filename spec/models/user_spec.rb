@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe User do
 
-  let(:user) { build(:alice) }
+  let(:user) { build(:contestant) }
 
   it 'should have some fields' do
     expect(user.uid).not_to be_nil
