@@ -6,7 +6,7 @@ wpcs [![Build Status](https://travis-ci.org/TakenokoChocoHolic/wpcs.png?branch=m
 * Rails
 * MongoDB  
 http://docs.mongodb.org/manual/installation/
-* ImageMagic
+* ImageMagick
 
 # Setup
 * for Ubuntu 12.10  
