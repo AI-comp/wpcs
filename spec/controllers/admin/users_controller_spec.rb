@@ -2,15 +2,16 @@ require 'spec_helper'
 
 describe Admin::UsersController do
 
-  include_examples 'respond success', :index
-  include_examples 'respond success', :new
+  let(:user) { create(:contestant) }
 
   describe 'GET /index' do
 
     before do
       get :index
-      # TODO
-      # create some users
+    end
+
+    it 'should respond success' do
+      expect(response).to be_success
     end
 
     it 'should show all users' do
@@ -18,6 +19,33 @@ describe Admin::UsersController do
       expect(users).not_to be_nil
       # TODO
       # check the size of users
+    end
+
+  end
+
+  describe 'GET /new' do
+
+    it 'should respond success' do
+      get :new
+      expect(response).to be_success
+    end
+
+  end
+
+  describe 'GET /show/:id' do
+
+    it 'should respond success' do
+      get :show, id: user
+      expect(response).to be_success
+    end
+
+  end
+
+  describe 'GET /edit/:id' do
+
+    it 'should respond success' do
+      get :edit, id: user
+      expect(response).to be_success
     end
 
   end
