@@ -63,7 +63,7 @@ class Contests::ProblemsController < AuthController
     @correct = problem.correct?(output, input_type)
     if @current_user.is_admin || Time.now.between?(@contest.start_time, @contest.end_time)
       if @correct
-        Submit.create(user: @current_user, solved: true, problem_type: input_type, problem: problem, score: @score, solved_time: DateTime.now, attendance_id: attendance.id)
+        Submit.create(solved: true, problem_type: input_type, problem: problem, attendance: attendance, score: @score, solved_time: DateTime.now)
       end
     end
 
