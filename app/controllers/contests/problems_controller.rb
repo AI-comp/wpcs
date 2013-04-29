@@ -5,12 +5,12 @@ class Contests::ProblemsController < AuthController
   private
   def load_contest
     @contest = Contest.find(params[:contest_id])
-    @score = @contest.scores.where(user_id: @current_user.id)
-      .first
-    unless @score
-      @score = Score.new(contest: @contest, user: @current_user)
-      @score.save
-    end
+    # @score = @contest.scores.where(user_id: @current_user.id)
+    #   .first
+    # unless @score
+    #   @score = Score.new(contest: @contest, user: @current_user)
+    #   @score.save
+    # end
   end
 
   # score calculation: max_score * (1 - 0.5 * time_diff / time_length)
@@ -26,6 +26,7 @@ class Contests::ProblemsController < AuthController
   def index
     @problems = @contest.problems
     @users = User.where(is_admin: false, 'scores.contest_id' => @contest.id)
+    @current_user.attend(@contest) unless @current_user.attended? @contest
 
     respond_to do |format|
       format.html # index.html.erb
@@ -52,25 +53,21 @@ class Contests::ProblemsController < AuthController
 
     file = params[:files]
     if file
-      if file.size > 100.kilobyte
-        raise 'Too large file size'
-      end
+      raise 'Too large file size' if file.size > 100.kilobyte
       output = file.read
     else
       output = params[:text_area]
     end
 
-    @solved = problem.correct?(output, input_type)
-    if @current_user.is_admin || (@contest.start_time <= Time.now && Time.now <= @contest.end_time)
-      if @solved && !@score.solved_time(problem, input_type)
-        max_score = input_type == 'small' ? problem.small_score : problem.large_score
-        score = @score.score + calculate_score(max_score)
-        @score.update_attributes(score: score)
+    attendance = @current_user.attendance_for(@contest)
+    @correct = problem.correct?(output, input_type)
+    if @current_user.is_admin || Time.now.between?(@contest.start_time, @contest.end_time)
+      if @correct
+        Submit.create(user: @current_user, solved: true, problem_type: input_type, problem: problem, score: @score, solved_time: DateTime.now, attendance_id: attendance.id)
       end
-      Submit.create(solved: @solved, problem_type: input_type, problem: problem, score: @score)
     end
 
-    flash[:solved] = @solved
+    flash[:solved] = @correct
     redirect_to action: 'index'
   end
 

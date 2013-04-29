@@ -9,9 +9,7 @@ class Contests::ScoresController < ApplicationController
   # GET /contests/1/score
   # GET /contests/1/score.json
   def show
-    @scores = Score
-      .where(contest_id: @contest.id)
-      .order_by([[:score, :desc], [:updated_at, :asc]])
+    @submits = @contest.problems.flat_map {|p| p.submits }
 
     respond_to do |format|
       format.html # show.html.erb

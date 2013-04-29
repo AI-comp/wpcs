@@ -1,3 +1,5 @@
+require 'redcarpet'
+
 class Problem
 
   include Mongoid::Document
@@ -12,8 +14,10 @@ class Problem
   field :large_output
   field :small_score, type: Integer
   field :large_score, type: Integer
+  field :is_solved, type: Boolean, default: false
 
   belongs_to :contest
+  has_many :submits
 
   before_save :convert_html
 
