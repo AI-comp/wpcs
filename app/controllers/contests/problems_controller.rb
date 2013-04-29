@@ -60,17 +60,32 @@ class Contests::ProblemsController < AuthController
       output = params[:text_area]
     end
 
+    now_solved = false
     @solved = problem.correct?(output, input_type)
     if @current_user.is_admin || (@contest.start_time <= Time.now && Time.now <= @contest.end_time)
       if @solved && !@score.solved_time(problem, input_type)
         max_score = input_type == 'small' ? problem.small_score : problem.large_score
         score = @score.score + calculate_score(max_score)
         @score.update_attributes(score: score)
+        now_solved = true
       end
       Submit.create(solved: @solved, problem_type: input_type, problem: problem, score: @score)
     end
 
-    flash[:solved] = @solved
+    if(@solved) # the problem was solved on this time
+      if(now_solved)
+        flash[:problem_score] = score
+      else #the problem has been already solved
+        flash[:problem_score] = -1;
+      end
+    else # the problem was NOT solved on this time
+      if @score.solved_time(problem, input_type) #the problem has been already solved
+        flash[:problem_score] = -2
+      else #the problem has been already solved
+        flash[:problem_score] = 0
+      end
+    end
+
     redirect_to action: 'index'
   end
 

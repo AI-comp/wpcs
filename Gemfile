@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.13'
 
+
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
@@ -58,7 +59,8 @@ group :development do
   gem 'rb-fchange', :require => false # for Windows
 
   # Notifier to the Notification Center of Moutain Lion
-  gem 'libnotify'               # for Linux   
+  gem 'libnotify' if /linux/ =~ RUBY_PLATFORM # for Linux
+  gem 'growl' if /darwin/ =~ RUBY_PLATFORM # for MacOS (10.6)
   gem 'terminal-notifier-guard' # for MacOS (10.8)
   gem 'rb-notifu'               # for Windows
 end
