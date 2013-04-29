@@ -24,7 +24,7 @@ Please update by pressing your F5 key.
     <td><%= format_date(submit.updated_at) %></td>
 <% @contest.problems.each do |problem| %>
     <td>
-      <%= submit.solved? ?  format_date(submit.solved_time) : 'Not solved yet' %>
+      <%= submit.solved? ? format_date(submit.solved_time) : 'Not solved yet' %>
     </td>
 <% end %>
   </tr>
