@@ -19,9 +19,9 @@ Please update by pressing your F5 key.
 <% submits_to_show.each_with_index do |submit, index| %>
   <tr>
     <td><%= index + 1 %></td>
-    <td><%= submit.user.group.name %></td>
+    <td><%= submit.attendance.user.group.name %></td>
     <td><%= submit.score %></td>
-    <td><%= submit.updated_at %></td>
+    <td><%= format_date(submit.updated_at) %></td>
 <% @contest.problems.each do |problem| %>
     <td>
       <%= submit.solved? ?  format_date(submit.solved_time) : 'Not solved yet' %>
