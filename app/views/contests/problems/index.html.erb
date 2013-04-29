@@ -28,14 +28,12 @@
     </td>
     <td>
       <div>
-        <%= @score.solved_time(problem, 'small') ?
-          format_date(@score.solved_time(problem, 'small')) :
-          'Not yet (' + @score.wrong_count(problem, 'small').to_s + ' failures)' %>
+        <% submit = @current_user.submit_for(problem, 'small') %>
+        <%= submit ? format_date(submit.solved_time) : 'Not yet' %>
       </div>
       <div>
-        <%= @score.solved_time(problem, 'large') ?
-          format_date(@score.solved_time(problem, 'large')) :
-          'Not yet (' + @score.wrong_count(problem, 'large').to_s + ' failures)' %>
+        <% submit = @current_user.submit_for(problem, 'large') %>
+        <%= submit ? format_date(submit.solved_time) : 'Not yet' %>
       </div>
     </td>
   </tr>
@@ -57,8 +55,8 @@
     </tr>
     <% Submit.desc(:updated_at).take(10).each do |s| %>
     <tr>
-      <td><%= "#{s.score.user.name}" %></td>
-      <td><%= "#{s.score.user.group.name}" %></td>
+      <td><%= "#{s.user.name}" %></td>
+      <td><%= "#{s.user.group.name}" %></td>
       <td><%= "#{s.problem.title} (#{s.problem_type})" %></td>
       <td><%= "#{s.solved ? "correct" : "wrong"}" %></td>
       <td><%= "#{s.updated_at.strftime('%H:%M:%S')}" %></td>

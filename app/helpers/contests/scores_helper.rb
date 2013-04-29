@@ -1,10 +1,10 @@
 module Contests::ScoresHelper
-  def scores_to_show
+  def submits_to_show
     if @current_user.is_admin?
-      @scores
+      @submits
     else
-      # Hide admin scores from non-admin users
-      @scores.select{|s| !s.user.is_admin}
+      # Hide admin submits from non-admin users
+      @submits.select{|s| !s.user.is_admin}
     end
   end
 end

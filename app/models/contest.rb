@@ -5,10 +5,10 @@ class Contest
 
   field :name
   field :introduction
-  field :start_time, type: Time 
+  field :start_time, type: Time
   field :end_time, type: Time
 
   has_many :problems
-  has_many :scores
+  has_many :attendances
 
 end
