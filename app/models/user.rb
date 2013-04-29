@@ -14,7 +14,7 @@ class User
   validates_uniqueness_of :uid, :scope => :provider, :message => 'was already used'
 
   belongs_to :group
-  has_many :submits
+  has_many :attendances
 
   after_create :join_default_group
 
@@ -53,13 +53,26 @@ class User
     user
   end
 
+  def attended?(contest)
+    attendance_for(contest).present?
+  end
+
+  def attend(contest)
+    Attendance.create(user: self, contest: contest)
+  end
+
+  def attendance_for(contest)
+    attendances.where(contest_id: contest.id).first
+  end
+
   def submit_for(problem, problem_type)
-    problem.submits.where(problem_id: problem.id, problem_type: problem_type).first
+    attendance_for(problem.contest).try {|a| a.submit_for(problem, problem_type) }
   end
 
   def score_for(contest)
     problem_ids = contest.problems.map(&:id)
-    self.submits.in(problem_id: problem_ids).inject(0, &:+)
+    submits.in(problem_id: problem_ids).inject(0, &:+)
+    attendance_for(contest).in(problem_id: problem_ids).inject(0, &:+)
   end
 
   def solved?(problem, problem_type)

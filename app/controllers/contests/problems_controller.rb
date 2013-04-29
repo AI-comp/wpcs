@@ -26,6 +26,7 @@ class Contests::ProblemsController < AuthController
   def index
     @problems = @contest.problems
     @users = User.where(is_admin: false, 'scores.contest_id' => @contest.id)
+    @current_user.attend(@contest) unless @current_user.attended? @contest
 
     respond_to do |format|
       format.html # index.html.erb
@@ -58,10 +59,11 @@ class Contests::ProblemsController < AuthController
       output = params[:text_area]
     end
 
+    attendance = @current_user.attendance_for(@contest)
     @correct = problem.correct?(output, input_type)
     if @current_user.is_admin || Time.now.between?(@contest.start_time, @contest.end_time)
       if @correct
-        Submit.create(user: @current_user, solved: true, problem_type: input_type, problem: problem, score: @score, solved_time: DateTime.now)
+        Submit.create(user: @current_user, solved: true, problem_type: input_type, problem: problem, score: @score, solved_time: DateTime.now, attendance_id: attendance.id)
       end
     end
 
