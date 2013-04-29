@@ -9,7 +9,7 @@ class Submit
   field :solved_time, type: DateTime
 
   belongs_to :problem
-  belongs_to :user
+  belongs_to :attendance
 
   def solved?
     self.solved_time.present?

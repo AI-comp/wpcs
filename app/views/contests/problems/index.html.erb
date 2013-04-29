@@ -55,8 +55,8 @@
     </tr>
     <% Submit.desc(:updated_at).take(10).each do |s| %>
     <tr>
-      <td><%= "#{s.user.name}" %></td>
-      <td><%= "#{s.user.group.name}" %></td>
+      <td><%= "#{s.attendance.user.name}" %></td>
+      <td><%= "#{s.attendance.user.group.name}" %></td>
       <td><%= "#{s.problem.title} (#{s.problem_type})" %></td>
       <td><%= "#{s.solved ? "correct" : "wrong"}" %></td>
       <td><%= "#{s.updated_at.strftime('%H:%M:%S')}" %></td>
