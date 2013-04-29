@@ -49,5 +49,4 @@ describe Contests::ProblemsController do
 
   end
 
-
 end

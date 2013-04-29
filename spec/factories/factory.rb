@@ -25,7 +25,6 @@ FactoryGirl.define do
 
   end
 
-
   factory :contest, class: Contest do
     name 'WUPC'
     introduction 'Waseda University Programming Contest'

@@ -11,5 +11,4 @@ describe User do
     expect(user.encrypted_password).not_to be_nil
   end
 
-
 end
