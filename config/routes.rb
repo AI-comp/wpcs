@@ -31,6 +31,7 @@ Wpcs::Application.routes.draw do
     end
   end
 
+  match 'admin' => 'admin#index'
   namespace :admin do
     resources :users
     resources :contests do
