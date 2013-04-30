@@ -53,6 +53,11 @@ class User
     user
   end
 
+  private
+  def self.generate_random_token(length=10)
+    [*'a'..'z', *'A'..'Z', *'0'..'9'].sample(length).join
+  end
+
   def attended?(contest)
     attendance_for(contest).present?
   end
