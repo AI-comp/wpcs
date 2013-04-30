@@ -18,17 +18,18 @@ class Group
   end
 
   def score_for(contest)
-    score = 0
+    total_score = 0
     attendances = Attendance.where(contest_id: contest.id).in(user_id: user_ids)
     for problem in contest.problems
       for type in [:small, :large]
-        score += attendances.map { |att| att.correct_submission_for(problem, type) }
+        score = attendances.map { |att| att.correct_submission_for(problem, type) }
           .select { |sub| sub }
           .map { |sub| sub.score }
           .max
+        total_score += score if score
       end
     end
-    score
+    total_score
   end
 
 end
