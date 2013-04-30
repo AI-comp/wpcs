@@ -44,4 +44,6 @@ FactoryGirl.define do
     large_score  1020
   end
 
+  factory :image
+
 end
