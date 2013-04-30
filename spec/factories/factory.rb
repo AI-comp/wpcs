@@ -4,14 +4,14 @@ FactoryGirl.define do
   factory :user do
 
     trait :alice do
-      uid 'alice'
+      sequence(:uid) {|n| "alice_#{n}" }
       name 'Alice'
       email 'alice@wpcs.com'
       is_admin false
     end
 
     trait :bob do
-      uid 'bob'
+      sequence(:uid) {|n| "bob_#{n}" }
       name 'Bob'
       email 'bob@wpcs.com'
       is_admin true
