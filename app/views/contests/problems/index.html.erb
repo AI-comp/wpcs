@@ -53,7 +53,7 @@
       <th>Result</th>
       <th>Submission time</th>
     </tr>
-    <% Submission.desc(:updated_at).take(10).each do |s| %>
+    <% Submission.in(attendance: @contest.attendance_ids).desc(:updated_at).take(10).each do |s| %>
     <tr>
       <td><%= "#{s.attendance.user.name}" %></td>
       <td><%= "#{s.attendance.user.group.name}" %></td>
