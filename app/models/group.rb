@@ -17,16 +17,24 @@ class Group
     Group.where(name: Group.default_group_name).first
   end
 
+  def attendances_for(contest)
+    Attendance.where(contest_id: contest.id)
+      .in(user_id: user_ids)
+  end
+
+  def correct_submission_for(attendances, problem, type)
+    attendances.map { |att| att.correct_submission_for(problem, type) }
+      .select { |sub| sub }
+      .first
+  end
+
   def score_for(contest)
     total_score = 0
-    attendances = Attendance.where(contest_id: contest.id).in(user_id: user_ids)
+    attendances = attendances_for(contest)
     for problem in contest.problems
       for type in [:small, :large]
-        score = attendances.map { |att| att.correct_submission_for(problem, type) }
-          .select { |sub| sub }
-          .map { |sub| sub.score }
-          .max
-        total_score += score if score
+        s = correct_submission_for(attendances, problem, type)
+        total_score += s.score if s
       end
     end
     total_score

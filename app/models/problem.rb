@@ -25,11 +25,11 @@ class Problem
     self.description_html = Markdown.to_html(self.description)
   end
 
-  def correct?(answer, problem_type)
+  def score_or_nil(answer, problem_type)
     if problem_type == :small
-      small_output.split == answer.split
+      small_output.split == answer.split ? small_score : nil
     else
-      large_output.split == answer.split
+      large_output.split == answer.split ? large_score : nil
     end
   end
 

@@ -10,7 +10,6 @@ Please update by pressing your F5 key.
     <th>Place</th>
     <th>Team name</th>
     <th>Score</th>
-    <th>Last solved time</th>
 <% @contest.problems.each do |problem| %>
     <th><%= problem.title %></th>
 <% end %>
@@ -21,11 +20,14 @@ Please update by pressing your F5 key.
     <td><%= index + 1 %></td>
     <td><%= group.name %></td>
     <td><%= group.score_for(@contest) %></td>
-    <td><%= format_date(submit.updated_at) %></td>
 <% @contest.problems.each do |problem| %>
+<% [:small, :large].each do |type| %>
     <td>
-      <%= submit.solved? ? format_date(submit.solved_time) : 'Not solved yet' %>
+      <% attendances = group.attendances_for(@contest) %>
+      <% s = group.correct_submission_for(attendances, problem, type) %>
+      <%= s ? format_date(s.created_at) : 'Not solved yet' %>
     </td>
+<% end %>
 <% end %>
   </tr>
 <% end %>

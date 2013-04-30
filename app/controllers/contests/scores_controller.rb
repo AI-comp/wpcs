@@ -9,7 +9,7 @@ class Contests::ScoresController < ApplicationController
   # GET /contests/1/score
   # GET /contests/1/score.json
   def show
-    @submits = @contest.problems.flat_map {|p| p.submits }
+    @submits = @contest.problems.flat_map {|p| p.submissions }
 
     respond_to do |format|
       format.html # show.html.erb

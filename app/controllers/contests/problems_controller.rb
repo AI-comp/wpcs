@@ -60,14 +60,19 @@ class Contests::ProblemsController < AuthController
     end
 
     attendance = @current_user.attendance_for(@contest)
-    @correct = problem.correct?(output, input_type)
-    if @current_user.is_admin || Time.now.between?(@contest.start_time, @contest.end_time)
-      if @correct
-        Submission.create(solved: true, problem_type: input_type, problem: problem, attendance: attendance, score: @score, solved_time: DateTime.now)
+    max_score = problem.score_or_nil(output, input_type)
+    if Time.now.between?(@contest.start_time, @contest.end_time)
+      if max_score
+        solved = true
+        score = calculate_score(max_score)
+      else
+        solved = false
+        score = 0
       end
+      Submission.create(solved: solved, problem_type: input_type, problem: problem, attendance: attendance, score: score)
     end
 
-    flash[:solved] = @correct
+    flash[:solved] = solved
     redirect_to action: 'index'
   end
 
