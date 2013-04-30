@@ -5,12 +5,6 @@ class Contests::ProblemsController < AuthController
   private
   def load_contest
     @contest = Contest.find(params[:contest_id])
-    # @score = @contest.scores.where(user_id: @current_user.id)
-    #   .first
-    # unless @score
-    #   @score = Score.new(contest: @contest, user: @current_user)
-    #   @score.save
-    # end
   end
 
   # score calculation: max_score * (1 - 0.5 * time_diff / time_length)
