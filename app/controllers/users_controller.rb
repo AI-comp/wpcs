@@ -1,10 +1,10 @@
 class UsersController < ApplicationController
-  before_filter :login_filter, :except=>['login', 'register', 'authorize', 'create']
+  before_filter :login_filter, :except=>['login', 'register', 'authorize', 'create', 'show', 'edit', 'update', 'destroy']
 
-  # GET /users/1
-  # GET /users/1.json
+  # GET /users
+  # GET /users.json
   def show
-    @user = User.find(params[:id])
+    @user = @current_user
 
     respond_to do |format|
       format.html # show.html.erb
@@ -12,9 +12,9 @@ class UsersController < ApplicationController
     end
   end
 
-  # GET /users/1/edit
+  # GET /users/edit
   def edit
-    @user = User.find(params[:id])
+    @user = @current_user
   end
 
   # POST /users
@@ -34,14 +34,14 @@ class UsersController < ApplicationController
     end
   end
 
-  # PUT /users/1
-  # PUT /users/1.json
+  # PUT /users
+  # PUT /users.json
   def update
-    @user = User.find(params[:id])
+    @user = @current_user
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        format.html { redirect_to users_url, notice: 'User was successfully updated.' }
         format.json { head :ok }
       else
         format.html { render action: "edit" }
@@ -50,10 +50,10 @@ class UsersController < ApplicationController
     end
   end
 
-  # DELETE /users/1
-  # DELETE /users/1.json
+  # DELETE /users
+  # DELETE /users.json
   def destroy
-    @user = User.find(params[:id])
+    @user = @current_user
     @user.destroy
 
     respond_to do |format|

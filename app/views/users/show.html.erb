@@ -1,16 +1,11 @@
 <p>
-  <b>ID:</b>
-  <%= @user.id %>
+  <b>UID:</b>
+  <%= @user.uid %>
 </p>
 
 <p>
   <b>Name:</b>
   <%= @user.name %>
-</p>
-
-<p>
-  <b>Email:</b>
-  <%= @user.email %>
 </p>
 
 <p>
@@ -20,15 +15,4 @@
   <%= link_to 'See Groups', groups_path %>
 </p>
 
-<p>
-  <b>Encrypted password:</b>
-  <%= @user.encrypted_password %>
-</p>
-
-<p>
-  <b>Created Date:</b>
-  <%= @user.created_at %>	
-</p>
-
-
-<%= link_to 'Edit', edit_user_path(@user) %>
+<%= link_to 'Edit', edit_users_path %>
