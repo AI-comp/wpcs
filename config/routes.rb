@@ -20,8 +20,13 @@ Wpcs::Application.routes.draw do
 
   # resources :problems
 
-  resources :users, :except => [:new, :index] do
+  resources :users, :only => [:create] do
     collection do
+      # no :id
+      get  'show', 'edit'
+      put  'update'
+      delete 'destroy'
+
       get  'login'
       get  'register'
       post 'authorize'
