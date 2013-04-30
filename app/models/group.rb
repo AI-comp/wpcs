@@ -25,6 +25,7 @@ class Group
   def correct_submission_for(attendances, problem, type)
     attendances.map { |att| att.correct_submission_for(problem, type) }
       .select { |sub| sub }
+      .sort { |a, b| a.score <=> b.score }
       .first
   end
 

@@ -49,7 +49,7 @@ class Contests::ProblemsController < AuthController
   # POST /contests/1/problems/1/submit
   def submit
     problem = Problem.find(params[:id])
-    input_type = params[:input_type]
+    input_type = params[:input_type].to_sym
 
     file = params[:files]
     if file
