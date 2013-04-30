@@ -51,6 +51,7 @@
       <th>Group</th>
       <th>Problem</th>
       <th>Result</th>
+      <th>Score</th>
       <th>Submission time</th>
     </tr>
     <% Submission.desc(:updated_at).take(10).each do |s| %>
@@ -59,6 +60,7 @@
       <td><%= "#{s.attendance.user.group.name}" %></td>
       <td><%= "#{s.problem.title} (#{s.problem_type})" %></td>
       <td><%= "#{s.solved ? "correct" : "wrong"}" %></td>
+      <td><%= "#{s.score}" %></td>
       <td><%= "#{s.updated_at.strftime('%H:%M:%S')}" %></td>
     </tr>
   <br>

@@ -27,7 +27,7 @@ Please update by pressing your F5 key.
     <td>
       <% attendances = group.attendances_for(@contest) %>
       <% s = group.solved_submission_for(attendances, problem, type) %>
-      <%= s ? format_date(s.created_at) : 'Not solved yet' %>
+      <%= s ? "#{format_date(s.created_at)} (#{s.score})" : 'Not solved yet' %>
     </td>
 <% end %>
 <% end %>
