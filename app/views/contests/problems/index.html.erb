@@ -28,12 +28,12 @@
     </td>
     <td>
       <div>
-        <% submit = @current_user.submit_for(problem, 'small') %>
-        <%= submit ? format_date(submit.solved_time) : 'Not yet' %>
+        <% submission = @current_user.solved_submission_for(problem, :small) %>
+        <%= submission ? format_date(submission.created_at) : 'Not yet' %>
       </div>
       <div>
-        <% submit = @current_user.submit_for(problem, 'large') %>
-        <%= submit ? format_date(submit.solved_time) : 'Not yet' %>
+        <% submission = @current_user.solved_submission_for(problem, :large) %>
+        <%= submission ? format_date(submission.created_at) : 'Not yet' %>
       </div>
     </td>
   </tr>
@@ -53,7 +53,7 @@
       <th>Result</th>
       <th>Submission time</th>
     </tr>
-    <% Submit.desc(:updated_at).take(10).each do |s| %>
+    <% Submission.desc(:updated_at).take(10).each do |s| %>
     <tr>
       <td><%= "#{s.attendance.user.name}" %></td>
       <td><%= "#{s.attendance.user.group.name}" %></td>

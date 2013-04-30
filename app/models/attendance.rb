@@ -5,10 +5,14 @@ class Attendance
 
   belongs_to :user
   belongs_to :contest
-  has_many :submits
+  has_many :submissions
 
-  def submit_for(problem, type)
-    self.submits.where(problem_id: problem.id, problem_type: type).first
+  def submissions_for(problem, type)
+    submissions.where(problem_id: problem.id, problem_type: type).first
+  end
+
+  def solved_submission_for(problem, type)
+    submissions.where(problem_id: problem.id, problem_type: type, solved: true).first
   end
 
 end
