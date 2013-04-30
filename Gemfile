@@ -75,6 +75,9 @@ group :test do
 
   # For coveralls
   gem 'coveralls', :require => false
+
+  # Browser testing framework
+  gem 'capybara'
 end
 
 group :development, :test do
