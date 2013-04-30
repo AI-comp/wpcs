@@ -3,7 +3,7 @@ Wpcs::Application.routes.draw do
   post "ajax/convert_markdown"
   post "ajax/upload_image"
 
-  resources :groups
+  resources :groups, :only => [:index, :show, :new, :create]
   match 'groups/:id/join' => 'groups#join'
 
   resources :contests, :only => [:index, :show] do
@@ -42,6 +42,7 @@ Wpcs::Application.routes.draw do
       resources :problems, :module => :contests
     end
     resources :images
+    resources :groups
   end
 
   root :to => 'users#login'
