@@ -32,7 +32,7 @@
         <%= submission ? format_date(submission.created_at) : 'Not yet' %>
       </div>
       <div>
-        <% submit = @current_user.solved_submission_for(problem, :large) %>
+        <% submission = @current_user.solved_submission_for(problem, :large) %>
         <%= submission ? format_date(submission.created_at) : 'Not yet' %>
       </div>
     </td>
