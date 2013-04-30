@@ -17,7 +17,7 @@ Please update by pressing your F5 key.
 <% end %>
   </tr>
 
-<% Group.each_with_index do |group, index| # TODO: Fix proper groups %>
+<% groups_to_show.each_with_index do |group, index| %>
   <tr>
     <td><%= index + 1 %></td>
     <td><%= group.name %></td>
