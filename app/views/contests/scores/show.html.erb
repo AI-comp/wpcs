@@ -10,7 +10,6 @@ Please update by pressing your F5 key.
     <th>Place</th>
     <th>Team name</th>
     <th>Score</th>
-    <th></th>
 <% @contest.problems.each do |problem| %>
     <th><%= problem.title %></th>
 <% end %>
@@ -21,20 +20,20 @@ Please update by pressing your F5 key.
     <td><%= index + 1 %></td>
     <td><%= group.name %></td>
     <td><%= group.score_for(@contest) %></td>
-    <td>
-      <a href="#" data-toggle="tooltip" title="first tooltip">hover over me</a>
-      <a href="#" rel="tooltip" data-toggle="tooltip" data-placement="top" title="Tooltip on top">Tooltip on top</a>
-      small
-      <br>
-      large
-    </td>
 <% @contest.problems.each do |problem| %>
     <td>
       <% delimiter = '' %>
       <% attendances = group.attendances_for(@contest) %>
 <% [:small, :large].each do |type| %>
       <% s = group.solved_submission_for(attendances, problem, type) %>
-      <%= s ? raw("#{s.score} / #{type == :small ? s.problem.small_score : s.problem.large_score} <span style='color: #7d7d7d; font-size: 80%;'>(#{format_date(s.created_at)})</span>") : '-' %>
+      <% if s %>
+        <a href="#" rel="tooltip" data-toggle="tooltip" data-placement="top" title="<%= type %>">
+          <%= s.score %> / <%= type == :small ? s.problem.small_score : s.problem.large_score %>
+          <span style='color: #7d7d7d; font-size: 80%;'>(<%= format_date(s.created_at) %>)</span>
+        </a>
+      <% else %>
+        -
+      <% end %>
       <br>
 <% end %>
     </td>
