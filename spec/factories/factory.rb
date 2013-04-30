@@ -46,4 +46,8 @@ FactoryGirl.define do
 
   factory :image
 
+  factory :group do
+    sequence(:name) {|n| "group_#{n}" }
+  end
+
 end
