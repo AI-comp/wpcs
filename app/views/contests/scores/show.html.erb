@@ -1,4 +1,4 @@
-<h1>Score board</h1>
+<h1>Scoreboard</h1>
 
 <p>
 Please update by pressing your F5 key.
@@ -11,9 +11,7 @@ Please update by pressing your F5 key.
     <th>Team name</th>
     <th>Score</th>
 <% @contest.problems.each do |problem| %>
-<% [:small, :large].each do |type| %>
-    <th><%= problem.title %> (<%= type %>)</th>
-<% end %>
+    <th><%= problem.title %></th>
 <% end %>
   </tr>
 
@@ -23,13 +21,15 @@ Please update by pressing your F5 key.
     <td><%= group.name %></td>
     <td><%= group.score_for(@contest) %></td>
 <% @contest.problems.each do |problem| %>
-<% [:small, :large].each do |type| %>
     <td>
+      <% delimiter = '' %>
       <% attendances = group.attendances_for(@contest) %>
+<% [:small, :large].each do |type| %>
       <% s = group.solved_submission_for(attendances, problem, type) %>
-      <%= s ? "#{format_date(s.created_at)} (#{s.score})" : 'Not solved yet' %>
-    </td>
+      <%= s ? raw("#{s.score} <span style='color: #7d7d7d; font-size: 80%;'>(#{format_date(s.created_at)})</span>") : '-' %>
+      <br>
 <% end %>
+    </td>
 <% end %>
   </tr>
 <% end %>
