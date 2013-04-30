@@ -25,7 +25,7 @@
   <br>
   <div class="field">
     <h3>Input type</h3>
-    <%= select_tag('input_type', options_for_select( { 'Small' => 'small', 'Large' => 'large' }, @input_type)) %>
+    <%= select_tag('input_type', options_for_select( { 'Small' => :small, 'Large' => :large }, @input_type)) %>
   </div>
   <div class="field">
     Please submit your answer writing it on the 'Submission text' or uploading a answer file (not source code!).
