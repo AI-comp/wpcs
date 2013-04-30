@@ -13,8 +13,6 @@
   <tr>
     <td><%= group.name %></td>
     <td><%= link_to 'Show', group %></td>
-    <td><%= link_to 'Edit', edit_group_path(group) %></td>
-    <td><%= link_to 'Destroy', group, confirm: 'Are you sure?', method: :delete %></td>
     <td><%= link_to 'Join', "groups/#{group._id}/join" %></td>
   </tr>
 <% end %>

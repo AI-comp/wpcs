@@ -29,7 +29,7 @@
               <li><a id='sec'></a></li>
             <% end %>
             <% if @authorized %>
-              <li><%= link_to (@current_user.name.presence or @current_user.uid), @current_user %></li>
+              <li><%= link_to (@current_user.name.presence or @current_user.uid), users_path %></li>
               <% if @contest %>
                 <li><a>Score: <%= @current_user.group.score_for(@contest) %> </a></li>
               <% end %>
