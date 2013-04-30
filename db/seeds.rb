@@ -7,3 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 Group.create(name: Group.default_group_name)
+
+(ENV["groups"].try(:to_i) or 0).times do |i|
+  Group.create(name: "Group#{i+1}")
+end
