@@ -60,7 +60,7 @@
       <td><%= "#{s.attendance.user.group.name}" %></td>
       <td><%= "#{s.problem.title} (#{s.problem_type})" %></td>
       <td><%= "#{s.solved ? "correct" : "wrong"}" %></td>
-      <td><%= "#{s.score}" %></td>
+      <td><%= "#{s.score} / #{s.problem_type == :small ? s.problem.small_score : s.problem.large_score}" %></td>
       <td><%= "#{s.updated_at.strftime('%H:%M:%S')}" %></td>
     </tr>
   <br>

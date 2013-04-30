@@ -26,7 +26,7 @@ Please update by pressing your F5 key.
       <% attendances = group.attendances_for(@contest) %>
 <% [:small, :large].each do |type| %>
       <% s = group.solved_submission_for(attendances, problem, type) %>
-      <%= s ? raw("#{s.score} <span style='color: #7d7d7d; font-size: 80%;'>(#{format_date(s.created_at)})</span>") : '-' %>
+      <%= s ? raw("#{s.score} / #{type == :small ? s.problem.small_score : s.problem.large_score} <span style='color: #7d7d7d; font-size: 80%;'>(#{format_date(s.created_at)})</span>") : '-' %>
       <br>
 <% end %>
     </td>
