@@ -30,8 +30,8 @@
             <% end %>
             <% if @authorized %>
               <li><%= link_to (@current_user.name.presence or @current_user.uid), @current_user %></li>
-              <% if @score %>
-                <li><a>Score: <%= @score.score %> </a></li>
+              <% if @contest %>
+                <li><a>Score: <%= @current_user.group.score_for(@contest) %> </a></li>
               <% end %>
               <li><%= link_to 'Logout', logout_users_path, {:method=>'POST'} %></li>
             <% else %>
