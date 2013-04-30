@@ -22,6 +22,8 @@ Please update by pressing your F5 key.
     <td><%= group.name %></td>
     <td><%= group.score_for(@contest) %></td>
     <td>
+      <a href="#" data-toggle="tooltip" title="first tooltip">hover over me</a>
+      <a href="#" rel="tooltip" data-toggle="tooltip" data-placement="top" title="Tooltip on top">Tooltip on top</a>
       small
       <br>
       large
@@ -41,3 +43,9 @@ Please update by pressing your F5 key.
 <% end %>
 </table>
 </p>
+
+<script>
+$(function(){
+  $('a[rel=tooltip]').tooltip();
+});
+</script>
