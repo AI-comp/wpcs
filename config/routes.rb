@@ -27,6 +27,7 @@ Wpcs::Application.routes.draw do
       get  'register'
       post 'authorize'
       post 'logout'
+      post 'promote', 'demote'
     end
   end
 

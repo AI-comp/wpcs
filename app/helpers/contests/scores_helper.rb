@@ -4,7 +4,7 @@ module Contests::ScoresHelper
       @submits
     else
       # Hide admin submits from non-admin users
-      @submits.select{|s| !s.user.is_admin}
+      @submits.select{|s| !s.attendance.user.is_admin}
     end
   end
 end
