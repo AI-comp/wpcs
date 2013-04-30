@@ -9,7 +9,7 @@ class User
   field :email
   field :encrypted_password
   field :salt
-  field :is_admin, type: Boolean, default: true
+  field :is_admin, type: Boolean, default: false
 
   validates_uniqueness_of :uid, :scope => :provider, :message => 'was already used'
 

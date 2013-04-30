@@ -94,4 +94,16 @@ class UsersController < ApplicationController
     redirect_to :root, :notice=>'Logout successfully' and return
   end
 
+  # POST /users/promote
+  def promote
+    @current_user.update_attributes(is_admin: true)
+    redirect_to root_path
+  end
+
+  # POST /users/demote
+  def demote
+    @current_user.update_attributes(is_admin: false)
+    redirect_to root_path
+  end
+
 end
