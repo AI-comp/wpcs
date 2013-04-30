@@ -6,7 +6,7 @@ wpcs [![Build Status](https://travis-ci.org/TakenokoChocoHolic/wpcs.png?branch=m
 * Rails
 * MongoDB  
 http://docs.mongodb.org/manual/installation/
-* ImageMagic
+* ImageMagick
 
 # Setup
 * for Ubuntu 12.10  
@@ -24,6 +24,10 @@ https://gist.github.com/olistik/2627011
 # Initialize database
     rake db:drop
     rake db:setup
+
+- Populate database with Group1, Group2, ..., GroupN
+
+    rake db:seed groups=N
 
 # Documents
 - Class diagram  

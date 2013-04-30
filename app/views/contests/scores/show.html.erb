@@ -16,24 +16,15 @@ Please update by pressing your F5 key.
 <% end %>
   </tr>
 
-<% scores_to_show.each_with_index do |score, index| %>
+<% submits_to_show.each_with_index do |submit, index| %>
   <tr>
     <td><%= index + 1 %></td>
-    <td><%= score.user.name %></td>
-    <td><%= score.score %></td>
-    <td><%= score.updated_at %></td>
+    <td><%= submit.attendance.user.group.name %></td>
+    <td><%= submit.score %></td>
+    <td><%= format_date(submit.updated_at) %></td>
 <% @contest.problems.each do |problem| %>
     <td>
-      <div>
-        <%= score.solved_time(problem, 'small') ?
-          format_date(score.solved_time(problem, 'small')) :
-          'Not yet (' + score.wrong_count(problem, 'small').to_s + ' failures)' %>
-      </div>
-      <div>
-        <%= score.solved_time(problem, 'large') ?
-          format_date(score.solved_time(problem, 'large')) :
-          'Not yet (' + score.wrong_count(problem, 'large').to_s + ' failures)' %>
-      </div>
+      <%= submit.solved? ? format_date(submit.solved_time) : 'Not solved yet' %>
     </td>
 <% end %>
   </tr>

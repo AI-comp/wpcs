@@ -20,3 +20,9 @@ tags
 
 # Mongoid-paperclip cache directory
 /public/system/
+
+# for RubyMine
+/.idea
+
+# for SimpleCov
+/coverage
