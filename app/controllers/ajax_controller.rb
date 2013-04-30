@@ -1,5 +1,7 @@
 class AjaxController < ApplicationController
   # before_filter :check_ajax
+  # TODO
+  # Add admin filter to upload_image
 
   def check_ajax
     return redirect_to '/404.html' unless request.xhr?
