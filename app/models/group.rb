@@ -32,8 +32,8 @@ class Group
   def score_for(contest)
     total_score = 0
     attendances = attendances_for(contest)
-    for problem in contest.problems
-      for type in [:small, :large]
+    contest.problems.each do |problem|
+      [:small, :large].each do |type|
         s = solved_submission_for(attendances, problem, type)
         total_score += s.score if s
       end
