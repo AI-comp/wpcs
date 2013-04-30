@@ -11,7 +11,7 @@ class Attendance
     submissions.where(problem_id: problem.id, problem_type: type).first
   end
 
-  def correct_submission_for(problem, type)
+  def solved_submission_for(problem, type)
     submissions.where(problem_id: problem.id, problem_type: type, solved: true).first
   end
 

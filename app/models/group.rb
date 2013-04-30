@@ -22,8 +22,8 @@ class Group
       .in(user_id: user_ids)
   end
 
-  def correct_submission_for(attendances, problem, type)
-    attendances.map { |att| att.correct_submission_for(problem, type) }
+  def solved_submission_for(attendances, problem, type)
+    attendances.map { |att| att.solved_submission_for(problem, type) }
       .select { |sub| sub }
       .sort { |a, b| a.score <=> b.score }
       .first
@@ -34,7 +34,7 @@ class Group
     attendances = attendances_for(contest)
     for problem in contest.problems
       for type in [:small, :large]
-        s = correct_submission_for(attendances, problem, type)
+        s = solved_submission_for(attendances, problem, type)
         total_score += s.score if s
       end
     end

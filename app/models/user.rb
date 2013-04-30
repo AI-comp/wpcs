@@ -66,7 +66,7 @@ class User
   end
 
   def correct_submission_for(problem, problem_type)
-    attendance_for(problem.contest).try {|a| a.correct_submission_for(problem, problem_type) }
+    attendance_for(problem.contest).try {|a| a.solved_submission_for(problem, problem_type) }
   end
 
   def solved?(problem, problem_type)

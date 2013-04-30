@@ -28,11 +28,11 @@
     </td>
     <td>
       <div>
-        <% submission = @current_user.correct_submission_for(problem, 'small') %>
+        <% submission = @current_user.solved_submission_for(problem, 'small') %>
         <%= submission ? format_date(submission.created_at) : 'Not yet' %>
       </div>
       <div>
-        <% submit = @current_user.correct_submission_for(problem, 'large') %>
+        <% submit = @current_user.solved_submission_for(problem, 'large') %>
         <%= submission ? format_date(submission.created_at) : 'Not yet' %>
       </div>
     </td>

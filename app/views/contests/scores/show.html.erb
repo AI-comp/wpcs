@@ -28,7 +28,7 @@ Please update by pressing your F5 key.
 <% [:small, :large].each do |type| %>
     <td>
       <% attendances = group.attendances_for(@contest) %>
-      <% s = group.correct_submission_for(attendances, problem, type) %>
+      <% s = group.solved_submission_for(attendances, problem, type) %>
       <%= s ? format_date(s.created_at) : 'Not solved yet' %>
     </td>
 <% end %>
