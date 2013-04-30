@@ -24,7 +24,7 @@ class User
   end
 
   def self.authenticate(uid, password)
-    user = User.where(provider: "WPCS", uid: uid).first or return nil
+    user = User.where(provider: 'WPCS', uid: uid).first or return nil
     return nil if encrypt_password(password, user.salt)!=user.encrypted_password
     user
   end
@@ -53,6 +53,11 @@ class User
     user
   end
 
+  private
+  def self.generate_random_token(length=10)
+    [*'a'..'z', *'A'..'Z', *'0'..'9'].sample(length).join
+  end
+
   def attended?(contest)
     attendance_for(contest).present?
   end
@@ -65,18 +70,12 @@ class User
     attendances.where(contest_id: contest.id).first
   end
 
-  def submit_for(problem, problem_type)
-    attendance_for(problem.contest).try {|a| a.submit_for(problem, problem_type) }
-  end
-
-  def score_for(contest)
-    problem_ids = contest.problems.map(&:id)
-    submits.in(problem_id: problem_ids).inject(0, &:+)
-    attendance_for(contest).in(problem_id: problem_ids).inject(0, &:+)
+  def correct_submission_for(problem, problem_type)
+    attendance_for(problem.contest).try {|a| a.correct_submission_for(problem, problem_type) }
   end
 
   def solved?(problem, problem_type)
-    submit_for(problem, problem_type).first.present?
+    correct_submission_for(problem, problem_type).present?
   end
 
   private
@@ -84,10 +83,6 @@ class User
     default_group = Group.default
     default_group.users.push(self)
     default_group.save
-  end
-
-  def self.generate_random_token(length=10)
-    [*'a'..'z', *'A'..'Z', *'0'..'9'].sample(length).join
   end
 
 end
