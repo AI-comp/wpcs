@@ -27,7 +27,7 @@ https://gist.github.com/olistik/2627011
 
 - Populate database with Group1, Group2, ..., GroupN
 
-    rake db:seed groups=N
+        rake db:seed groups=N
 
 # Documents
 - Class diagram  
