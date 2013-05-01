@@ -13,20 +13,20 @@
 <table class='table table-striped'>
   <tr>
     <th>Problem Name</th>
-    <th>Input Size</th>
-    <th>Score</th>
-    <th>Solved Time</th>
+    <th class='center'>Input Size</th>
+    <th class='center'>Score</th>
+    <th class='center'>Solved Time</th>
   </tr>
 
 <% @problems.asc(:title).each do |problem| %>
   <tr>
     <td><%= link_to problem.title, contest_problem_path(problem.contest, problem) %></td>
-    <td>Small<br>Large</td>
-    <td>
+    <td class='center'>Small<br>Large</td>
+    <td class='center'>
       <div><%= problem.small_score %></div>
       <div><%= problem.large_score %></div>
     </td>
-    <td>
+    <td class='center'>
 <% [:small, :large].each do |type| %>
       <div>
         <% submission = @current_user.solved_submission_for(problem, type) %>
@@ -48,17 +48,17 @@
       <th>User</th>
       <th>Group</th>
       <th>Problem</th>
-      <th>Result</th>
-      <th>Score</th>
-      <th>Submission Time</th>
+      <th class='center'>Result</th>
+      <th class='center'>Score</th>
+      <th class='center'>Submission Time</th>
     </tr>
     <% Submission.in(attendance: @contest.attendance_ids).desc(:updated_at).take(10).each do |s| %>
     <tr>
       <td><%= "#{s.attendance.user.name}" %></td>
       <td><%= "#{s.attendance.user.group.name}" %></td>
       <td><%= "#{s.problem.title} (#{s.problem_type.capitalize})" %></td>
-      <td><%= "#{s.solved ? "Correct" : "Wrong"}" %></td>
-      <td>
+      <td class='center'><%= "#{s.solved ? "Correct" : "Wrong"}" %></td>
+      <td class='center'>
         <a href="#" rel="tooltip" data-toggle="tooltip" data-placement="top" title="Acquired Score">
           <%= s.score %>
         </a>
@@ -67,7 +67,7 @@
           <%= s.problem_type == :small ? s.problem.small_score : s.problem.large_score %>
         </a>
       </td>
-      <td><%= "#{s.updated_at.strftime('%H:%M:%S')}" %></td>
+      <td class='center'><%= "#{s.updated_at.strftime('%H:%M:%S')}" %></td>
     </tr>
   <br>
   <% end %>
