@@ -1,10 +1,9 @@
 module Contests::ScoresHelper
-  def submits_to_show
-    if @current_user.is_admin?
-      @submits
+  def groups_to_show
+    if @current_user.group.users.any? { |u| u.is_admin? }
+      Group.each.select { |g| g.users.any? { |u| u.is_admin? } }
     else
-      # Hide admin submits from non-admin users
-      @submits.select{|s| !s.attendance.user.is_admin}
+      Group.each.select { |g| g.users.all? { |u| !u.is_admin? } }
     end
   end
 end

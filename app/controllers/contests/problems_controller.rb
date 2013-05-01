@@ -5,12 +5,6 @@ class Contests::ProblemsController < AuthController
   private
   def load_contest
     @contest = Contest.find(params[:contest_id])
-    # @score = @contest.scores.where(user_id: @current_user.id)
-    #   .first
-    # unless @score
-    #   @score = Score.new(contest: @contest, user: @current_user)
-    #   @score.save
-    # end
   end
 
   # score calculation: max_score * (1 - 0.5 * time_diff / time_length)
@@ -49,7 +43,7 @@ class Contests::ProblemsController < AuthController
   # POST /contests/1/problems/1/submit
   def submit
     problem = Problem.find(params[:id])
-    input_type = params[:input_type]
+    input_type = params[:input_type].to_sym
 
     file = params[:files]
     if file
@@ -60,14 +54,19 @@ class Contests::ProblemsController < AuthController
     end
 
     attendance = @current_user.attendance_for(@contest)
-    @correct = problem.correct?(output, input_type)
-    if @current_user.is_admin || Time.now.between?(@contest.start_time, @contest.end_time)
-      if @correct
-        Submit.create(solved: true, problem_type: input_type, problem: problem, attendance: attendance, score: @score, solved_time: DateTime.now)
+    max_score = problem.score_or_nil(output, input_type)
+    if Time.now.between?(@contest.start_time, @contest.end_time)
+      if max_score
+        solved = true
+        score = calculate_score(max_score)
+      else
+        solved = false
+        score = 0
       end
+      Submission.create(solved: solved, problem_type: input_type, problem: problem, attendance: attendance, score: score)
     end
 
-    flash[:solved] = @correct
+    flash[:solved] = solved
     redirect_to action: 'index'
   end
 

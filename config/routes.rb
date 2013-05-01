@@ -3,8 +3,7 @@ Wpcs::Application.routes.draw do
   post "ajax/convert_markdown"
   post "ajax/upload_image"
 
-  resources :images
-  resources :groups
+  resources :groups, :only => [:index, :show, :new, :create]
   match 'groups/:id/join' => 'groups#join'
 
   resources :contests, :only => [:index, :show] do
@@ -21,8 +20,13 @@ Wpcs::Application.routes.draw do
 
   # resources :problems
 
-  resources :users, :except => [:new, :index] do
+  resources :users, :only => [:create] do
     collection do
+      # no :id
+      get  'show', 'edit'
+      put  'update'
+      delete 'destroy'
+
       get  'login'
       get  'register'
       post 'authorize'
@@ -31,11 +35,14 @@ Wpcs::Application.routes.draw do
     end
   end
 
+  match 'admin' => 'admin#index'
   namespace :admin do
     resources :users
     resources :contests do
       resources :problems, :module => :contests
     end
+    resources :images
+    resources :groups
   end
 
   root :to => 'users#login'

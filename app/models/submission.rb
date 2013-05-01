@@ -1,18 +1,13 @@
-class Submit
+class Submission
 
   include Mongoid::Document
   include Mongoid::Timestamps
 
-  field :solved, type: Boolean, default: false
   field :problem_type
+  field :solved, type: Boolean, default: false
   field :score, type: Integer, default: 0
-  field :solved_time, type: DateTime
 
   belongs_to :problem
   belongs_to :attendance
-
-  def solved?
-    self.solved_time.present?
-  end
 
 end

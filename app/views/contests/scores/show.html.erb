@@ -1,4 +1,4 @@
-<h1>Score board</h1>
+<h1>Scoreboard</h1>
 
 <p>
 Please update by pressing your F5 key.
@@ -10,21 +10,31 @@ Please update by pressing your F5 key.
     <th>Place</th>
     <th>Team name</th>
     <th>Score</th>
-    <th>Last solved time</th>
+    <th></th>
 <% @contest.problems.each do |problem| %>
     <th><%= problem.title %></th>
 <% end %>
   </tr>
 
-<% submits_to_show.each_with_index do |submit, index| %>
+<% groups_to_show.each_with_index do |group, index| %>
   <tr>
     <td><%= index + 1 %></td>
-    <td><%= submit.attendance.user.group.name %></td>
-    <td><%= submit.score %></td>
-    <td><%= format_date(submit.updated_at) %></td>
+    <td><%= group.name %></td>
+    <td><%= group.score_for(@contest) %></td>
+    <td>
+      small
+      <br>
+      large
+    </td>
 <% @contest.problems.each do |problem| %>
     <td>
-      <%= submit.solved? ? format_date(submit.solved_time) : 'Not solved yet' %>
+      <% delimiter = '' %>
+      <% attendances = group.attendances_for(@contest) %>
+<% [:small, :large].each do |type| %>
+      <% s = group.solved_submission_for(attendances, problem, type) %>
+      <%= s ? raw("#{s.score} / #{type == :small ? s.problem.small_score : s.problem.large_score} <span style='color: #7d7d7d; font-size: 80%;'>(#{format_date(s.created_at)})</span>") : '-' %>
+      <br>
+<% end %>
     </td>
 <% end %>
   </tr>
