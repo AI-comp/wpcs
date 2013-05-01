@@ -11,7 +11,15 @@ Please update by pressing your F5 key.
     <th>Team name</th>
     <th>Score</th>
 <% @contest.problems.each do |problem| %>
-    <th><%= problem.title %></th>
+    <th>
+      <%= problem.title %>
+<% [:small, :large].each do |type| %>
+      <br>
+      <a href="#" rel="tooltip" data-toggle="tooltip" data-placement="top" title="Maximum Score for <%= type.to_s.capitalize %>">
+        <%= type == :small ? problem.small_score : problem.large_score %>
+      </a>
+<% end %>
+    </th>
 <% end %>
   </tr>
 
@@ -26,9 +34,9 @@ Please update by pressing your F5 key.
       <% attendances = group.attendances_for(@contest) %>
 <% [:small, :large].each do |type| %>
       <% s = group.solved_submission_for(attendances, problem, type) %>
-      <a href="#" rel="tooltip" data-toggle="tooltip" data-placement="top" title="<%= type.to_s.capitalize %>">
+      <a href="#" rel="tooltip" data-toggle="tooltip" data-placement="top" title="Score Acquired for <%= type.to_s.capitalize %>">
       <% if s %>
-          <%= s.score %> / <%= type == :small ? s.problem.small_score : s.problem.large_score %>
+          <%= s.score %>
           <span style='color: #7d7d7d; font-size: 80%;'>(<%= format_date(s.created_at) %>)</span>
       <% else %>
         -
