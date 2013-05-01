@@ -11,6 +11,9 @@ gem 'omniauth'
 gem 'omniauth-google'
 gem 'omniauth-twitter'
 gem 'redcarpet'
+gem 'therubyracer'
+gem 'less-rails'
+gem 'twitter-bootstrap-rails'
 
 # for image uploader
 gem 'mongoid-paperclip', :require => 'mongoid_paperclip'
