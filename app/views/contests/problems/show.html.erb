@@ -1,4 +1,6 @@
-<h1>Submit your output</h1>
+<h1>
+  <%= @problem.title %>
+</h1>
 
 <%= render "timer" %>
 
@@ -7,11 +9,6 @@
 
 <%= form_tag({action: 'submit'}, multipart: true) do %>
   <div class="field">
-    <h3>Problem title</h3>
-    <%= @problem.title %>
-  </div>
-  <div class="field">
-    <h3>Description</h3>
     <div class="problem_description">
       <%= raw @problem.description_html %>
     </div>
