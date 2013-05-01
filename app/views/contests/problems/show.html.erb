@@ -11,15 +11,16 @@
   <%= raw @problem.description_html %>
 </div>
 
+<p>
+  Please submit your answer writing it on the 'Submission text' or uploading a answer file (not source code!).
+  <br>
+  答えをテキストボックスに入力するか、答えが記載されたファイル（ソースコードは不要）をアップロードしてください。
+</p>
+
 <button id="solve_small">Solve Small</button>
 <%= form_tag({action: 'submit'}, multipart: true, id: 'form_small') do %>
   <%= hidden_field_tag 'input_type', :small %>
   <%= link_to 'Download Small Input', download_small_contest_problem_path(@contest, @problem) %>
-  <p>
-    Please submit your answer writing it on the 'Submission text' or uploading a answer file (not source code!).
-    <br>
-    答えをテキストボックスに入力するか、答えが記載されたファイル（ソースコードは不要）をアップロードしてください。
-  </p>
   <div class="field">
     <h3>Submission file</h3>
     <%= file_field_tag 'files' %>
@@ -33,16 +34,10 @@
   </div>
 <% end %>
 
-<br>
 <button id="solve_large">Solve Large</button>
 <%= form_tag({action: 'submit'}, multipart: true, id: 'form_large') do %>
   <%= hidden_field_tag 'input_type', :large %>
   <%= link_to 'Download Large Input', download_large_contest_problem_path(@contest, @problem) %>
-  <p>
-    Please submit your answer writing it on the 'Submission text' or uploading a answer file (not source code!).
-    <br>
-    答えをテキストボックスに入力するか、答えが記載されたファイル（ソースコードは不要）をアップロードしてください。
-  </p>
   <div class="field">
     <h3>Submission file</h3>
     <%= file_field_tag 'files' %>

@@ -1,0 +1,25 @@
+button {
+  display: block;
+  margin-top: 1em;
+}
+
+form {
+  background-color: rgb(250, 236, 165);
+  padding: 1em;
+  a:link,
+  a:visited,
+  a:active,
+  a:hover,
+  a:focus {
+    color: blue;
+    text-decoration: underline;
+    background: none;
+  }
+  .field {
+    border-top: 1px solid grey;
+    margin-top: 1em;
+    .btn {
+      margin-top: 1em;
+    }
+  }
+}
