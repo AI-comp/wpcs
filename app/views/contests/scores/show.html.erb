@@ -42,7 +42,7 @@ Press F5 to Update.
       <% s = group.solved_submission_for(attendances, problem, type) %>
       <% text = "Score Acquired for " + type.to_s.capitalize %> 
       <% if s %>
-        <% text += "<br> Solved at " + format_date(s.created_at) %>
+        <% text += "<br>Solved at " + format_date(s.created_at) %>
       <% end %>
       <a href="#" rel="tooltip" data-toggle="tooltip" data-placement="top" data-html="true" title="<%= text %>">
         <% if s %>

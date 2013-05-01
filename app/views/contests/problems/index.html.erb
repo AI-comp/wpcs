@@ -1,4 +1,4 @@
-<h1>Problem list</h1>
+<h1>Problem List</h1>
 
 <%= render "timer" %>
 
@@ -12,10 +12,10 @@
 
 <table class='table table-striped'>
   <tr>
-    <th>Problem name</th>
-    <th>Input sizes</th>
-    <th>Scores</th>
-    <th>Solved time</th>
+    <th>Problem Name</th>
+    <th>Input Size</th>
+    <th>Score</th>
+    <th>Solved Time</th>
   </tr>
 
 <% @problems.asc(:title).each do |problem| %>
@@ -27,14 +27,12 @@
       <div><%= problem.large_score %></div>
     </td>
     <td>
+<% [:small, :large].each do |type| %>
       <div>
-        <% submission = @current_user.solved_submission_for(problem, :small) %>
-        <%= submission ? format_date(submission.created_at) : 'Not yet' %>
+        <% submission = @current_user.solved_submission_for(problem, type) %>
+        <%= submission ? format_date(submission.created_at) : 'Not Yet' %>
       </div>
-      <div>
-        <% submission = @current_user.solved_submission_for(problem, :large) %>
-        <%= submission ? format_date(submission.created_at) : 'Not yet' %>
-      </div>
+<% end %>
     </td>
   </tr>
 <% end %>
@@ -43,7 +41,7 @@
 <br>
 <br>
 
-<h2>Submission history</h2>
+<h2>Submission History</h2>
 <div id="resultLog">
   <table class='table table-striped'>
     <tr>
@@ -52,15 +50,23 @@
       <th>Problem</th>
       <th>Result</th>
       <th>Score</th>
-      <th>Submission time</th>
+      <th>Submission Time</th>
     </tr>
     <% Submission.in(attendance: @contest.attendance_ids).desc(:updated_at).take(10).each do |s| %>
     <tr>
       <td><%= "#{s.attendance.user.name}" %></td>
       <td><%= "#{s.attendance.user.group.name}" %></td>
-      <td><%= "#{s.problem.title} (#{s.problem_type})" %></td>
-      <td><%= "#{s.solved ? "correct" : "wrong"}" %></td>
-      <td><%= "#{s.score} / #{s.problem_type == :small ? s.problem.small_score : s.problem.large_score}" %></td>
+      <td><%= "#{s.problem.title} (#{s.problem_type.capitalize})" %></td>
+      <td><%= "#{s.solved ? "Correct" : "Wrong"}" %></td>
+      <td>
+        <a href="#" rel="tooltip" data-toggle="tooltip" data-placement="top" title="Acquired Score">
+          <%= s.score %>
+        </a>
+        /
+        <a href="#" rel="tooltip" data-toggle="tooltip" data-placement="top" title="Maximum Score">
+          <%= s.problem_type == :small ? s.problem.small_score : s.problem.large_score %>
+        </a>
+      </td>
       <td><%= "#{s.updated_at.strftime('%H:%M:%S')}" %></td>
     </tr>
   <br>
