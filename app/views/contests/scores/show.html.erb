@@ -26,14 +26,14 @@ Please update by pressing your F5 key.
       <% attendances = group.attendances_for(@contest) %>
 <% [:small, :large].each do |type| %>
       <% s = group.solved_submission_for(attendances, problem, type) %>
+      <a href="#" rel="tooltip" data-toggle="tooltip" data-placement="top" title="<%= type.to_s.capitalize %>">
       <% if s %>
-        <a href="#" rel="tooltip" data-toggle="tooltip" data-placement="top" title="<%= type %>">
           <%= s.score %> / <%= type == :small ? s.problem.small_score : s.problem.large_score %>
           <span style='color: #7d7d7d; font-size: 80%;'>(<%= format_date(s.created_at) %>)</span>
-        </a>
       <% else %>
         -
       <% end %>
+      </a>
       <br>
 <% end %>
     </td>
