@@ -1,16 +1,9 @@
-<h1>Submit your output</h1>
-
-<%= render "timer" %>
+<h1><%= @problem.title %></h1>
 
 <br>
 <br>
 
 <div class="field">
-  <h3>Problem title</h3>
-  <%= @problem.title %>
-</div>
-<div class="field">
-  <h3>Description</h3>
   <div class="problem_description">
     <%= raw @problem.description_html %>
   </div>
