@@ -25,7 +25,7 @@
           </ul>
           <ul class='nav pull-right'>
             <% if @contest %>
-              <li><a><%= @contest.name %></a></li>
+              <li><%= link_to @contest.name, contest_problems_path(@contest) %></li>
               <li><a id='sec'></a></li>
             <% end %>
             <% if @authorized %>
