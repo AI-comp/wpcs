@@ -1,9 +1,11 @@
-button {
+button#solve_small,
+button#solve_large {
   display: block;
   margin-top: 1em;
 }
 
-form {
+form#form_small,
+form#form_large {
   background-color: rgb(250, 236, 165);
   padding: 1em;
   a:link,
