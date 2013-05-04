@@ -2,6 +2,26 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :current_user
 
+  rescue_from Mongoid::Errors::DocumentNotFound, ActionController::RoutingError, with: :render_404
+  rescue_from Exception, with: :render_500
+
+  def render_404(exception)
+    @title = exception.class
+    @message = exception.message
+    @params = request.params
+    @session = session
+    @backtrace = exception.backtrace
+    render file: "#{Rails.root}/public/404", status: 404, layout: false
+  end
+
+  def render_500(exception)
+    @title = exception.class
+    @message = exception.message
+    @params = request.params
+    @session = session
+    @backtrace = exception.backtrace
+    render file: "#{Rails.root}/public/500", status: 500, layout: false
+  end
 
   def login_user(user)
     session[:provider] = user.provider
@@ -25,15 +45,8 @@ class ApplicationController < ActionController::Base
 
   def login_filter
     if !@authorized
-      redirect_to controller: 'users', action: 'login'
+      redirect_to login_users_path
     end
   end
-
-  def admin_filter
-    if(@current_user && !@current_user.is_admin)
-      redirect_to controller: 'top', action: 'index'
-    end
-  end
-
 
 end

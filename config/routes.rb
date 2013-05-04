@@ -49,6 +49,8 @@ Wpcs::Application.routes.draw do
 
   match 'auth/:provider/callback' => 'oauth#create'
 
+  match '*path', to: 'errors#routing', via: :get
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
