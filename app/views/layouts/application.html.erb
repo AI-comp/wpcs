@@ -24,7 +24,7 @@
             <% if @authorized %>
               <li><%= link_to 'CONTESTS', contests_path %></li>
               <% if @current_user.is_admin %>
-                <li><%= link_to '(Admin)', admin_contests_path %></li>
+                <li><%= link_to 'CONTESTS (Admin)', admin_contests_path %></li>
               <% end %>
             <% end %>
           </ul>
@@ -33,7 +33,7 @@
               <% if @current_user.is_admin %>
                 <% if @contest.name %>
                   <li><%= link_to @contest.name, contest_problems_path(@contest) %></li>
-                  <li><%= link_to '(Admin)', admin_contest_problems_path(@contest) %></li>
+                  <li><%= link_to @contest.name + ' (Admin)', admin_contest_problems_path(@contest) %></li>
                 <% end %>
               <% else %>
                 <li><%= link_to @contest.name, contest_problems_path(@contest) %></li>
