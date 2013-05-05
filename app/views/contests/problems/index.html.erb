@@ -52,7 +52,7 @@
       <th class='center'>Score</th>
       <th class='center'>Submission Time</th>
     </tr>
-    <% Submission.in(attendance: @contest.attendance_ids).desc(:updated_at).take(10).each do |s| %>
+    <% submissions_to_show.each do |s| %>
     <tr>
       <td><%= "#{s.attendance.user.name}" %></td>
       <td><%= "#{s.attendance.user.group.name}" %></td>
@@ -69,6 +69,6 @@
       </td>
       <td class='center'><%= "#{s.updated_at.strftime('%H:%M:%S')}" %></td>
     </tr>
-  <% end %>
+    <% end %>
   </table>
 </div>
