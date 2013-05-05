@@ -32,7 +32,12 @@ https://gist.github.com/olistik/2627011
         rake db:seed groups=N
 
 # Documents
-- Class diagram  
+- Generate class diagrams for controllers and models
+
+        sudo apt get install graphviz # if you didn't install graph-viz
+        rake diagram:all
+
+- Class diagram (deprecated)  
 https://cacoo.com/diagrams/zJncLkksT8WHeY4b
 
 # Daily development
@@ -51,9 +56,5 @@ https://cacoo.com/diagrams/zJncLkksT8WHeY4b
 - Clean up precompiled javascript files
 
         rake assets:clean
-        
-- Generate class diagrams for controllers and models
 
-        sudo apt get install graphviz # if you didn't install graph-viz
-        rake diagram:all
 
