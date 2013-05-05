@@ -10,7 +10,7 @@ Press F5 to Update.
     <th class='center'>Place</th>
     <th>Team Name</th>
     <th class='center'>Score</th>
-<% @contest.problems.each do |problem| %>
+<% @problems.each do |problem| %>
     <th class='center'>
       <%= problem.title %>
       <br>
@@ -35,7 +35,7 @@ Press F5 to Update.
     <td class='center'><%= index + 1 %></td>
     <td><%= group.name %></td>
     <td class='center'><%= group.score_for(@contest) %></td>
-<% @contest.problems.each do |problem| %>
+<% @problems.each do |problem| %>
     <td class='center'>
       <% delimiter = '' %>
       <% attendances = group.attendances_for(@contest) %>
