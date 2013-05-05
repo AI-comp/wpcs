@@ -17,6 +17,10 @@ class Group
     Group.where(name: Group.default_group_name).first
   end
 
+  def include_admin?
+    users.any? &:is_admin?
+  end
+
   def attendances_for(contest)
     Attendance.where(contest_id: contest.id)
       .in(user_id: user_ids)
