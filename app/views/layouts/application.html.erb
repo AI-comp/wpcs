@@ -21,11 +21,23 @@
 
         <div class='nav-collapse collapse'>
           <ul class='nav'>
-            <li class=''><%= link_to 'CONTESTS', contests_path %></li>
+            <% if @authorized %>
+              <li><%= link_to 'CONTESTS', contests_path %></li>
+              <% if @current_user.is_admin %>
+                <li><%= link_to '(Admin)', admin_contests_path %></li>
+              <% end %>
+            <% end %>
           </ul>
           <ul class='nav pull-right'>
             <% if @contest %>
-              <li><%= link_to @contest.name, contest_problems_path(@contest) %></li>
+              <% if @current_user.is_admin %>
+                <% if @contest.name %>
+                  <li><%= link_to @contest.name, contest_problems_path(@contest) %></li>
+                  <li><%= link_to '(Admin)', admin_contest_problems_path(@contest) %></li>
+                <% end %>
+              <% else %>
+                <li><%= link_to @contest.name, contest_problems_path(@contest) %></li>
+              <% end %>
               <li><a id='sec'></a></li>
             <% end %>
             <% if @authorized %>
