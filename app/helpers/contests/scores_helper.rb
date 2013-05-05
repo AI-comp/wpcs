@@ -1,9 +1,6 @@
 module Contests::ScoresHelper
   def groups_to_show
-    if @current_user.group.users.any? { |u| u.is_admin? }
-      Group.each.select { |g| g.users.any? { |u| u.is_admin? } }
-    else
-      Group.each.select { |g| g.users.all? { |u| !u.is_admin? } }
-    end
+    groups = @current_user.is_admin? ? Group.all : Group.all.reject(&:include_admin?)
+    groups.sort_by { |group| -group.score_for( @contest ) }
   end
 end

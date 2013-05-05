@@ -21,6 +21,10 @@ class Problem
 
   before_save :convert_html
 
+  def prefix
+    title.split(' ')[0]
+  end
+
   def convert_html
     self.description_html = Markdown.to_html(self.description)
   end

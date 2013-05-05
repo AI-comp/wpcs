@@ -12,7 +12,7 @@ Press F5 to Update.
     <th class='center'>Score</th>
 <% @problems.each do |problem| %>
     <th class='center'>
-      <%= problem.title %>
+      <%= problem.prefix %>
       <br>
 <% [:small, :large].each do |type| %>
       <span class='<%= type.to_s %>-score'>
