@@ -1,40 +1,61 @@
 <h1>Scoreboard</h1>
 
 <p>
-Please update by pressing your F5 key.
+Press F5 to Update.
 </p>
 
 <p>
 <table class='table table-striped'>
   <tr>
-    <th>Place</th>
-    <th>Team name</th>
-    <th>Score</th>
+    <th class='center'>Place</th>
+    <th>Team Name</th>
+    <th class='center'>Score</th>
 <% @contest.problems.each do |problem| %>
-    <th><%= problem.title %></th>
+    <th class='center'>
+      <%= problem.title %>
+      <br>
+<% [:small, :large].each do |type| %>
+      <span class='<%= type.to_s %>-score'>
+        <a href="#" rel="tooltip" data-toggle="tooltip" data-placement="top" title="Maximum Score for <%= type.to_s.capitalize %>">
+          <% if type == :small %>
+            S:
+          <% else %>
+            L:
+          <% end %>
+          <%= type == :small ? problem.small_score : problem.large_score %>
+        </a>
+      </span>
+<% end %>
+    </th>
 <% end %>
   </tr>
 
 <% groups_to_show.each_with_index do |group, index| %>
   <tr>
-    <td><%= index + 1 %></td>
+    <td class='center'><%= index + 1 %></td>
     <td><%= group.name %></td>
-    <td><%= group.score_for(@contest) %></td>
+    <td class='center'><%= group.score_for(@contest) %></td>
 <% @contest.problems.each do |problem| %>
-    <td>
+    <td class='center'>
       <% delimiter = '' %>
       <% attendances = group.attendances_for(@contest) %>
 <% [:small, :large].each do |type| %>
-      <% s = group.solved_submission_for(attendances, problem, type) %>
-      <a href="#" rel="tooltip" data-toggle="tooltip" data-placement="top" title="<%= type.to_s.capitalize %>">
-      <% if s %>
-          <%= s.score %> / <%= type == :small ? s.problem.small_score : s.problem.large_score %>
-          <span style='color: #7d7d7d; font-size: 80%;'>(<%= format_date(s.created_at) %>)</span>
-      <% else %>
-        -
-      <% end %>
-      </a>
-      <br>
+      <span class='<%= type.to_s %>-score'>
+        <% s = group.solved_submission_for(attendances, problem, type) %>
+        <% text = "Score Acquired for " + type.to_s.capitalize + "<br>" %> 
+        <% if s %>
+          <% text += "Solved at " + format_date(s.created_at) %>
+        <% else %>
+          <% text += "Not Yet Solved" %>
+        <% end %>
+        <a href="#" rel="tooltip" data-toggle="tooltip" data-placement="top" data-html="true" title="<%= text %>">
+          <% if s %>
+            <%= s.score %>
+          <% else %>
+            -
+          <% end %>
+        </a>
+      </span>
 <% end %>
     </td>
 <% end %>

@@ -1,10 +1,10 @@
-<h1>Problem list</h1>
+<h1>Problem List</h1>
 
 <table class='table table-striped'>
   <tr>
-    <th>Problem name</th>
-    <th>Input sizes</th>
-    <th>Scores</th>
+    <th>Problem Name</th>
+    <th class='center'>Input Size</th>
+    <th class='center'>Score</th>
     <th></th>
     <th></th>
   </tr>
@@ -12,8 +12,8 @@
 <% @problems.asc(:title).each do |problem| %>
   <tr>
     <td><%= link_to problem.title, admin_contest_problem_path(@contest, problem) %></td>
-    <td>Small<br>Large</td>
-    <td>
+    <td class='center'>Small<br>Large</td>
+    <td class='center'>
       <div><%= problem.small_score %></div>
       <div><%= problem.large_score %></div>
     </td>
