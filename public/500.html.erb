@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>We're sorry, but something went wrong (500)</title>
+  <style type="text/css">
+    body { background-color: #fff; color: #666; text-align: center; font-family: arial, sans-serif; }
+    div.dialog {
+      width: 25em;
+      padding: 0 4em;
+      margin: 4em auto 0 auto;
+      border: 1px solid #ccc;
+      border-right-color: #999;
+      border-bottom-color: #999;
+    }
+    h1 { font-size: 100%; color: #f00; line-height: 1.5em; }
+  </style>
+</head>
+
+<body>
+  <!-- This file lives in public/500.html -->
+  <div class="dialog">
+    <h1>We're sorry, but something went wrong.</h1>
+  </div>
+  <% if Rails.env.development? %>
+    <style type="text/css">
+    div.debug {
+      font-size: 100%;
+      width: 960px;
+      padding: 10px;
+      background-color: #f2dede;
+      border: 1px solid #d0d0d0;
+      border-radius: 4px;
+      margin-top: 40px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: left;
+    }
+    div.debug pre {
+      padding: 8px;
+      font-size: 90%;
+      background-color: #f0f0f0;
+      white-space: pre-wrap;
+      border: 1px solid #d0d0d0;
+    }
+    </style>
+    <div class="debug">
+      <div class="alert alert-error">
+        <p>Debug infomation</p>
+        <h1><%= @title %></h1>
+        <% if @message %>
+          <%= content_tag :pre, @message %>
+          <h1>Request</h1>
+        <% end %>
+        <%= content_tag :pre, format_hash(@params) %>
+        <h1>Session</h1>
+        <%= content_tag :pre, format_hash(@session) %>
+        <% if @backtrace %>
+          <h1>Backtrace</h1>
+          <%= content_tag :pre, format_backtrace(@backtrace) %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</body>
+</html>

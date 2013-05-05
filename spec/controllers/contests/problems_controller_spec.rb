@@ -9,10 +9,9 @@ describe Contests::ProblemsController do
 
   describe 'GET /index' do
 
-    it 'should not respond success' do
-      expect {
-        get :index, contest_id: contest
-      }.to raise_error
+    it 'should respond 404' do
+      get :index, contest_id: contest
+      expect(response).to be_redirect
     end
 
     describe 'when contestant logged in' do
@@ -30,10 +29,9 @@ describe Contests::ProblemsController do
 
   describe 'GET /:id/show' do
 
-    it 'should not respond success' do
-      expect {
-        get :show, contest_id: contest, id: problem
-      }.to raise_error
+    it 'should respond 404' do
+      get :show, contest_id: contest, id: problem
+      expect(response).to be_redirect
     end
 
     describe 'when contestant logged in' do
