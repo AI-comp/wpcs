@@ -18,7 +18,7 @@ class Group
   end
 
   def include_admin?
-    users.any? { |u| u.is_admin? }
+    users.any? &:is_admin?
   end
 
   def attendances_for(contest)
