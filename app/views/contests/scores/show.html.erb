@@ -12,7 +12,9 @@ Press F5 to Update.
     <th class='center'>Score</th>
 <% @problems.each do |problem| %>
     <th class='center'>
-      <%= problem.prefix %>
+      <a href="#" rel="tooltip" data-toggle="tooltip" data-placement="top" title="<%= problem.title %>">
+        <%= problem.prefix %>
+      </a>
       <div>
 <% [:small, :large].each do |type| %>
         <div class='score-label'>
