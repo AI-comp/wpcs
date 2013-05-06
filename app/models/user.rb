@@ -53,6 +53,10 @@ class User
     user
   end
 
+  def name_or_uid
+    self.name.presence || self.uid
+  end
+
   def attended?(contest)
     attendance_for(contest).present?
   end
