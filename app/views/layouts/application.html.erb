@@ -41,11 +41,16 @@
               <li><a id='sec'></a></li>
             <% end %>
             <% if @authorized %>
-              <li><%= link_to (@current_user.name.presence or @current_user.uid), users_path %></li>
               <% if @contest %>
                 <li><a>Score: <%= @current_user.group.score_for(@contest) %> </a></li>
               <% end %>
-              <li><%= link_to 'Logout', logout_users_path, {:method=>'POST'} %></li>
+              <li class="dropdown">
+                <a href='#' class="dropdown-toggle" data-toggle="dropdown"><%= @current_user.name_or_uid %><b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><%= link_to 'Account', users_path %>
+                  <li><%= link_to 'Group', group_path(@current_user.group) %>
+                  <li><%= link_to 'Logout', logout_users_path, method: 'POST' %>
+                </ul>
             <% else %>
               <li><%= link_to 'Sign up', register_users_path %></li>
               <li><%= link_to 'Login', login_users_path %></li>
