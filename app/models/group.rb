@@ -28,9 +28,8 @@ class Group
 
   def solved_submission_for(attendances, problem, type)
     attendances.map { |att| att.solved_submission_for(problem, type) }
-      .select { |sub| sub }
-      .sort { |a, b| a.score <=> b.score }
-      .first
+      .compact
+      .max_by(&:score)
   end
 
   def score_for(contest)
