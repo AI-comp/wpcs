@@ -17,14 +17,14 @@
           <span class="icon-bar"></span>
         </a>
 
-        <a class="brand" href="#">Waseda Programming Contest System</a>
+        <%= link_to 'Waseda Programming Contest System', root_path, class: 'brand' %>
 
         <div class='nav-collapse collapse'>
           <ul class='nav'>
             <% if @authorized %>
               <li><%= link_to 'CONTESTS', contests_path %></li>
               <% if @current_user.is_admin %>
-                <li><%= link_to '(Admin)', admin_contests_path %></li>
+                <li><%= link_to 'CONTESTS (Admin)', admin_contests_path %></li>
               <% end %>
             <% end %>
           </ul>
@@ -33,7 +33,7 @@
               <% if @current_user.is_admin %>
                 <% if @contest.name %>
                   <li><%= link_to @contest.name, contest_problems_path(@contest) %></li>
-                  <li><%= link_to '(Admin)', admin_contest_problems_path(@contest) %></li>
+                  <li><%= link_to @contest.name + ' (Admin)', admin_contest_problems_path(@contest) %></li>
                 <% end %>
               <% else %>
                 <li><%= link_to @contest.name, contest_problems_path(@contest) %></li>
@@ -41,11 +41,16 @@
               <li><a id='sec'></a></li>
             <% end %>
             <% if @authorized %>
-              <li><%= link_to (@current_user.name.presence or @current_user.uid), users_path %></li>
               <% if @contest %>
                 <li><a>Score: <%= @current_user.group.score_for(@contest) %> </a></li>
               <% end %>
-              <li><%= link_to 'Logout', logout_users_path, {:method=>'POST'} %></li>
+              <li class="dropdown">
+                <a href='#' class="dropdown-toggle" data-toggle="dropdown"><%= @current_user.name_or_uid %><b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><%= link_to 'Account', users_path %>
+                  <li><%= link_to 'Group', group_path(@current_user.group) %>
+                  <li><%= link_to 'Logout', logout_users_path, method: 'POST' %>
+                </ul>
             <% else %>
               <li><%= link_to 'Sign up', register_users_path %></li>
               <li><%= link_to 'Login', login_users_path %></li>

@@ -24,8 +24,11 @@ https://gist.github.com/olistik/2627011
         sudo apt-get install libnotify-bin
 
 # Initialize database
-    rake db:drop
-    rake db:setup
+
+- Initialize database with only a default group
+
+        rake db:drop
+        rake db:setup
 
 - Populate database with Group1, Group2, ..., GroupN
 
