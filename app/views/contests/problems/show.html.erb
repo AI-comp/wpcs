@@ -14,8 +14,7 @@
 </p>
 
 <h2>Small</h2>
-<pre><%= @problem.small_input %></pre>
-
+<pre style="max-height: 200px; overflow: scroll"><%= @problem.small_input %></pre>
 <% if @current_user.solved?(@problem, :small) %>
   <p>You have already solved small input</p>
 <% else %>
@@ -38,7 +37,7 @@
 <% end %>
 
 <h2>Large</h2>
-<pre><%= @problem.large_input %></pre>
+<pre style="max-height: 200px; overflow: scroll"><%= @problem.large_input %></pre>
 
 <% if @current_user.solved?(@problem, :large) %>
   <p>You have already solved large input</p>
