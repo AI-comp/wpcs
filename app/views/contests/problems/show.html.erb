@@ -1,12 +1,8 @@
-<h1>
-  <%= @problem.title %>
-</h1>
-
+<div class="page-header">
+  <h1><%= @problem.title %></h1>
+</div>
 <%= render "timer" %>
-
-<br>
-<br>
-
+<h2>Description</h2>
 <div class="problem_description">
   <%= raw @problem.description_html %>
 </div>
@@ -17,6 +13,8 @@
   答えをテキストボックスに入力するか、答えが記載されたファイル（ソースコードは不要）をアップロードしてください。
 </p>
 
+<h2>Small</h2>
+<pre style="max-height: 200px; overflow: scroll"><%= @problem.small_input %></pre>
 <% if @current_user.solved?(@problem, :small) %>
   <p>You have already solved small input</p>
 <% else %>
@@ -37,6 +35,9 @@
     <%= submit_tag 'Submit', { class: 'btn' } %>
   </div>
 <% end %>
+
+<h2>Large</h2>
+<pre style="max-height: 200px; overflow: scroll"><%= @problem.large_input %></pre>
 
 <% if @current_user.solved?(@problem, :large) %>
   <p>You have already solved large input</p>
