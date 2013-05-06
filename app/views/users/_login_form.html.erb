@@ -1,7 +1,7 @@
 <h2>Login</h2>
 <%= form_tag({:controller=>:users, :action=>:authorize}) do %>
   <div class="field">
-    <%= label_tag :'user id' %>
+    <%= label_tag :uid, 'User ID' %>
     <%= text_field_tag :uid %>
   </div>
   <div class="field">
