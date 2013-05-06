@@ -22,9 +22,16 @@
         <div class='nav-collapse collapse'>
           <ul class='nav'>
             <% if @authorized %>
-              <li><%= link_to 'CONTESTS', contests_path %></li>
               <% if @current_user.is_admin %>
-                <li><%= link_to 'CONTESTS (Admin)', admin_contests_path %></li>
+                <li class="dropdwon">
+                  <a href='#' class="dropdown-toggle" data-toggle="dropdown">CONTESTS<b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <li><%= link_to 'For Contestant', contests_path %></li>
+                    <li><%= link_to 'For Admin', admin_contests_path %></li>
+                  </ul>
+                </li>
+              <% else %>
+                <li><%= link_to 'CONTESTS', contests_path %></li>
               <% end %>
             <% end %>
           </ul>
@@ -32,8 +39,13 @@
             <% if @contest %>
               <% if @current_user.is_admin %>
                 <% if @contest.name %>
-                  <li><%= link_to @contest.name, contest_problems_path(@contest) %></li>
-                  <li><%= link_to @contest.name + ' (Admin)', admin_contest_problems_path(@contest) %></li>
+                  <li class="dropdwon">
+                    <a href='#' class="dropdown-toggle" data-toggle="dropdown"><%= @contest.name %><b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                      <li><%= link_to 'For Contestant', contest_problems_path(@contest) %></li>
+                      <li><%= link_to 'For Admin', admin_contest_problems_path(@contest) %></li>
+                    </ul>
+                  </li>
                 <% end %>
               <% else %>
                 <li><%= link_to @contest.name, contest_problems_path(@contest) %></li>
