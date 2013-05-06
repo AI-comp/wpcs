@@ -2,13 +2,9 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-span {
-  &.small-score {
-    margin-right: 5px;
-  }
-  &.large-score {
-    margin-left: 5px;
-  }
+div.score-label {
+  white-space: nowrap;
+  position: relative;
+  font-family: 'Courier New';
 }
-
 
