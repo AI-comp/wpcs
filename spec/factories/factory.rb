@@ -5,9 +5,13 @@ FactoryGirl.define do
 
     trait :alice do
       sequence(:uid) {|n| "alice_#{n}" }
-      name 'Alice'
+      sequence(:name) {|n| "Alice the " + n.ordinalize }
       email 'alice@wpcs.com'
       is_admin false
+
+      after(:create) do |u|
+        Group.skip( (1...Group.count).to_a.sample ).first.users.push(u)
+      end
     end
 
     trait :bob do
