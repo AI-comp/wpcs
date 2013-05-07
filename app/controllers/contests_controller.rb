@@ -11,7 +11,12 @@ class ContestsController < AuthController
   def show
     @contest = Contest.find(params[:id])
     raise InvalidContestError, 'contest is not started yet' unless @contest.started?
-    @current_user.attend(@contest) unless @current_user.attended? @contest
+  end
+
+  def attend
+      @contest = Contest.find(params[:id])
+      @current_user.attend(@contest) unless @current_user.attended? @contest
+      redirect_to :controller=> "contests/problems", :action=> "index", :contest_id=> params[:id]
   end
 
 end
