@@ -30,9 +30,9 @@ https://gist.github.com/olistik/2627011
         rake db:drop
         rake db:setup
 
-- Populate database with Group1, Group2, ..., GroupN
+- Populate database with scaffolding data
 
-        rake db:seed groups=N
+        rake populate:scaffold
 
 # Documents
 - Generate class diagrams for controllers and models
