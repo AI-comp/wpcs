@@ -8,6 +8,8 @@
   content_tag(:div, class: 'alert'){ b ? 'Correct!' : 'Wrong...' }
 } %>
 
+<h2 style="float: right;"><%= link_to 'Scoreboard', contest_score_path %></h2>
+
 <h2>Problem List</h2>
 <table class='table table-striped'>
   <tr>
@@ -36,12 +38,6 @@
   </tr>
   <% end %>
 </table>
-
-<br>
-
-<h2><%= link_to 'Scoreboard', contest_score_path %></h2>
-
-<br>
 
 <h2>Submission History</h2>
 <div id="resultLog">
