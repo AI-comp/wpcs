@@ -1,4 +1,6 @@
-<h1>Problem List</h1>
+<h1><%= @contest.name %></h1>
+
+<br>
 
 <%= render "timer" %>
 
@@ -6,10 +8,7 @@
   content_tag(:div, class: 'alert'){ b ? 'Correct!' : 'Wrong...' }
 } %>
 
-<p>
-<%= link_to 'Scoreboard', contest_score_path %>
-</p>
-
+<h2>Problem List</h2>
 <table class='table table-striped'>
   <tr>
     <th>Problem Name</th>
@@ -18,7 +17,7 @@
     <th class='center'>Solved Time</th>
   </tr>
 
-<% @problems.asc(:title).each do |problem| %>
+  <% @problems.asc(:title).each do |problem| %>
   <tr>
     <td><%= link_to problem.title, contest_problem_path(problem.contest, problem) %></td>
     <td class='center'>Small<br>Large</td>
@@ -27,18 +26,21 @@
       <div><%= problem.large_score %></div>
     </td>
     <td class='center'>
-<% [:small, :large].each do |type| %>
+  <% [:small, :large].each do |type| %>
       <div>
-        <% submission = @current_user.solved_submission_for(problem, type) %>
-        <%= submission ? format_date(submission.created_at) : 'Not Yet' %>
+      <% submission = @current_user.solved_submission_for(problem, type) %>
+      <%= submission ? format_date(submission.created_at) : 'Not Yet' %>
       </div>
-<% end %>
+  <% end %>
     </td>
   </tr>
-<% end %>
+  <% end %>
 </table>
 
 <br>
+
+<h2><%= link_to 'Scoreboard', contest_score_path %></h2>
+
 <br>
 
 <h2>Submission History</h2>
