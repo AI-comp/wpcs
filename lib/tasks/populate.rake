@@ -20,4 +20,14 @@ namespace :populate do
     puts "Done!"
   end
 
+  desc "Populate the database with scaffolding data"
+  task :scaffold => :environment do |t|
+    puts "Creating a contest with some problems"
+    FactoryGirl.create(:contest)
+    puts "Creating 10 groups"
+    FactoryGirl.create_list(:group, 10)
+    puts "Creating 100 contestants"
+    FactoryGirl.create_list(:contestant, 100)
+  end
+
 end
