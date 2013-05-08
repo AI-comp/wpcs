@@ -2,8 +2,6 @@
 
 <br>
 
-<%= render "timer" %>
-
 <%= flash[:solved].try { |b|
   content_tag(:div, class: 'alert'){ b ? 'Correct!' : 'Wrong...' }
 } %>
