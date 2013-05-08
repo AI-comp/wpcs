@@ -20,8 +20,8 @@ namespace :populate do
     puts "Done!"
   end
 
-  desc "Populate the database with scaffolding data"
-  task :scaffold => :environment do |t|
+  desc "Populate the database with mock data"
+  task :mock => :environment do |t|
     puts "Creating a contest with some problems"
     FactoryGirl.create(:contest)
     puts "Creating 10 groups"

@@ -30,9 +30,9 @@ https://gist.github.com/olistik/2627011
         rake db:drop
         rake db:setup
 
-- Populate database with scaffolding data
+- Populate database with mock data
 
-        rake populate:scaffold
+        rake populate:mock
 
 # Documents
 - Generate class diagrams for controllers and models
