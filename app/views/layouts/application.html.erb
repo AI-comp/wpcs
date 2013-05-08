@@ -50,7 +50,7 @@
               <% else %>
                 <li><%= link_to @contest.name, contest_problems_path(@contest) %></li>
               <% end %>
-              <li><a id='sec'></a></li>
+              <li><a id='sec'></a><%= render :partial => "contests/timer" %></li>
             <% end %>
             <% if @authorized %>
               <% if @contest %>
