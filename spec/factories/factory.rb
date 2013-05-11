@@ -5,9 +5,13 @@ FactoryGirl.define do
 
     trait :alice do
       sequence(:uid) {|n| "alice_#{n}" }
-      name 'Alice'
+      sequence(:name) {|n| "Alice the " + n.ordinalize }
       email 'alice@wpcs.com'
       is_admin false
+
+      after(:create) do |u|
+        Group.skip( (1...Group.count).to_a.sample ).first.users.push(u)
+      end
     end
 
     trait :bob do
@@ -29,19 +33,21 @@ FactoryGirl.define do
     name 'WUPC'
     introduction 'Waseda University Programming Contest'
     start_time Time.new(2012, 6, 2, 14, 0, 0)
-    end_time Time.new(2012, 6, 2, 16, 0, 0)
-    problems { FactoryGirl.create_list(:problem, 1) }
+    end_time Time.new(2013, 6, 2, 16, 0, 0)
+    after(:create) do |c|
+      c.problems.concat(FactoryGirl.create_list(:problem, 5))
+    end
   end
 
   factory :problem, class: Problem do
-    title        'addition'
-    description  'A+B=?'
-    small_input  '1 1'
-    small_output '2'
-    large_input  '100 100'
-    large_output '200'
-    small_score  3
-    large_score  1020
+    sequence(:title)        {|n| "addition_#{n}" }
+    description             'A+B=?'
+    sequence(:small_input)  {|n| "1 #{n}" }
+    sequence(:small_output) {|n| (1+n).to_s }
+    sequence(:large_input)  {|n| "100 #{n}" }
+    sequence(:large_output) {|n| (100+n).to_s }
+    small_score             3
+    large_score             1020
   end
 
   factory :image
