@@ -30,12 +30,17 @@ FactoryGirl.define do
   end
 
   factory :contest, class: Contest do
+    ignore do
+      save_problems false
+    end
+
     name 'WUPC'
     introduction 'Waseda University Programming Contest'
     start_time Time.new(2012, 6, 2, 14, 0, 0)
     end_time Time.new(2013, 6, 2, 16, 0, 0)
-    after(:create) do |c|
-      c.problems.concat(FactoryGirl.create_list(:problem, 5))
+    problems { |c| c.problems = FactoryGirl.create_list(:problem, 5) }
+    after(:create) do |c, evaluator|
+      c.problems.each { |p| p.save } if evaluator.save_problems
     end
   end
 
