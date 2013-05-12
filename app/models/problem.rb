@@ -29,16 +29,43 @@ class Problem
     self.description_html = Markdown.to_html(self.description)
   end
 
-  def score_or_nil(answer, problem_type)
-    if problem_type == :small
-      small_output.split == answer.split ? small_score : nil
-    else
-      large_output.split == answer.split ? large_score : nil
+  def input(type)
+    case type
+    when :small then small_input
+    when :large then large_input
+    else nil
     end
+  end
+
+  def output(type)
+    case type
+    when :small then small_output
+    when :large then large_output
+    else nil
+    end
+  end
+
+  def score(type)
+    case type
+    when :small then small_score
+    when :large then large_score
+    else nil
+    end
+  end
+
+  def correct?(answer, type)
+    output(type).split == answer.split
   end
 
   def index
     contest.problems.index(self)
+  end
+
+  # score calculation: max_score * (1 - 0.5 * time_diff / time_length)
+  def calculate_score(type)
+    time_length = contest.end_time - contest.start_time
+    time_diff   = Time.now - contest.start_time
+    (score(type) * (1 - 0.5 * time_diff / time_length)).to_int
   end
 
 end

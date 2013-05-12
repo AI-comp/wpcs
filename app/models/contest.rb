@@ -11,6 +11,11 @@ class Contest
   has_many :problems
   has_many :attendances
 
+  def self.active
+    now = Time.now
+    self.where(:start_time.lte => now, :end_time.gte => now)
+  end
+
   def started?
     start_time <= Time.now
   end
