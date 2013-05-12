@@ -23,7 +23,7 @@ namespace :populate do
   desc "Populate the database with mock data"
   task :mock => :environment do |t|
     puts "Creating a contest with some problems"
-    FactoryGirl.create(:contest)
+    FactoryGirl.create(:contest, save_problems: true)
     puts "Creating 10 groups"
     FactoryGirl.create_list(:group, 10)
     puts "Creating 100 contestants"
