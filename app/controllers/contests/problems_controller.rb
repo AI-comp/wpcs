@@ -5,6 +5,7 @@ class Contests::ProblemsController < AuthController
   private
   def load_contest
     @contest = Contest.find(params[:contest_id])
+    raise InvalidContestError, 'contest is not started yet' unless @contest.started?
   end
 
   # score calculation: max_score * (1 - 0.5 * time_diff / time_length)

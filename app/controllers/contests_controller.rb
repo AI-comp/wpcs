@@ -13,6 +13,7 @@ class ContestsController < AuthController
   # GET /contests/1
   def show
     @contest = Contest.find(params[:id])
+    raise InvalidContestError, 'contest is not started yet' unless @contest.started?
     @current_user.attend(@contest) unless @current_user.attended? @contest
   end
 

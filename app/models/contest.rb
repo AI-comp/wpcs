@@ -11,4 +11,12 @@ class Contest
   has_many :problems
   has_many :attendances
 
+  def started?
+    start_time <= Time.now
+  end
+
+  def ended?
+    end_time < Time.now
+  end
+
 end
