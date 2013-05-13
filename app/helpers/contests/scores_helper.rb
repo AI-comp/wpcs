@@ -6,7 +6,7 @@ module Contests::ScoresHelper
 
   def score_label(problem, type)
     longest_score_length = [problem.small_score, problem.large_score].map { |s| s.to_s.length }.max
-    score = type == :small ? problem.small_score : problem.large_score
-    type.to_s[0].capitalize + ':' + ('%' + longest_score_length.to_s + 'd') % score
+    score = problem.score(type)
+    type.to_s[0].upcase + ':' + ('%' + longest_score_length.to_s + 'd') % score
   end
 end

@@ -18,22 +18,23 @@
   </tr>
 
   <% @problems.asc(:title).each do |problem| %>
-  <tr>
-    <td><%= link_to problem.title, contest_problem_path(problem.contest, problem) %></td>
-    <td class='center'>Small<br>Large</td>
-    <td class='center'>
-      <div><%= problem.small_score %></div>
-      <div><%= problem.large_score %></div>
-    </td>
-    <td class='center'>
-  <% [:small, :large].each do |type| %>
-      <div>
-      <% submission = @current_user.solved_submission_for(problem, type) %>
-      <%= submission ? format_date(submission.created_at) : 'Not Yet' %>
-      </div>
-  <% end %>
-    </td>
-  </tr>
+    <tr>
+      <td><%= link_to problem.title, contest_problem_path(problem.contest, problem) %></td>
+      <td class='center'>Small<br>Large</td>
+      <td class='center'>
+        <% Problem.types.each do |type| %>
+          <div><%= problem.score(type) %></div>
+        <% end %>
+      </td>
+      <td class='center'>
+        <% Problem.types.each do |type| %>
+          <div>
+            <% submission = @current_user.solved_submission_for(problem, type) %>
+            <%= submission ? format_date(submission.created_at) : 'Not Yet' %>
+          </div>
+        <% end %>
+      </td>
+    </tr>
   <% end %>
 </table>
 
@@ -49,22 +50,18 @@
       <th class='center'>Submission Time</th>
     </tr>
     <% submissions_to_show.each do |s| %>
-    <tr>
-      <td><%= "#{s.attendance.user.name}" %></td>
-      <td><%= "#{s.attendance.user.group.name}" %></td>
-      <td><%= "#{s.problem.title} (#{s.problem_type.capitalize})" %></td>
-      <td class='center'><%= "#{s.solved ? "Correct" : "Wrong"}" %></td>
-      <td class='center'>
-        <a href="#" rel="tooltip" data-toggle="tooltip" data-placement="top" title="Acquired Score">
-          <%= s.score %>
-        </a>
-        /
-        <a href="#" rel="tooltip" data-toggle="tooltip" data-placement="top" title="Maximum Score">
-          <%= s.problem_type == :small ? s.problem.small_score : s.problem.large_score %>
-        </a>
-      </td>
-      <td class='center'><%= "#{s.updated_at.strftime('%H:%M:%S')}" %></td>
-    </tr>
+      <tr>
+        <td><%= s.attendance.user.name %></td>
+        <td><%= s.attendance.user.group.name %></td>
+        <td><%= "#{s.problem.title} (#{s.problem_type.capitalize})" %></td>
+        <td class='center'><%= "#{s.solved ? "Correct" : "Wrong"}" %></td>
+        <td class='center'>
+          <%= tooltip "Acquired Score" do %><%= s.score %><% end %>
+          /
+          <%= tooltip "Maximum Score" do %><%= s.problem.score(s.problem_type) %><% end %>
+        </td>
+        <td class='center'><%= s.updated_at.strftime('%H:%M:%S') %></td>
+      </tr>
     <% end %>
   </table>
 </div>

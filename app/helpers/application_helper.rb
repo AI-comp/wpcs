@@ -5,7 +5,7 @@ module ApplicationHelper
 
   def format_date(date_time, format = nil)
     format = "%Y/%m/%d %H:%M" unless format
-    return date_time.strftime(format)
+    date_time.strftime(format)
   end
 
   def format_backtrace(messages)
@@ -21,6 +21,19 @@ module ApplicationHelper
 
   def format_hash(hash)
     hash.map { |k,v| "#{k}: #{v}" }.join("\n")
+  end
+
+  def tooltip(title, options={}, &block)
+    hash = {
+      href: '#',
+      rel: 'tooltip',
+      'data-toggle' => 'tooltip',
+      title: title
+    }
+    hash['data-placement'] = options[:placement] || 'top'
+    hash['data-html'] = 'true' if options[:html]
+
+    content_tag(:a, hash, &block)
   end
 
 end
