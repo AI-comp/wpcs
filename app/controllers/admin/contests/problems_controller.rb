@@ -90,14 +90,11 @@ class Admin::Contests::ProblemsController < AdminController
 
   def download(type)
     p = Problem.find(params[:id])
-    name = (p.index + 1).to_s + '. ' + p.title.gsub(' ', '_') + '_'
 
-    case type
-    when :small
-      send_data(p.small_input, filename: name + 'small.txt')
-    when :large
-      send_data(p.large_input, filename: name + 'large.txt')
-    end
+    id = p.index + 1
+    title = p.title.gsub(' ', '_')
+
+    send_data(p.input(type), filename: "#{id}. #{title}_#{type}.txt")
   end
 
 end

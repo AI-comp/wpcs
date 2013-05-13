@@ -1,8 +1,15 @@
 class ApplicationController < ActionController::Base
+
+  class InvalidContestError < ActionController::ActionControllerError
+  end
+
   protect_from_forgery
   before_filter :current_user
 
-  rescue_from Mongoid::Errors::DocumentNotFound, ActionController::RoutingError, with: :render_404
+  rescue_from Mongoid::Errors::DocumentNotFound,
+              ActionController::RoutingError,
+              InvalidContestError,
+              with: :render_404
   rescue_from Exception, with: :render_500
 
   def render_404(exception)
