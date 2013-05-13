@@ -1,65 +1,51 @@
 <h1>Scoreboard</h1>
 
-<p>
-Press F5 to Update.
-</p>
+<p>Press F5 to Update. </p>
 
-<p>
 <table class='table table-striped'>
   <tr>
     <th class='center'>Place</th>
     <th>Team Name</th>
     <th class='center'>Score</th>
-<% @problems.each do |problem| %>
-    <th class='center'>
-      <a href="#" rel="tooltip" data-toggle="tooltip" data-placement="top" title="<%= problem.title %>">
-        <%= problem.prefix %>
-      </a>
-      <div>
-<% [:small, :large].each do |type| %>
-        <div class='score-label'>
-          <a href="#" rel="tooltip" data-toggle="tooltip" data-placement="top" title="Maximum Score for <%= type.to_s.capitalize %>">
-            <%= score_label(problem, type) %>
-          </a>
+    <% @problems.each do |problem| %>
+      <th class='center'>
+        <%= tooltip problem.title do %>
+          <%= problem.prefix %>
+        <% end %>
+        <div>
+          <% Problem.types.each do |type| %>
+            <div class='score-label'>
+              <%= tooltip "Maximum Score for #{type.to_s.capitalize}" do %>
+                <%= score_label(problem, type) %>
+              <% end %>
+            </div>
+          <% end %>
         </div>
-<% end %>
-      </div>
-    </th>
-<% end %>
+      </th>
+    <% end %>
   </tr>
 
-<% groups_to_show.each_with_index do |group, index| %>
-  <tr>
-    <td class='center'><%= index + 1 %></td>
-    <td><%= group.name %></td>
-    <td class='center'><%= group.score_for(@contest) %></td>
-<% @problems.each do |problem| %>
-    <td class='center'>
-      <% delimiter = '' %>
-      <% attendances = group.attendances_for(@contest) %>
-      <div>
-<% [:small, :large].each do |type| %>
-        <div class='right'>
-          <% s = group.solved_submission_for(attendances, problem, type) %>
-          <% text = "Score Acquired for " + type.to_s.capitalize + "<br>" %> 
-          <% if s %>
-            <% text += "Solved at " + format_date(s.created_at) %>
-          <% else %>
-            <% text += "Not Yet Solved" %>
-          <% end %>
-          <a href="#" rel="tooltip" data-toggle="tooltip" data-placement="top" data-html="true" title="<%= text %>">
-            <% if s %>
-              <%= s.score %>
-            <% else %>
-              -
+  <% groups_to_show.each_with_index do |group, index| %>
+    <tr>
+      <td class='center'><%= index + 1 %></td>
+      <td><%= group.name %></td>
+      <td class='center'><%= group.score_for(@contest) %></td>
+      <% @problems.each do |problem| %>
+        <td class='center'>
+          <% attendances = group.attendances_for(@contest) %>
+          <div>
+            <% Problem.types.each do |type| %>
+              <div class='right'>
+                <% submission = group.solved_submission_for(attendances, problem, type) %>
+                <% text = submission ? "Solved at #{format_date(submission.created_at)}" : "Not Yet Solved" %>
+                <%= tooltip "Score Acquired for #{type.to_s.capitalize}<br>#{text}", html: true do %>
+                  <%= submission.try(:score) || '-' %>
+                <% end%>
+              </div>
             <% end %>
-          </a>
-        </div>
-<% end %>
-      </div>
-    </td>
-<% end %>
-  </tr>
-<% end %>
+          </div>
+        </td>
+      <% end %>
+    </tr>
+  <% end %>
 </table>
-</p>

@@ -23,4 +23,17 @@ module ApplicationHelper
     hash.map { |k,v| "#{k}: #{v}" }.join("\n")
   end
 
+  def tooltip(title, options={}, &block)
+    hash = {
+      href: '#',
+      rel: 'tooltip',
+      'data-toggle' => 'tooltip',
+      title: title
+    }
+    hash['data-placement'] = options[:placement] || 'top'
+    hash['data-html'] = 'true' if options[:html]
+
+    content_tag(:a, hash, &block)
+  end
+
 end

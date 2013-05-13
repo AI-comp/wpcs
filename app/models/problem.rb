@@ -29,6 +29,11 @@ class Problem
     self.description_html = Markdown.to_html(self.description)
   end
 
+  TYPES = [ :small, :large ]
+  def self.types
+    TYPES
+  end
+
   def input(type)
     case type
     when :small then small_input
