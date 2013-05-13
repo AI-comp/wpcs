@@ -10,10 +10,6 @@ class Contests::ProblemsController < AuthController
     raise InvalidContestError, 'contest is not started yet' unless @contest.started?
   end
 
-  def check_attendance
-      redirect_to contests_path unless @current_user.attended? @contest
-  end
-
   # score calculation: max_score * (1 - 0.5 * time_diff / time_length)
   def calculate_score(max_score)
     time_length = @contest.end_time - @contest.start_time
@@ -80,6 +76,10 @@ class Contests::ProblemsController < AuthController
     title = p.title.gsub(' ', '_')
 
     send_data(p.input(type), filename: "#{id}. #{title}_#{type}.txt")
+  end
+
+  def check_attendance
+      redirect_to contests_path unless @current_user.attended? @contest
   end
 
 end

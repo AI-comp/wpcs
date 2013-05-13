@@ -16,7 +16,7 @@
     <td><%= format_date(contest.start_time) %> - <%= format_date(contest.end_time) %>
     <td>
 	<% if !@current_user.attended? contest%>
-	    <%= link_to "attend", {:action=> "attend", :id=> contest.id}, :class=> "btn btn-mini" %>
+	    <%= link_to "attend", attend_contest_path(contest), :class=> "btn btn-mini" %>
 	<% else %>
 	    <div class="label label-success"> attended </div>
 	<% end %>

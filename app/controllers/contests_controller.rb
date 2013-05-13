@@ -1,5 +1,6 @@
 class ContestsController < AuthController
   before_filter :admin_filter, only: ['new','edit', 'create', 'update']
+  before_filter :check_attendance, only: ['show']
 
   # GET /contests
   def index
@@ -17,6 +18,9 @@ class ContestsController < AuthController
       @contest = Contest.find(params[:id])
       @current_user.attend(@contest) unless @current_user.attended? @contest
       redirect_to :controller=> "contests/problems", :action=> "index", :contest_id=> params[:id]
+  end
+  
+  def check_attendance
   end
 
 end
