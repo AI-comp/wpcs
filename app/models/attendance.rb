@@ -15,4 +15,16 @@ class Attendance
     submissions.where(problem_id: problem.id, problem_type: type, solved: true).first
   end
 
+  def submit(problem, answer, type)
+    solved = problem.correct?(answer, type)
+    score = solved ? problem.calculate_score(type) : 0
+    Submission.create(
+      solved: solved,
+      problem_type: type,
+      problem: problem,
+      attendance: self,
+      score: score
+    )
+  end
+
 end

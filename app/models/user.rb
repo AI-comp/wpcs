@@ -53,6 +53,10 @@ class User
     user
   end
 
+  def self.contestants_of(contest)
+    where(is_admin: false, 'scores.contest_id' => contest.id)
+  end
+
   def name_or_uid
     self.name.presence || self.uid
   end
