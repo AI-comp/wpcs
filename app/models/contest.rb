@@ -16,6 +16,10 @@ class Contest
     self.where(:start_time.lte => now, :end_time.gte => now)
   end
 
+  def self.visible
+    self.where(:start_time.lte => Time.now)
+  end
+
   def started?
     start_time <= Time.now
   end

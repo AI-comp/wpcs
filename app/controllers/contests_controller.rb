@@ -4,7 +4,7 @@ class ContestsController < AuthController
   # GET /contests
   def index
     # 開催期間に当てはまるコンテストだけ表示する
-    @contests = Contest.active.asc(:start_time)
+    @contests = Contest.visible.asc(:start_time)
   end
 
   # GET /contests/1
