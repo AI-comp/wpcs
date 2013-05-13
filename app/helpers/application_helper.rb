@@ -5,7 +5,7 @@ module ApplicationHelper
 
   def format_date(date_time, format = nil)
     format = "%Y/%m/%d %H:%M" unless format
-    return date_time.strftime(format)
+    date_time.strftime(format)
   end
 
   def format_backtrace(messages)
