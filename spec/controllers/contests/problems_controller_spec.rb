@@ -20,6 +20,21 @@ describe Contests::ProblemsController do
 
       it 'should respond success' do
         get :index, contest_id: contest
+        expect(response).to be_redirect
+      end
+
+    end
+
+    describe 'when contestant logged in and attended the contest' do
+
+      include_examples 'login contestant'
+
+      before do
+        contestant.attend(contest)
+      end
+
+      it 'should respond success' do
+        get :index, contest_id: contest
         expect(response).to be_success
       end
 
@@ -37,6 +52,21 @@ describe Contests::ProblemsController do
     describe 'when contestant logged in' do
 
       include_examples 'login contestant'
+
+      it 'should respond success' do
+        get :show, contest_id: contest, id: problem
+        expect(response).to be_redirect
+      end
+
+    end
+
+    describe 'when contestant logged in and attended the contest' do
+
+      include_examples 'login contestant'
+
+      before do
+        contestant.attend(contest)
+      end
 
       it 'should respond success' do
         get :show, contest_id: contest, id: problem

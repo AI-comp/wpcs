@@ -1,6 +1,6 @@
 class Admin::Contests::ProblemsController < AdminController
   before_filter :load_contest
-
+ 
   private
   def load_contest
     @contest = Contest.find(params[:contest_id])
