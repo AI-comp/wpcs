@@ -6,18 +6,12 @@
   <%= raw @problem.description_html %>
 </div>
 
-<p>
-  Please submit your answer writing it on the 'Submission text' or uploading a answer file (not source code!).
-  <br>
-  答えをテキストボックスに入力するか、答えが記載されたファイル（ソースコードは不要）をアップロードしてください。
-</p>
-
 <h2>Small</h2>
 <pre style="max-height: 200px; overflow: scroll"><%= @problem.small_input %></pre>
-<% if @current_user.solved?(@problem, :small) %>
-  <p>You have already solved small input</p>
-<% elsif @problem.contest.ended? %>
+<% if @problem.contest.ended? %>
   <%# show nothing %>
+<% elsif @current_user.solved?(@problem, :small) %>
+  <p>You have already solved small</p>
 <% else %>
   <button id="solve_small">Solve Small</button>
 <% end %>
@@ -25,12 +19,15 @@
   <%= hidden_field_tag 'input_type', :small %>
   <%= link_to 'Download Small Input', download_small_contest_problem_path(@contest, @problem) %>
   <div class="field">
-    <h3>Submission file</h3>
+    <h3>Upload your output file</h3>
     <%= file_field_tag 'files' %>
   </div>
   <div class="field">
-    <h3>Submission text</h3>
+    <h3>Or write your answer here</h3>
     <%= text_area_tag 'text_area' %>
+  </div>
+  <div class="field">
+    <strong>You don't have to submit your source code!</strong>
   </div>
   <div class="field">
     <%= submit_tag 'Submit', { class: 'btn' } %>
@@ -40,10 +37,10 @@
 <h2>Large</h2>
 <pre style="max-height: 200px; overflow: scroll"><%= @problem.large_input %></pre>
 
-<% if @current_user.solved?(@problem, :large) %>
-  <p>You have already solved large input</p>
-<% elsif @problem.contest.ended? %>
+<% if @problem.contest.ended? %>
   <%# show nothing %>
+<% elsif @current_user.solved?(@problem, :large) %>
+  <p>You have already solved large</p>
 <% else %>
   <button id="solve_large">Solve Large</button>
 <% end %>
@@ -51,12 +48,15 @@
   <%= hidden_field_tag 'input_type', :large %>
   <%= link_to 'Download Large Input', download_large_contest_problem_path(@contest, @problem) %>
   <div class="field">
-    <h3>Submission file</h3>
+    <h3>Upload your output file</h3>
     <%= file_field_tag 'files' %>
   </div>
   <div class="field">
-    <h3>Submission text</h3>
+    <h3>Or write your answer here</h3>
     <%= text_area_tag 'text_area' %>
+  </div>
+  <div class="field">
+    <strong>You don't have to submit your source code!</strong>
   </div>
   <div class="field">
     <%= submit_tag 'Submit', { class: 'btn' } %>
