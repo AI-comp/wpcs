@@ -5,7 +5,7 @@
 <%= render "timer" %>
 
 <%= flash[:solved].try { |b|
-  content_tag(:div, class: 'alert'){ b ? 'Correct!' : 'Wrong...' }
+  b ? content_tag(:div, 'Correct!', class: 'alert-success') : content_tag(:div, 'Wrong...', class: 'alert-error')
 } %>
 
 <h2 style="float: right;"><%= link_to 'Scoreboard', contest_score_path %></h2>
