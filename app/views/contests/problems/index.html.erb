@@ -13,7 +13,7 @@
   <tr>
     <th>Problem Name</th>
     <th class='center'>Input Size</th>
-    <th class='center'>Score(current / max)</th>
+    <th class='center'>Score (Current / Max)</th>
     <th class='center'>Solved Time</th>
   </tr>
 
@@ -23,7 +23,7 @@
       <td class='center'>Small<br>Large</td>
       <td class='center'>
         <% Problem.types.each do |type| %>
-          <div><%= calculate_score(problem.score(type)) %> / <%= problem.score(type) %></div>
+          <div><%= @contest.ended? ? 0 : calculate_score(problem.score(type)) %> / <%= problem.score(type) %></div>
         <% end %>
       </td>
       <td class='center'>
@@ -46,7 +46,7 @@
       <th>Group</th>
       <th>Problem</th>
       <th class='center'>Result</th>
-      <th class='center'>Score</th>
+      <th class='center'>Score (Acquired / Max)</th>
       <th class='center'>Submission Time</th>
     </tr>
     <% submissions_to_show.each do |s| %>
@@ -56,9 +56,7 @@
         <td><%= "#{s.problem.title} (#{s.problem_type.capitalize})" %></td>
         <td class='center'><%= "#{s.solved ? "Correct" : "Wrong"}" %></td>
         <td class='center'>
-          <%= tooltip "Acquired Score" do %><%= s.score %><% end %>
-          /
-          <%= tooltip "Maximum Score" do %><%= s.problem.score(s.problem_type) %><% end %>
+          <%= s.score %> / <%= s.problem.score(s.problem_type) %>
         </td>
         <td class='center'><%= s.updated_at.strftime('%H:%M:%S') %></td>
       </tr>
