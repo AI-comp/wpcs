@@ -21,6 +21,8 @@ class ContestsController < AuthController
   end
   
   def check_attendance
+      @contest = Contest.find(params[:id])
+      redirect_to contests_path unless @current_user.attended? @contest
   end
 
 end

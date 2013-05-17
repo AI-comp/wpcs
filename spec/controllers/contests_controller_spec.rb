@@ -38,9 +38,13 @@ describe ContestsController do
       expect(response).not_to be_success
     end
 
-    describe 'when contestant logged in' do
+    describe 'when contestant logged in and attended the contest' do
 
       include_examples 'login contestant'
+
+      before do
+        contestant.attend(@contest)
+      end
 
       it 'should respond success' do
         get :show, id: @contest
