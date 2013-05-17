@@ -23,7 +23,7 @@
       <td class='center'>Small<br>Large</td>
       <td class='center'>
         <% Problem.types.each do |type| %>
-          <div><%= calculate_score(problem.score(type)) %> / <%= problem.score(type) %></div>
+          <div><%= @contest.ended? ? 0 : calculate_score(problem.score(type)) %> / <%= problem.score(type) %></div>
         <% end %>
       </td>
       <td class='center'>
