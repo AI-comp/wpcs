@@ -13,7 +13,7 @@
   <tr>
     <th>Problem Name</th>
     <th class='center'>Input Size</th>
-    <th class='center'>Score</th>
+    <th class='center'>Score(current / max)</th>
     <th class='center'>Solved Time</th>
   </tr>
 
@@ -23,7 +23,7 @@
       <td class='center'>Small<br>Large</td>
       <td class='center'>
         <% Problem.types.each do |type| %>
-          <div><%= problem.score(type) %></div>
+          <div><%= calculate_score(problem.score(type)) %> / <%= problem.score(type) %></div>
         <% end %>
       </td>
       <td class='center'>

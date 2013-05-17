@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
 class Contests::ProblemsController < AuthController
+  include Contests::ProblemsHelper
+
   before_filter :load_contest
   before_filter :check_attendance
 
@@ -8,13 +10,6 @@ class Contests::ProblemsController < AuthController
   def load_contest
     @contest = Contest.find(params[:contest_id])
     raise InvalidContestError, 'contest is not started yet' unless @contest.started?
-  end
-
-  # score calculation: max_score * (1 - 0.5 * time_diff / time_length)
-  def calculate_score(max_score)
-    time_length = @contest.end_time - @contest.start_time
-    time_diff   = Time.now - @contest.start_time
-    (max_score * (1 - 0.5 * time_diff / time_length)).to_int
   end
 
   public
