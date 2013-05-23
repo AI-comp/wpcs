@@ -23,16 +23,33 @@ https://gist.github.com/olistik/2627011
 
         sudo apt-get install libnotify-bin
 
-# Initialize database
+# Run on development environment
 
-- Initialize database with only a default group
+1. Initialize database
 
-        rake db:drop
-        rake db:setup
+        rake db:drop db:setup
 
-- Populate database with mock data
+1. [Optinal] Populate database with mock data
 
         rake populate:mock
+
+1. [Optinal] Start automatic Rspec tesing with Guard and Spork
+
+        guard
+
+1. Run a rails sever on your machine in development mode
+
+        rails s
+
+# Run on production environment
+
+1. Initialize database and assets
+
+        rake db:drop db:setup assets:precompile RAILS_ENV=production
+
+1. Run a rails sever on your machine in production mode
+
+        rails s -e production
 
 # Documents
 - Generate class diagrams for controllers and models
@@ -44,17 +61,10 @@ https://gist.github.com/olistik/2627011
 https://cacoo.com/diagrams/zJncLkksT8WHeY4b
 
 # Daily development
-- Run a rails sever on your machine
-
-        rails s
 
 - Clean up unused branches which don't exist the remote
 
         git remote prune origin
-
-- Start automatic Rspec tesing with Guard and Spork
-
-        guard
         
 - Clean up precompiled javascript files
 
