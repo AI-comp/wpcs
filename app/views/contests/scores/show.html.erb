@@ -25,7 +25,7 @@
     <% end %>
   </tr>
 
-  <% groups_to_show.each_with_index do |group, index| %>
+  <% groups_to_show(@contest).each_with_index do |group, index| %>
     <tr>
       <td class='center'><%= index + 1 %></td>
       <td><%= group.name %></td>
