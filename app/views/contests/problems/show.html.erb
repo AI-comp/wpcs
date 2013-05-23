@@ -9,12 +9,11 @@
 <h2>Small</h2>
 <pre style="max-height: 200px; overflow: scroll"><%= @problem.small_input %></pre>
 
+<% submission = @current_user.group.solved_submission_for(problem, type) %>
 <% if @problem.contest.ended? %>
   <%# show nothing %>
-<% elsif @current_user.solved?(@problem, :small) %>
-  <p>You have already solved small.</p>
-<% elsif @current_user.group.solved?(@problem, :small) %>
-  <p>Your teammates have already solved small.</p>
+<% elsif submission %>
+  <p><%= submission.attendance.user.name %> has already solved small at <%= format_date(submission.created_at) %>.</p>
 <% else %>
   <button id="solve_small">Solve Small</button>
 <% end %>
