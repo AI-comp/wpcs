@@ -34,7 +34,7 @@ class Group
 
   def solved?(problem, type)
     attendances_for(problem.contest)
-      .any { |att| att.solved_submission_for(problem, type).present? }
+      .any? { |att| att.solved_submission_for(problem, type).present? }
   end
 
   def score_for(contest)

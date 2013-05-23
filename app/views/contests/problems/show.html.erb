@@ -11,8 +11,10 @@
 
 <% if @problem.contest.ended? %>
   <%# show nothing %>
+<% elsif @current_user.solved?(@problem, :small) %>
+  <p>You have already solved small.</p>
 <% elsif @current_user.group.solved?(@problem, :small) %>
-  <p>You or your teammates have already solved small</p>
+  <p>Your teammates have already solved small.</p>
 <% else %>
   <button id="solve_small">Solve Small</button>
 <% end %>
@@ -40,8 +42,10 @@
 
 <% if @problem.contest.ended? %>
   <%# show nothing %>
+<% elsif @current_user.solved?(@problem, :large) %>
+  <p>You have already solved large.</p>
 <% elsif @current_user.group.solved?(@problem, :large) %>
-  <p>You or your teammates have already solved large</p>
+  <p>Your teammates have already solved large.</p>
 <% else %>
   <button id="solve_large">Solve Large</button>
 <% end %>
