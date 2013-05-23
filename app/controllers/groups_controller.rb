@@ -33,6 +33,14 @@ class GroupsController < ApplicationController
     end
   end
 
+  # GET /groups/1/edit
+  def edit
+    @group = Group.find(params[:id])
+    unless @group.users.include?(current_user)
+      redirect_to groups_path, :alert => "Only members can change their group's name"
+    end
+  end
+
   # POST /groups
   # POST /groups.json
   def create
@@ -44,6 +52,22 @@ class GroupsController < ApplicationController
         format.json { render json: @group, status: :created, location: @group }
       else
         format.html { render action: "new" }
+        format.json { render json: @group.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PUT /groups/1
+  # PUT /groups/1.json
+  def update
+    @group = Group.find(params[:id])
+
+    respond_to do |format|
+      if @group.update_attributes(params[:group])
+        format.html { redirect_to @group, notice: 'Group was successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.html { render action: "edit" }
         format.json { render json: @group.errors, status: :unprocessable_entity }
       end
     end
