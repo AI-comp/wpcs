@@ -25,9 +25,9 @@ https://gist.github.com/olistik/2627011
 
 # Run on development environment
 
-1. Initialize database
+1. Initialize database and assets
 
-        rake db:drop db:setup
+        rake db:drop db:setup assets:clean assets:precompile
 
 1. [Optinal] Populate database with mock data
 
