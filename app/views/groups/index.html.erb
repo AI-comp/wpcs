@@ -13,11 +13,6 @@
   <tr>
     <td><%= group.name %></td>
     <td><%= link_to 'Show', group %></td>
-    <td><%= link_to 'Join', "groups/#{group._id}/join" %></td>
   </tr>
 <% end %>
 </table>
-
-<br>
-
-<%= link_to 'New Group', new_group_path %>
