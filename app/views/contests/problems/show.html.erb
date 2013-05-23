@@ -8,10 +8,13 @@
 
 <h2>Small</h2>
 <pre style="max-height: 200px; overflow: scroll"><%= @problem.small_input %></pre>
+
 <% if @problem.contest.ended? %>
   <%# show nothing %>
 <% elsif @current_user.solved?(@problem, :small) %>
-  <p>You have already solved small</p>
+  <p>You have already solved small.</p>
+<% elsif @current_user.group.solved?(@problem, :small) %>
+  <p>Your teammates have already solved small.</p>
 <% else %>
   <button id="solve_small">Solve Small</button>
 <% end %>
@@ -40,7 +43,9 @@
 <% if @problem.contest.ended? %>
   <%# show nothing %>
 <% elsif @current_user.solved?(@problem, :large) %>
-  <p>You have already solved large</p>
+  <p>You have already solved large.</p>
+<% elsif @current_user.group.solved?(@problem, :large) %>
+  <p>Your teammates have already solved large.</p>
 <% else %>
   <button id="solve_large">Solve Large</button>
 <% end %>

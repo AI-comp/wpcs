@@ -32,6 +32,11 @@ class Group
       .max_by(&:score)
   end
 
+  def solved?(problem, type)
+    attendances_for(problem.contest)
+      .any? { |att| att.solved_submission_for(problem, type).present? }
+  end
+
   def score_for(contest)
     total_score = 0
     attendances = attendances_for(contest)
