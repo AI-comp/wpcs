@@ -36,6 +36,9 @@ class GroupsController < ApplicationController
   # GET /groups/1/edit
   def edit
     @group = Group.find(params[:id])
+    unless @group.users.include?(current_user)
+      redirect_to groups_path, :alert => "Only members can change their group's name"
+    end
   end
 
   # POST /groups
