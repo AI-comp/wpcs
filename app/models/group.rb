@@ -26,10 +26,15 @@ class Group
       .in(user_id: user_ids)
   end
 
-  def solved_submission_for(attendances, problem, type)
+  def solved_submission_for(problem, type, attendances = attendances_for(problem.contest))
     attendances.map { |att| att.solved_submission_for(problem, type) }
       .compact
       .max_by(&:score)
+  end
+
+  def solved?(problem, type, attendances = attendances_for(problem.contest))
+    attendances_for(problem.contest)
+      .any? { |att| att.solved_submission_for(problem, type).present? }
   end
 
   def score_for(contest)
@@ -37,7 +42,7 @@ class Group
     attendances = attendances_for(contest)
     contest.problems.each do |problem|
       [:small, :large].each do |type|
-        s = solved_submission_for(attendances, problem, type)
+        s = solved_submission_for(problem, type, attendances)
         total_score += s.score if s
       end
     end
