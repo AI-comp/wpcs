@@ -42,7 +42,7 @@ class Group
     attendances = attendances_for(contest)
     contest.problems.each do |problem|
       [:small, :large].each do |type|
-        s = solved_submission_for(attendances, problem, type)
+        s = solved_submission_for(problem, type, attendances)
         total_score += s.score if s
       end
     end
