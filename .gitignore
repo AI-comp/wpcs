@@ -14,6 +14,11 @@
 /log/*.log
 /tmp
 
+# Ignore assets files
+# We will consider it referring https://github.com/rails/rails/pull/2817
+/public/assets/
+
+# Ignore general unused files
 .DS_Store
 *.swp
 tags
