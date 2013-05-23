@@ -9,7 +9,7 @@
 <h2>Small</h2>
 <pre style="max-height: 200px; overflow: scroll"><%= @problem.small_input %></pre>
 
-<% submission = @current_user.group.solved_submission_for(problem, type) %>
+<% submission = @current_user.group.solved_submission_for(@problem, :small) %>
 <% if @problem.contest.ended? %>
   <%# show nothing %>
 <% elsif submission %>
@@ -39,12 +39,11 @@
 <h2>Large</h2>
 <pre style="max-height: 200px; overflow: scroll"><%= @problem.large_input %></pre>
 
+<% submission = @current_user.group.solved_submission_for(@problem, :large) %>
 <% if @problem.contest.ended? %>
   <%# show nothing %>
-<% elsif @current_user.solved?(@problem, :large) %>
-  <p>You have already solved large.</p>
-<% elsif @current_user.group.solved?(@problem, :large) %>
-  <p>Your teammates have already solved large.</p>
+<% elsif submission %>
+  <p><%= submission.attendance.user.name %> has already solved small at <%= format_date(submission.created_at) %>.</p>
 <% else %>
   <button id="solve_large">Solve Large</button>
 <% end %>
