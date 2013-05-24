@@ -43,7 +43,7 @@
 <% if @problem.contest.ended? %>
   <%# show nothing %>
 <% elsif submission %>
-  <p><%= submission.attendance.user.name %> has already solved small at <%= format_date(submission.created_at) %>.</p>
+  <p><%= submission.attendance.user.name %> has already solved large at <%= format_date(submission.created_at) %>.</p>
 <% else %>
   <button id="solve_large">Solve Large</button>
 <% end %>
