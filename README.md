@@ -29,9 +29,18 @@ https://gist.github.com/olistik/2627011
 
         rake db:drop db:setup assets:clean assets:precompile
 
-1. [Optinal] Populate database with mock data
+1. [Optional] Populate database with mock data (for testing purpose)
 
         rake populate:mock
+
+1. [Optional] Create users with predefined passwords and groups
+
+        rake ghosts[num_groups,num_users(per group)]
+
+  Notice
+    * You might have to escape brackets like `rake ghosts\[1,1\]` on shells
+    * Database should not contain "Group#{N}" named groups nor "user\_#{N}\_#{M}" named users already
+    * Information will be output to ghosts.csv
 
 1. [Optinal] Start automatic Rspec tesing with Guard and Spork
 
