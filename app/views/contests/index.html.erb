@@ -26,6 +26,7 @@
 </table>
 </p>
 
+<% if Rails.env.development? %>
 <div class="alert alert-info">
   <% if @current_user.is_admin %>
     <h2>You are Admin</h2>
@@ -37,3 +38,4 @@
     <%= button_to 'Become Admin', promote_users_path, { class: 'btn btn-success' } %>
   <% end %>
 </div>
+<% end %>
