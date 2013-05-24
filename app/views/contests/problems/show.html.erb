@@ -12,11 +12,11 @@
 <% if @problem.contest.ended? %>
   <%# show nothing %>
 <% elsif @current_user.solved?(@problem, :small)  %>
-  <p>You have already solved large.</p>
+  <p>You have already solved small.</p>
 <% else %>
   <% submission = @current_user.group.solved_submission_for(@problem, :small) %>
   <% if submission %>
-    <p><%= submission.attendance.user.name %> has already solved large at <%= format_date(submission.created_at) %>.</p>
+    <p><%= submission.attendance.user.name %> has already solved small at <%= format_date(submission.created_at) %>.</p>
   <% end %>
   <button id="solve_small">Solve Small</button>
 <% end %>
