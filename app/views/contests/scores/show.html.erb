@@ -36,7 +36,7 @@
           <div>
             <% Problem.types.each do |type| %>
               <div class='right'>
-                <% submission = group.solved_submission_for(attendances, problem, type) %>
+                <% submission = group.solved_submission_for(problem, type, attendances) %>
                 <% text = submission ? "Solved at #{format_date(submission.created_at)}" : "Not Yet Solved" %>
                 <%= tooltip "Score Acquired for #{type.to_s.capitalize}<br>#{text}", html: true do %>
                   <%= submission.try(:score) || '-' %>
