@@ -4,9 +4,7 @@ wpcs
 [![Dependency Status](https://gemnasium.com/TakenokoChocoHolic/wpcs.png)]
 (https://gemnasium.com/TakenokoChocoHolic/wpcs)
 [![Code Climate](https://codeclimate.com/github/TakenokoChocoHolic/wpcs.png)]
-(https://codeclimate.com/github/TakenokoChocoHolic/wpcs)
-[![Coverage Status](https://coveralls.io/repos/TakenokoChocoHolic/wpcs/badge.png?branch=master)]
-(https://coveralls.io/r/TakenokoChocoHolic/wpcs)
+(https://codeclimate.com/github/TakenokoChocoHolic/wpcs)[![Coverage Status](https://coveralls.io/repos/TakenokoChocoHolic/wpcs/badge.png?branch=master)](https://coveralls.io/r/TakenokoChocoHolic/wpcs)
 =====
 
 # Requirements
