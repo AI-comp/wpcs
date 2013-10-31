@@ -44,10 +44,10 @@ https://gist.github.com/olistik/2627011
 
 1. [Optional] Create users with predefined passwords and groups
 
-        rake ghosts[num_groups,num_users(per group)]
+        rake ghosts[num_groups,num_users(per group),debug(optional)]
 
   Notice
-    * You might have to escape brackets like `rake ghosts\[1,1\]` on shells
+    * You might have to escape brackets like `rake ghosts\[20,5,debug\]` on shells
     * Database should not contain "Group#{N}" named groups nor "user\_#{N}\_#{M}" named users already
     * Information will be output to ghosts.csv
 
