@@ -23,8 +23,8 @@ ActiveRecord::Schema.define(:version => 20131031122342) do
   create_table "contests", :force => true do |t|
     t.string   "name"
     t.text     "introduction"
-    t.time     "start_time"
-    t.time     "end_time"
+    t.datetime "start_time"
+    t.datetime "end_time"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end

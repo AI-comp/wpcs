@@ -36,8 +36,8 @@ FactoryGirl.define do
 
     name 'WUPC'
     introduction 'Waseda University Programming Contest'
-    start_time Time.new(2012, 6, 2, 14, 0, 0)
-    end_time Time.new(2014, 6, 2, 16, 0, 0)
+    start_time Time.now
+    end_time Time.new(2114, 6, 2, 16, 0, 0)
     problems { |c| c.problems = FactoryGirl.create_list(:problem, 15) }
     after(:create) do |c, evaluator|
       c.problems.each { |p| p.save } if evaluator.save_problems
