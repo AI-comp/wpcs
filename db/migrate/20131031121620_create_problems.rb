@@ -10,7 +10,6 @@ class CreateProblems < ActiveRecord::Migration
       t.text   :large_output
       t.integer :small_score, null: false, default: 0
       t.integer :large_score, null: false, default: 0
-      t.boolean :is_solved, null: false, default: false
 
       t.references :contest
 

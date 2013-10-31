@@ -22,10 +22,14 @@ class Group < ActiveRecord::Base
     Attendance.where(contest_id: contest.id, user_id: user_ids)
   end
 
-  def solved_submission_for(problem, type, attendances = attendances_for(problem.contest))
-    attendances.map { |att| att.solved_submission_for(problem, type) }
-      .compact
-      .max_by(&:score)
+  def solved_submission_for(problem, type)
+    Submission.where(
+      problem_id: problem.id,
+      problem_type: type,
+      solved: true,
+      attendance_id: Attendance.where(user_id: user_ids).select(:id))
+      .order("score DESC")
+      .first
   end
 
   def solved?(problem, type, attendances = attendances_for(problem.contest))
@@ -34,15 +38,14 @@ class Group < ActiveRecord::Base
   end
 
   def score_for(contest)
-    total_score = 0
-    attendances = attendances_for(contest)
-    contest.problems.each do |problem|
-      [:small, :large].each do |type|
-        s = solved_submission_for(problem, type, attendances)
-        total_score += s.score if s
-      end
-    end
-    total_score
+    Submission.where(
+      problem_id: contest.problem_ids,
+      solved: true,
+      attendance_id: Attendance.where(user_id: user_ids).select(:id))
+      .group(:problem_id, :problem_type)
+      .maximum(:score)
+      .values
+      .sum
   end
 
 end

@@ -11,7 +11,6 @@ class Problem < ActiveRecord::Base
   attr_accessible :large_output
   attr_accessible :small_score, type: Integer
   attr_accessible :large_score, type: Integer
-  attr_accessible :is_solved, type: Boolean, default: false
 
   belongs_to :contest
   has_many :submissions
