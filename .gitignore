@@ -31,3 +31,12 @@ tags
 
 # for SimpleCov
 /coverage
+
+# Maven
+target
+
+# Eclipse
+.settings
+.cache
+.classpath
+/.metadata
