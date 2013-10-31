@@ -1,7 +1,4 @@
-class Attendance
-
-  include Mongoid::Document
-  include Mongoid::Timestamps
+class Attendance < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :contest

@@ -256,6 +256,7 @@ GEM
       multi_json (~> 1.0)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
+    sqlite3 (1.3.6)
     terminal-notifier-guard (1.5.3)
     therubyracer (0.11.4)
       libv8 (~> 3.11.8.12)
@@ -326,6 +327,7 @@ DEPENDENCIES
   settingslogic
   shoulda-matchers
   spork
+  sqlite3
   terminal-notifier-guard
   therubyracer
   thin

@@ -10,7 +10,7 @@
 <pre style="max-height: 200px; overflow: scroll"><%= @problem.small_input %></pre>
 
 <% if @problem.contest.ended? %>
-  <%# show nothing %>
+  <!-- show nothing -->
 <% elsif @current_user.solved?(@problem, :small)  %>
   <p>You have already solved small.</p>
 <% else %>

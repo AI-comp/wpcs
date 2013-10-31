@@ -1,9 +1,6 @@
-class Group
+class Group < ActiveRecord::Base
 
-  include Mongoid::Document
-  include Mongoid::Timestamps
-
-  field :name
+  attr_accessible :name
 
   validates_uniqueness_of :name
 
@@ -14,7 +11,7 @@ class Group
   end
 
   def self.default
-    Group.where(name: Group.default_group_name).first
+    Group.where(name: Group.default_group_name).first_or_create!
   end
 
   def include_admin?
@@ -22,8 +19,7 @@ class Group
   end
 
   def attendances_for(contest)
-    Attendance.where(contest_id: contest.id)
-      .in(user_id: user_ids)
+    Attendance.where(contest_id: contest.id, user_id: user_ids)
   end
 
   def solved_submission_for(problem, type, attendances = attendances_for(problem.contest))

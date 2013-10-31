@@ -1,15 +1,12 @@
-class User
+class User < ActiveRecord::Base
 
-  include Mongoid::Document
-  include Mongoid::Timestamps
-
-  field :provider
-  field :uid
-  field :name # display name
-  field :email
-  field :encrypted_password
-  field :salt
-  field :is_admin, type: Boolean, default: false
+  attr_accessible :provider
+  attr_accessible :uid
+  attr_accessible :name # display name
+  attr_accessible :email
+  attr_protected :encrypted_password
+  attr_protected :salt
+  attr_protected :is_admin
 
   validates_uniqueness_of :uid, :scope => :provider, :message => 'was already used'
 
