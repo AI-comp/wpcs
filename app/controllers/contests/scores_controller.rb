@@ -5,7 +5,7 @@ class Contests::ScoresController < ApplicationController
   private
   def load_contest
     @contest = Contest.find(params[:contest_id])
-    @problems = @contest.problems.asc(:title).each
+    @problems = @contest.problems.order(:title).to_a
     raise InvalidContestError, 'contest is not started yet' unless @contest.started?
   end
 

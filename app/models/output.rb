@@ -1,9 +1,6 @@
-class Output
+class Output < ActiveRecord::Base
 
-  include Mongoid::Document
-
-  field :input_type
-  field :output
+  attr_accessible :input_type, :output
 
 end
 

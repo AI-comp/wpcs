@@ -7,7 +7,9 @@ module Contests::ProblemsHelper
   end
 
   def submissions_to_show
-    submissions = Submission.in(attendance: @contest.attendance_ids).desc(:updated_at)
+    submissions = Submission
+      .where(attendance_id: @contest.attendance_ids)
+      .order("updated_at DESC")
     @current_user.is_admin? ? submissions : submissions.take(10)
   end
 end

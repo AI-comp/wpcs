@@ -19,70 +19,86 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import com.google.testing.pogen.pages.IndexPage;
 
 public class TestCase {
-  @Test
-  public void submit() throws InterruptedException {
-    
-    for (int user = 1; user <= 1; user++) {
-      ArrayList<Thread> threads = new ArrayList<Thread>();
-      for (int group = 1; group <= 20; group++) {
-        final String account = "user_" + group + "_" + user;
-        final String password = "password";
+	@Test
+	public void submit() throws InterruptedException {
 
-        Runnable runnable = new Runnable() {
-          @Override
-          public void run() {
-            FirefoxDriver driver = new FirefoxDriver();
-            driver.get("http://localhost:3333");
+		for (int user = 1; user <= 1; user++) {
+			ArrayList<Thread> threads = new ArrayList<Thread>();
+			for (int group = 1; group <= 20; group++) {
+				final String account = "user_" + group + "_" + user;
+				final String password = "password";
 
-            driver.findElement(By.id("uid")).sendKeys(account);
-            driver.findElement(By.id("password")).sendKeys(password);
-            driver.findElement(By.name("commit")).submit();
+				Runnable runnable = new Runnable() {
+					@Override
+					public void run() {
+						FirefoxDriver driver = new FirefoxDriver();
+						driver.get("http://localhost:3000");
 
-            // Enter contest
-            try {
-              driver.findElement(By.linkText("attend")).click();
-            } catch (Exception e) {
-              driver.findElement(By.linkText("WUPC")).click();
-            }
-            String contestUrl = driver.getCurrentUrl();
+						driver.findElement(By.id("uid")).sendKeys(account);
+						driver.findElement(By.id("password"))
+								.sendKeys(password);
+						driver.findElement(By.name("commit")).submit();
 
-            for (int problem = 1; problem <= 15; problem++) {
-              // Open problem
-              String title = "addition_" + problem;
-              for (int i = 0; i < 3; i++) {
-                Solve(driver, contestUrl, title, "small", 1000 + i);
-              }
-              Solve(driver, contestUrl, title, "small", 1 + problem);
+						// Enter contest
+						try {
+							driver.findElement(By.linkText("attend")).click();
+						} catch (Exception e) {
+							driver.findElement(By.linkText("WUPC")).click();
+						}
+						String contestUrl = driver.getCurrentUrl();
 
-              for (int i = 0; i < 3; i++) {
-                Solve(driver, contestUrl, title, "large", 1000 + i);
-              }
-              Solve(driver, contestUrl, title, "large", 100 + problem);
-            }
+						for (int problem = 1; problem <= 15; problem++) {
+							// Open problem
+							String title = "addition_" + problem;
+							for (int i = 0; i < 3; i++) {
+								Solve(driver, contestUrl, title, "small",
+										1000 + i);
+							}
+							Solve(driver, contestUrl, title, "small",
+									1 + problem);
 
-            driver.close();
-          }
-        };
-        
-        threads.add(new Thread(runnable));
-      }
-      for (Thread thread : threads) {
-        thread.start();
-      }
-      for (Thread thread : threads) {
-        thread.join();
-      }
-    }
-  }
+							for (int i = 0; i < 3; i++) {
+								Solve(driver, contestUrl, title, "large",
+										1000 + i);
+							}
+							Solve(driver, contestUrl, title, "large",
+									100 + problem);
+						}
 
-  private void Solve(FirefoxDriver driver, String contestUrl, String title, String type, int answer) {
-    try {
-      driver.findElement(By.linkText(title)).click();
-      driver.findElement(By.id("solve_" + type)).click();
-      driver.findElement(By.cssSelector("#form_" + type + " textarea")).sendKeys("" + answer);
-      driver.findElement(By.cssSelector("#form_" + type + " input[name='commit']")).click();
-    } catch (Exception e) {
-      driver.get(contestUrl);
-    }
-  }
+						driver.close();
+					}
+				};
+
+				threads.add(new Thread(runnable));
+			}
+			int count = 4;
+			while (!threads.isEmpty()) {
+				for (int i = 0; i < count; i++) {
+					threads.get(i).start();
+				}
+				for (int i = 0; i < count; i++) {
+					threads.get(i).join();
+				}
+				for (int i = 0; i < count; i++) {
+					threads.remove(0);
+				}
+				System.out.println("Close 4 browsers");
+			}
+		}
+	}
+
+	private void Solve(FirefoxDriver driver, String contestUrl, String title,
+			String type, int answer) {
+		try {
+			driver.findElement(By.linkText(title)).click();
+			driver.findElement(By.id("solve_" + type)).click();
+			driver.findElement(By.cssSelector("#form_" + type + " textarea"))
+					.sendKeys("" + answer);
+			driver.findElement(
+					By.cssSelector("#form_" + type + " input[name='commit']"))
+					.click();
+		} catch (Exception e) {
+			driver.get(contestUrl);
+		}
+	}
 }

@@ -2,7 +2,7 @@ class Admin::ContestsController < AdminController
 
   # GET /contests
   def index
-    @contests = Contest.asc(:start_time)
+    @contests = Contest.order(:start_time)
   end
 
   # GET /contests/1

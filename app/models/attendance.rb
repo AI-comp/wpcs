@@ -1,7 +1,4 @@
-class Attendance
-
-  include Mongoid::Document
-  include Mongoid::Timestamps
+class Attendance < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :contest
@@ -18,13 +15,13 @@ class Attendance
   def submit(problem, answer, type)
     solved = problem.correct?(answer, type)
     score = solved ? problem.calculate_score(type) : 0
-    Submission.create(
-      solved: solved,
-      problem_type: type,
-      problem: problem,
-      attendance: self,
-      score: score
-    )
+    Submission.create! do |s|
+      s.solved = solved
+      s.problem_type = type
+      s.score = score
+      s.problem_id = problem.id
+      s.attendance_id = self.id
+    end
   end
 
 end

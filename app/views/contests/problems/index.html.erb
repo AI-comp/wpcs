@@ -17,7 +17,7 @@
     <th class='center'>Solved Time</th>
   </tr>
 
-  <% @problems.asc(:title).each do |problem| %>
+  <% @problems.order(:title).each do |problem| %>
     <tr>
       <td><%= link_to problem.title, contest_problem_path(problem.contest, problem) %></td>
       <td class='center'>Small<br>Large</td>

@@ -1,23 +1,20 @@
-class Contest
+class Contest < ActiveRecord::Base
 
-  include Mongoid::Document
-  include Mongoid::Timestamps
-
-  field :name
-  field :introduction
-  field :start_time, type: Time
-  field :end_time, type: Time
+  attr_accessible :name,
+    :introduction,
+    :start_time,
+    :end_time
 
   has_many :problems
   has_many :attendances
 
   def self.active
     now = Time.now
-    self.where(:start_time.lte => now, :end_time.gte => now)
+    self.where("start_time <= ? AND end_time >= ?", now, now)
   end
 
   def self.visible
-    self.where(:start_time.lte => Time.now)
+    self.where("start_time <= ?", Time.now)
   end
 
   def started?

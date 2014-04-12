@@ -1,20 +1,16 @@
 require 'redcarpet'
 
-class Problem
+class Problem < ActiveRecord::Base
 
-  include Mongoid::Document
-  include Mongoid::Timestamps
-
-  field :title
-  field :description
-  field :description_html
-  field :small_input
-  field :small_output
-  field :large_input
-  field :large_output
-  field :small_score, type: Integer
-  field :large_score, type: Integer
-  field :is_solved, type: Boolean, default: false
+  attr_accessible :title
+  attr_accessible :description
+  attr_accessible :description_html
+  attr_accessible :small_input
+  attr_accessible :small_output
+  attr_accessible :large_input
+  attr_accessible :large_output
+  attr_accessible :small_score, type: Integer
+  attr_accessible :large_score, type: Integer
 
   belongs_to :contest
   has_many :submissions
