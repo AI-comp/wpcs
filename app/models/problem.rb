@@ -15,6 +15,11 @@ class Problem < ActiveRecord::Base
   belongs_to :contest
   has_many :submissions
 
+  has_many :edges_from, class_name: ProblemEdge, foreign_key: :from_problem_id, dependent: :destroy
+  has_many :edges_to, class_name: ProblemEdge, foreign_key: :to_problem_id, dependent: :destroy
+  has_many :from_problems, through: :edges_to, source: :to_problem
+  has_many :to_problems, through: :edges_from, source: :from_problem
+
   before_save :convert_html
 
   def prefix
