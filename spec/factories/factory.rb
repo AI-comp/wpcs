@@ -53,6 +53,8 @@ FactoryGirl.define do
     sequence(:large_output) {|n| (100+n).to_s }
     small_score             3
     large_score             1020
+    x                       Random.rand(800)
+    y                       Random.rand(600)
   end
 
   factory :image
