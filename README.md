@@ -1,12 +1,12 @@
 wpcs
-[![Build Status](https://travis-ci.org/TakenokoChocoHolic/wpcs.png?branch=master)]
-(https://travis-ci.org/TakenokoChocoHolic/wpcs)
-[![Dependency Status](https://gemnasium.com/TakenokoChocoHolic/wpcs.png)]
-(https://gemnasium.com/TakenokoChocoHolic/wpcs)
-[![Code Climate](https://codeclimate.com/github/TakenokoChocoHolic/wpcs.png)]
-(https://codeclimate.com/github/TakenokoChocoHolic/wpcs)
-[![Coverage Status](https://coveralls.io/repos/TakenokoChocoHolic/wpcs/badge.png?branch=master)]
-(https://coveralls.io/r/TakenokoChocoHolic/wpcs)
+[![Build Status](https://travis-ci.org/AI-comp/wpcs.png?branch=master)]
+(https://travis-ci.org/AI-comp/wpcs)
+[![Dependency Status](https://gemnasium.com/AI-comp/wpcs.png)]
+(https://gemnasium.com/AI-comp/wpcs)
+[![Code Climate](https://codeclimate.com/github/AI-comp/wpcs.png)]
+(https://codeclimate.com/github/AI-comp/wpcs)
+[![Coverage Status](https://coveralls.io/repos/AI-comp/wpcs/badge.png?branch=master)]
+(https://coveralls.io/r/AI-comp/wpcs)
 
 =====
 
