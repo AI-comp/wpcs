@@ -6,6 +6,10 @@
   b ? content_tag(:div, 'Correct!', class: 'notification alert alert-success') : content_tag(:div, 'Wrong...', class: 'notification alert alert-error')
 } %>
 
+<h2>Problem Course</h2>
+<div id="course-wrapper">
+</div>
+
 <h2 style="float: right;"><%= link_to 'Scoreboard', contest_score_path %></h2>
 
 <h2>Problem List</h2>
@@ -71,3 +75,166 @@
   <% end %>
 </ul>
 
+<script src="http://lodash.com/_js/lodash.compat.js" charset="utf-8"></script>
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script>
+(function () {
+  var Point = function (x, y) {
+    this.x = x;
+    this.y = y;
+  };
+
+  // useful alias
+  var pt = function (x, y) { return new Point(x, y); };
+
+  var hypot = function (a, b) { return Math.sqrt(a * a + b * b); };
+
+  Point.prototype.add = function(p) { return pt(this.x + p.x, this.y + p.y); };
+  Point.prototype.sub = function(p) { return pt(this.x - p.x, this.y - p.y); };
+  Point.prototype.mul = function(s) { return pt(this.x * s, this.y * s); };
+  Point.prototype.div = function(s) { return pt(this.x / s, this.y / s); };
+  Point.prototype.dot = function(p) { return this.x * p.x + this.y * p.y; };
+  Point.prototype.cross = function(p) { return this.x * p.y - this.y * p.x; };
+  Point.prototype.abs = function() { return hypot(this.x, this.y); };
+  Point.prototype.unit = function() { return this.div(this.abs()); };
+  Point.prototype.rotate = function(r) {
+    var s = Math.sin(r);
+    var c = Math.cos(r);
+    return pt(this.x * c - this.y * s, this.x * s + this.y * c);
+  };
+
+  (function () {
+   var nodes = <%= @json.html_safe %>;
+
+    var edges = [
+      { f: 0, t: 1, curve:-0.3 },
+      { f: 0, t: 2, curve: 0.3 },
+      { f: 1, t: 3, curve:-0.3 },
+      { f: 1, t: 4, curve: 0.3 }
+    ];
+
+    _(nodes).each(function (n) {
+      n.pos = pt(n.x, n.y);
+    });
+
+    _(edges).each(function (e) {
+      var t = nodes[e.t].pos;
+      var f = nodes[e.f].pos;
+      var d = t.sub(f).abs();
+      var h = t.sub(f).unit().rotate(Math.PI / 2);
+      e.control = t.add(f).div(2).add(h.mul(d*e.curve));
+    });
+
+    var hypot = function (a, b) {
+      return Math.sqrt(a * a + b * b);
+    };
+
+    var port = function (p1, p2, dist) {
+      var x1 = p1.x;
+      var y1 = p1.y;
+      var x2 = p2.x;
+      var y2 = p2.y;
+      var dx = x1 - x2;
+      var dy = y1 - y2;
+      var d = hypot(dx, dy);
+      return { x: x1 - dx * dist / d, y: y1 - dy * dist / d };
+    };
+
+    var showPopup = function (d) {
+      console.log(d);
+      var popup = d3.select('div#svg-wrapper')
+        .append('div')
+        .attr('class', 'course-popup')
+        .style('width', '300px')
+        .style('height', '200px')
+        .style('position', 'absolute')
+        .style('display', 'block')
+        .style('left', d.pos.x + 40 + 'px')
+        .style('top', d.pos.y + 'px')
+        .style('background', '#DEF')
+        .style('padding', '0 20px');
+
+      popup.append('h1')
+        .text(d.title);
+
+      popup.append('p')
+        .text(d.text);
+    };
+
+    var hidePopup = function (d) {
+      d3.selectAll('.course-popup').remove();
+    };
+
+    var goToProblem = function (d) {
+      alert('go to problem ' + d.id);
+    };
+
+    var edgeColor = '#456';
+    var nodeColor = '#1abc9c';
+
+    var svg = d3.select('#course-wrapper')
+      .append('div')
+        .attr('id', 'svg-wrapper')
+        .style('position', 'relative')
+      .append('svg')
+        .attr('id', 'problem-course')
+        .attr('width', 800)
+        .attr('height', 600);
+
+    svg.append('rect')
+      .attr('width', '800px')
+      .attr('height', '600px')
+      .attr('fill', '#f0f2f5');
+
+    svg.append('defs').append('marker')
+      .attr('id', 'arrow-head')
+      .attr('viewBox', '0 0 10 10')
+      .attr('refX', 6)
+      .attr('refY', 5)
+      .attr('markerWidth', '5')
+      .attr('markerHeight', '5')
+      .attr('orient', 'auto')
+    .append('polygon')
+      .attr('points', '0,0 10,5 0,10')
+      .attr('fill', edgeColor);
+
+    var render = function () {
+
+      svg.selectAll('circle')
+        .data(nodes)
+      .enter()
+        .append('circle')
+        .attr('stroke', nodeColor)
+        .attr('stroke-width', 4)
+        .attr('fill', 'white')
+        .attr('r', 20)
+        .attr('cx', function (d) { return d.pos.x; })
+        .attr('cy', function (d) { return d.pos.y; })
+        .on('mouseenter', showPopup)
+        .on('mouseleave', hidePopup)
+        .on('click', goToProblem)
+        .on('touch', goToProblem);
+
+        //M 25 25 Q 175 25 175 175
+      svg.selectAll('line')
+        .data(edges)
+      .enter()
+        .append('path')
+        .each(function (d) { d.dom = this; })
+        .style('stroke', edgeColor)
+        .style('fill', 'none')
+        .style('stroke-width', 3)
+        .attr('d', function (d) {
+          var p1 = port(nodes[d.f].pos, d.control, 25);
+          var c = d.control;
+          var p2 = port(nodes[d.t].pos, d.control, 30);
+          return 'M '+p1.x+' '+p1.y+' Q '+c.x+' '+c.y+' '+p2.x+' '+p2.y;
+        })
+        .attr('marker-end', 'url(#arrow-head)');
+    };
+
+    render();
+
+  })();
+})();
+</script>

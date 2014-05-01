@@ -20,6 +20,8 @@ class Contests::ProblemsController < AuthController
     @users = User.contestants_of(@contest)
     @current_user.attend(@contest) unless @current_user.attended? @contest
 
+    @json = JSON.generate(@problems.map { |p| { id: p.id, title: p.title, text: p.description, x: p.x, y: p.y } })
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @problems }
