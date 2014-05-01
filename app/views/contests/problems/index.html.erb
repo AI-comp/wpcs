@@ -104,14 +104,8 @@
   };
 
   (function () {
-   var nodes = <%= @json.html_safe %>;
-
-    var edges = [
-      { f: 0, t: 1, curve:-0.3 },
-      { f: 0, t: 2, curve: 0.3 },
-      { f: 1, t: 3, curve:-0.3 },
-      { f: 1, t: 4, curve: 0.3 }
-    ];
+    var nodes = <%= @json_nodes.html_safe %>;
+    var edges = <%= @json_edges.html_safe %>;
 
     _(nodes).each(function (n) {
       n.pos = pt(n.x, n.y);
@@ -178,11 +172,11 @@
         .style('position', 'relative')
       .append('svg')
         .attr('id', 'problem-course')
-        .attr('width', 800)
+        .attr('width', 1200)
         .attr('height', 600);
 
     svg.append('rect')
-      .attr('width', '800px')
+      .attr('width', '1200px')
       .attr('height', '600px')
       .attr('fill', '#f0f2f5');
 
