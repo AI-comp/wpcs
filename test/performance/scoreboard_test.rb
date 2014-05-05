@@ -11,6 +11,7 @@ class ScoreboardTest < ActionDispatch::PerformanceTest
     get '/'
     # Register and login
     post_via_redirect '/users', user: { uid: 'alice' }, password: 'pass'
+    User.last.attend(Contest.first)
   end
 
   def test_scoreboard
