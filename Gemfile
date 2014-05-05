@@ -81,6 +81,10 @@ group :test do
 
   # Browser testing framework
   gem 'capybara'
+
+  # For performance testing
+  gem 'test-unit'
+  gem 'ruby-prof'
 end
 
 group :development, :test do
