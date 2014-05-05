@@ -78,6 +78,12 @@ https://gist.github.com/olistik/2627011
 - Class diagram (deprecated)  
 https://cacoo.com/diagrams/zJncLkksT8WHeY4b
 
+# Performance Testing
+
+You might have to use ruby with version >= 1.9.3 and <= 2.0.0.
+
+    rake test:benchmark
+
 # Daily development
 
 - Clean up unused branches which don't exist the remote
