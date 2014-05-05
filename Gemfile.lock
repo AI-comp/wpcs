@@ -133,8 +133,6 @@ GEM
     less-rails (2.3.3)
       actionpack (>= 3.1)
       less (~> 2.3.1)
-    libnotify (0.8.0)
-      ffi (>= 1.0.11)
     libv8 (3.11.8.17)
     listen (1.0.3)
       rb-fsevent (>= 0.9.3)
@@ -309,7 +307,6 @@ DEPENDENCIES
   jquery-timepicker-addon-rails
   jquery-ui-rails
   less-rails
-  libnotify
   mongoid
   mongoid-paperclip
   omniauth

@@ -61,8 +61,8 @@ group :development do
   gem 'rb-fchange', :require => false # for Windows
 
   # Notifier to the Notification Center of Moutain Lion
-  gem 'libnotify'               # for Linux   
-  gem 'terminal-notifier-guard' # for MacOS (10.8)
+  gem 'libnotify' if /linux/ =~ RUBY_PLATFORM # for Linux
+  gem 'terminal-notifier-guard' if /darwin/ =~ RUBY_PLATFORM # for MacOS (10.8)
   gem 'rb-notifu'               # for Windows
 end
 
