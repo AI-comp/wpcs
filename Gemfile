@@ -7,9 +7,6 @@ gem 'rails', '3.2.13'
 gem 'thin'
 gem 'bson_ext'
 gem 'redcarpet'
-gem 'therubyracer'
-gem 'less-rails'
-gem 'twitter-bootstrap-rails'
 gem 'sqlite3'
 
 # for authentication
@@ -29,13 +26,17 @@ group :assets do
   gem 'sass-rails'
   gem 'coffee-rails'
 
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  gem 'therubyracer', :platform => :ruby
+  # for Bootstrap
+  gem 'therubyracer'
+  gem 'less-rails'
+  gem 'twitter-bootstrap-rails'
 
-  gem 'uglifier'
+  # for jQuery UI / Timepicker
   gem 'jquery-ui-rails'
   gem 'jquery-timepicker-addon-rails'
+
   gem 'autosize-rails'
+  gem 'uglifier'
 end
 
 gem 'jquery-rails'
