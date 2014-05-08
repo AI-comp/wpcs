@@ -48,12 +48,11 @@ ActiveRecord::Schema.define(:version => 20131031122342) do
     t.text     "small_output"
     t.text     "large_input"
     t.text     "large_output"
-    t.integer  "small_score",      :default => 0,     :null => false
-    t.integer  "large_score",      :default => 0,     :null => false
-    t.boolean  "is_solved",        :default => false, :null => false
+    t.integer  "small_score",      :default => 0, :null => false
+    t.integer  "large_score",      :default => 0, :null => false
     t.integer  "contest_id"
-    t.datetime "created_at",                          :null => false
-    t.datetime "updated_at",                          :null => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
   end
 
   create_table "submissions", :force => true do |t|
