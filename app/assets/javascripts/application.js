@@ -5,12 +5,10 @@
 // the compiled file.
 //
 //= require jquery
+//= require jquery.autosize
 //= require jquery_ujs
-//= require jquery.ui.all
+//= require jquery.ui.datepicker
+//= require jquery.ui.slider
 //= require jquery-ui-timepicker-addon
 //= require twitter/bootstrap
 //= require_tree .
-
-$(function(){
-  $('.dropdown-toggle').dropdown();
-});

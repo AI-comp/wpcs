@@ -1,0 +1,80 @@
+@mixin header_margin {
+  margin: 2px 0px 6px;
+}
+
+@mixin block_margin {
+  margin: 16px 0px;
+}
+
+.hidden_elem {
+  display: none;
+}
+
+div.problem_description {
+  padding: 6px 8px;
+  border: solid 1px #CCC;
+  background-color: #F8F8F8;
+
+  h1 {
+    @include header_margin;
+    font-size: 24px;
+  }
+
+  h2 {
+    @include header_margin;
+    font-size: 20px;
+  }
+
+  h3 {
+    @include header_margin;
+    font-size: 16px;
+  }
+
+  p {
+    margin: 4px 0px;
+  }
+
+  pre {
+    @include block_margin;
+  }
+
+  blockquote p {
+    @include block_margin;
+    font-size: 13px;
+  }
+
+  img {
+    @include block_margin;
+  }
+
+  ul, ol {
+    margin: 8px 0px 8px 24px;
+  }
+
+  table {
+    border-spacing: 0;
+  }
+
+  table th {
+    padding: 4px 10px;
+    font-weight: bold;
+    border:1px solid #ccc;
+    text-align: center;
+    background-color: #F4F4F4;
+  }
+
+  table td {
+    padding: 4px 10px;
+    border:1px solid #ccc;
+  }
+
+  table tr {
+    background-color: #F0F0F0;
+  }
+
+  table tr:nth-child(2n+1) {
+    background-color: #F8F8F8;
+  }
+
+
+}
