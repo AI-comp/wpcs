@@ -4,9 +4,9 @@ class User < ActiveRecord::Base
   attr_accessible :uid
   attr_accessible :name # display name
   attr_accessible :email
+  attr_accessible :is_admin
   attr_protected :encrypted_password
   attr_protected :salt
-  attr_protected :is_admin
 
   validates_uniqueness_of :uid, :scope => :provider, :message => 'was already used'
 

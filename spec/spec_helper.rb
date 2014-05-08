@@ -47,16 +47,16 @@ Spork.prefork do
     config.include FactoryGirl::Syntax::Methods
 
     config.before(:suite) do
-      DatabaseCleaner[:mongoid].strategy = :truncation
+      DatabaseCleaner.strategy = :truncation
     end
 
     config.before(:each) do
-      DatabaseCleaner[:mongoid].start
+      DatabaseCleaner.start
       load "#{Rails.root}/db/seeds.rb"
     end
 
     config.after(:each) do
-      DatabaseCleaner[:mongoid].clean
+      DatabaseCleaner.clean
     end
   end
 

@@ -97,7 +97,7 @@ class UsersController < ApplicationController
   # POST /users/promote
   def promote
     @current_user.update_attributes(is_admin: true)
-    redirect_to root_path
+    redirect_to admin_contests_path
   end
 
   # POST /users/demote
