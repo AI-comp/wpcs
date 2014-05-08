@@ -22,8 +22,7 @@ class Contests::ProblemsController < AuthController
 
     @json_nodes = JSON.generate(@problems.map { |p| { id: p.id, title: p.title, text: p.description, x: p.x, y: p.y } })
 
-    # FIXME: (>_<)
-    @json_edges = JSON.generate(ProblemEdge.all.map { |pe| { f: pe.from_problem_id - 1, t: pe.to_problem_id - 1, curve: 0 } });
+    @json_edges = JSON.generate(ProblemEdge.all.map { |pe| { f: pe.from_problem_id, t: pe.to_problem_id, curve: 0 } });
 
     respond_to do |format|
       format.html # index.html.erb

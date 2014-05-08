@@ -107,13 +107,16 @@
     var nodes = <%= @json_nodes.html_safe %>;
     var edges = <%= @json_edges.html_safe %>;
 
+    var nodesFromID = {};
+
     _(nodes).each(function (n) {
       n.pos = pt(n.x, n.y);
+      nodesFromID[n.id] = n;
     });
 
     _(edges).each(function (e) {
-      var t = nodes[e.t].pos;
-      var f = nodes[e.f].pos;
+      var t = nodesFromID[e.t].pos;
+      var f = nodesFromID[e.f].pos;
       var d = t.sub(f).abs();
       var h = t.sub(f).unit().rotate(Math.PI / 2);
       e.control = t.add(f).div(2).add(h.mul(d*e.curve));
@@ -219,9 +222,9 @@
         .style('fill', 'none')
         .style('stroke-width', 3)
         .attr('d', function (d) {
-          var p1 = port(nodes[d.f].pos, d.control, 25);
+          var p1 = port(nodesFromID[d.f].pos, d.control, 25);
           var c = d.control;
-          var p2 = port(nodes[d.t].pos, d.control, 30);
+          var p2 = port(nodesFromID[d.t].pos, d.control, 30);
           return 'M '+p1.x+' '+p1.y+' Q '+c.x+' '+c.y+' '+p2.x+' '+p2.y;
         })
         .attr('marker-end', 'url(#arrow-head)');
