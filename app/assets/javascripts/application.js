@@ -10,3 +10,7 @@
 //= require jquery-ui-timepicker-addon
 //= require twitter/bootstrap
 //= require_tree .
+
+$(function(){
+  $('.dropdown-toggle').dropdown();
+});
