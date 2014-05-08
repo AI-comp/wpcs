@@ -20,6 +20,10 @@ class Contests::ProblemsController < AuthController
     @users = User.contestants_of(@contest)
     @current_user.attend(@contest) unless @current_user.attended? @contest
 
+    @json_nodes = JSON.generate(@problems.map { |p| { id: p.id, title: p.title, text: p.description, x: p.x, y: p.y } })
+
+    @json_edges = JSON.generate(ProblemEdge.all.map { |pe| { f: pe.from_problem_id, t: pe.to_problem_id, curve: 0 } });
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @problems }

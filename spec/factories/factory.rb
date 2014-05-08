@@ -38,9 +38,38 @@ FactoryGirl.define do
     introduction 'Waseda University Programming Contest'
     start_time Time.now
     end_time Time.new(2114, 6, 2, 16, 0, 0)
-    problems { |c| c.problems = FactoryGirl.create_list(:problem, 15) }
+    problems { |c| c.problems = FactoryGirl.create_list(:problem, 22) }
     after(:create) do |c, evaluator|
       c.problems.each { |p| p.save } if evaluator.save_problems
+      # FIXME: (>_<)
+      edges = [
+        [1,3,6],
+        [2],
+        [9],
+        [4],
+        [7,5],
+        [9],
+        [7],
+        [8],
+        [9],
+        [10,12,15],
+        [11],
+        [21],
+        [13,18],
+        [14],
+        [21],
+        [16],
+        [17],
+        [18],
+        [19],
+        [20],
+        [21],
+        []
+      ]
+
+      edges.each_with_index do |es,i|
+        es.each { |e| ProblemEdge.create(from_problem_id: i+1, to_problem_id: e+1).save! }
+      end
     end
   end
 
@@ -53,6 +82,8 @@ FactoryGirl.define do
     sequence(:large_output) {|n| (100+n).to_s }
     small_score             3
     large_score             1020
+    sequence(:x)            {|n| [nil, 45, 210, 430, 153, 261, 369, 261, 369, 477, 585, 800, 1017, 750, 909, 1080, 680, 780, 880, 950, 1050, 1150, 1233][n] }
+    sequence(:y)            {|n| [nil, 295, 127, 127, 295, 252, 252, 414, 414, 393, 252, 60, 60, 252, 184, 184, 420, 440, 420, 330, 330, 300, 184][n] }
   end
 
   factory :image
