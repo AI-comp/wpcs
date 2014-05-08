@@ -5,19 +5,20 @@ gem 'rails', '3.2.13'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 gem 'thin'
-gem 'mongoid'
 gem 'bson_ext'
-gem 'omniauth'
-gem 'omniauth-google'
-gem 'omniauth-twitter'
 gem 'redcarpet'
 gem 'therubyracer'
 gem 'less-rails'
 gem 'twitter-bootstrap-rails'
+gem 'sqlite3'
+
+# for authentication
+gem 'omniauth'
+gem 'omniauth-google'
+gem 'omniauth-twitter'
 
 # for image uploader
-gem 'mongoid-paperclip', :require => 'mongoid_paperclip'
-gem 'aws-sdk', '~> 1.3.4'
+gem "paperclip", "~> 4.1"
 
 # for retrieving  markdown example from yml file
 gem 'settingslogic'
@@ -94,8 +95,6 @@ group :development, :test do
   gem 'factory_girl_rails'
 
   gem 'database_cleaner'
-
-  gem 'sqlite3'
 end
 
 # To use ActiveModel has_secure_password

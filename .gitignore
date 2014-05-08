@@ -23,7 +23,7 @@
 *.swp
 tags
 
-# Mongoid-paperclip cache directory
+# Paperclip cache directory
 /public/system/
 
 # for RubyMine

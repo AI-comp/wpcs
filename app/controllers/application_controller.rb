@@ -6,8 +6,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :current_user
 
-  rescue_from Mongoid::Errors::DocumentNotFound,
-              ActionController::RoutingError,
+  rescue_from ActionController::RoutingError,
               InvalidContestError,
               with: :render_404
   rescue_from Exception, with: :render_500

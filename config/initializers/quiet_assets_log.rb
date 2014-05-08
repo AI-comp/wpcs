@@ -1,8 +1,5 @@
 if Rails.env.development?
-  null_logger = Logger.new('/dev/null')
-  Mongoid.logger = null_logger
-  Moped.logger   = null_logger
-  Rails.application.assets.logger = null_logger
+  Rails.application.assets.logger = Logger.new('/dev/null')
 
   Rails::Rack::Logger.class_eval do
     def call_with_quiet_assets(env)
