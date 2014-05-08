@@ -6,6 +6,6 @@ class Image < ActiveRecord::Base
       :original  => ['600x400', :jpg],
       :thumbnail => ['160x160', :jpg]
     }
-  validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
+  validates_attachment_content_type :attachment, :content_type => /\Aimage\/.*\Z/
 
 end

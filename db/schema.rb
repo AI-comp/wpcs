@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131031122342) do
+ActiveRecord::Schema.define(:version => 20140508131814) do
 
   create_table "attendances", :force => true do |t|
     t.integer  "user_id",    :null => false
@@ -33,6 +33,15 @@ ActiveRecord::Schema.define(:version => 20131031122342) do
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "images", :force => true do |t|
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
+    t.string   "attachment_file_name"
+    t.string   "attachment_content_type"
+    t.integer  "attachment_file_size"
+    t.datetime "attachment_updated_at"
   end
 
   create_table "outputs", :force => true do |t|
