@@ -15,14 +15,14 @@ class ContestsController < AuthController
   end
 
   def attend
-      @contest = Contest.find(params[:id])
-      @current_user.attend(@contest) unless @current_user.attended? @contest
-      redirect_to :controller=> "contests/problems", :action=> "index", :contest_id=> params[:id]
+    @contest = Contest.find(params[:id])
+    @current_user.attend(@contest) unless @current_user.attended? @contest
+    redirect_to :controller=> "contests/problems", :action=> "index", :contest_id=> params[:id]
   end
   
   def check_attendance
-      @contest = Contest.find(params[:id])
-      redirect_to contests_path unless @current_user.attended? @contest
+    @contest = Contest.find(params[:id])
+    redirect_to contests_path unless @current_user.attended? @contest
   end
 
 end

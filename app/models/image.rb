@@ -1,12 +1,11 @@
-class Image
+class Image < ActiveRecord::Base
 
-  include Mongoid::Document
-  include Mongoid::Paperclip
-
-  has_mongoid_attached_file :attachment,
+  attr_accessible :attachment
+  has_attached_file :attachment,
     :styles => {
       :original  => ['600x400', :jpg],
       :thumbnail => ['160x160', :jpg]
     }
+  validates_attachment_content_type :attachment, :content_type => /\Aimage\/.*\Z/
 
 end
