@@ -3,6 +3,9 @@ require 'rails/performance_test_help'
 require 'rake'
 require 'populate_helper'
 
+puts "Creating 200 contestants attending the first contest and solving some problems"
+FactoryGirl.create_list(:contestant, 200, attend_and_solve: true)
+
 class RenderingTest < ActionDispatch::PerformanceTest
   include PopulateHelper
 
@@ -11,6 +14,7 @@ class RenderingTest < ActionDispatch::PerformanceTest
   #                          :output => 'tmp/performance', :formats => [:flat] }
 
   def setup
+
     get '/'
     # Register and login
     post_via_redirect '/users', user: { uid: 'alice_rendering' }, password: 'pass'
