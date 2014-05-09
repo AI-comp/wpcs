@@ -1,7 +1,16 @@
+require 'populate_helper'
+include PopulateHelper
 
 FactoryGirl.define do
 
+  factory :group do
+    sequence(:name) {|n| "group_#{n}" }
+  end
+
   factory :user do
+    ignore do
+      attend_and_solve false
+    end
 
     trait :alice do
       sequence(:uid) {|n| "alice_#{n}" }
@@ -27,6 +36,13 @@ FactoryGirl.define do
     factory :contestant, traits: [:alice]
     factory :admin, traits: [:bob]
 
+    after(:create) do |user, evaluator|
+      if evaluator.attend_and_solve
+        attend = user.attend(Contest.last)
+        problems = Contest.last.problems.to_a
+        solve_problems(attend, problems)
+      end
+    end
   end
 
   factory :contest, class: Contest do
@@ -56,9 +72,5 @@ FactoryGirl.define do
   end
 
   factory :image
-
-  factory :group do
-    sequence(:name) {|n| "group_#{n}" }
-  end
 
 end

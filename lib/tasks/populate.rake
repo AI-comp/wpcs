@@ -26,13 +26,14 @@ namespace :populate do
     FactoryGirl.create(:contest, save_problems: true)
     puts "Creating 10 groups"
     FactoryGirl.create_list(:group, 10)
-    puts "Creating 100 contestants"
-    FactoryGirl.create_list(:contestant, 100)
-    puts "Make users attend the contest"
-    contest = Contest.first
-    User.all.each do |user|
-      user.attend(contest)
-    end
+    puts "Creating 100 contestants attending the first contest and solving some problems"
+    FactoryGirl.create_list(:contestant, 100, attend_and_solve: true)
+    puts "Create a user with name 'alice' and password 'pass'"
+    post_via_redirect '/users', user: { uid: 'alice' }, password: 'pass'
+    u = User.last
+    Group.last.users.push(u)
+    attend = u.attend(Contest.last)
+    solve_problems(attend, Contest.last.problems.to_a)
   end
 
 end

@@ -25,31 +25,33 @@ class Problem < ActiveRecord::Base
     self.description_html = Markdown.to_html(self.description)
   end
 
-  TYPES = [ :small, :large ]
+  SMALL = 'small'
+  LARGE = 'large'
+  TYPES = [ SMALL, LARGE ]
   def self.types
     TYPES
   end
 
   def input(type)
     case type
-    when :small then small_input
-    when :large then large_input
+    when SMALL then small_input
+    when LARGE then large_input
     else nil
     end
   end
 
   def output(type)
     case type
-    when :small then small_output
-    when :large then large_output
+    when SMALL then small_output
+    when LARGE then large_output
     else nil
     end
   end
 
   def score(type)
     case type
-    when :small then small_score
-    when :large then large_score
+    when SMALL then small_score
+    when LARGE then large_score
     else nil
     end
   end
