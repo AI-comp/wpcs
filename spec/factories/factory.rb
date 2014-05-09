@@ -19,7 +19,7 @@ FactoryGirl.define do
       is_admin false
 
       after(:create) do |u|
-        Group.offset( (1...Group.count).to_a.sample ).first.users.push(u)
+        Group.offset( (0...Group.count-1).to_a.sample ).first.users.push(u)
       end
     end
 

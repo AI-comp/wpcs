@@ -28,11 +28,11 @@ namespace :populate do
     FactoryGirl.create_list(:group, 10)
     puts "Creating 100 contestants attending the first contest and solving some problems"
     FactoryGirl.create_list(:contestant, 100, attend_and_solve: true)
-    puts "Create a user with name 'alice' and password 'pass'"
-    post_via_redirect '/users', user: { uid: 'alice' }, password: 'pass'
-    u = User.last
-    Group.last.users.push(u)
-    attend = u.attend(Contest.last)
+    puts "Creating a user with name 'alice' and password 'pass'"
+    user = User.new_with_password({ uid: 'alice' }, 'pass')
+    user.save
+    Group.first.users.push(user)
+    attend = user.attend(Contest.last)
     solve_problems(attend, Contest.last.problems.to_a)
   end
 

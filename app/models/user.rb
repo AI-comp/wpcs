@@ -86,7 +86,6 @@ class User < ActiveRecord::Base
   def join_default_group
     default_group = Group.default
     default_group.users.push(self)
-    default_group.save
   end
 
 end

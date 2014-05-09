@@ -14,9 +14,9 @@ class SubmissionTest < ActionDispatch::PerformanceTest
     get '/'
     # Register and login
     post_via_redirect '/users', user: { uid: 'alice' }, password: 'pass'
-    u = User.last
-    Group.last.users.push(u)
-    attend = u.attend(Contest.last)
+    user = User.last
+    Group.first.users.push(user)
+    attend = user.attend(Contest.last)
     solve_problems(attend, Contest.last.problems.to_a)
   end
 
