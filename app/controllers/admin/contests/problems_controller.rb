@@ -81,11 +81,11 @@ class Admin::Contests::ProblemsController < AdminController
   end
 
   def download_small
-    download(:small)
+    download(Problem::SMALL)
   end
 
   def download_large
-    download(:large)
+    download(Problem::LARGE)
   end
 
   def download(type)

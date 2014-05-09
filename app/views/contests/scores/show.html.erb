@@ -13,7 +13,7 @@
           <%= problem.prefix %>
         <% end %>
         <div>
-          <% Problem.types.each do |type| %>
+          <% Problem::TYPES.each do |type| %>
             <div class='score-label'>
               <%= tooltip "Maximum Score for #{type.to_s.capitalize}" do %>
                 <%= score_label(problem, type) %>
@@ -33,7 +33,7 @@
       <% @problems.each do |problem| %>
         <td class='center'>
           <div>
-            <% Problem.types.each do |type| %>
+            <% Problem::TYPES.each do |type| %>
               <div class='right'>
                 <% submission = group.solved_submission_for(problem, type) %>
                 <% text = submission ? "Solved at #{format_date(submission.created_at)}" : "Not Yet Solved" %>

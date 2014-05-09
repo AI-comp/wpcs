@@ -6,21 +6,21 @@
     <th>Contest Name</th>
     <th>Description</th>
     <th>Contest Period</th>
-    <th>Attendance</th>
   </tr>
 
 <% @contests.each do |contest| %>
   <tr>
-    <td><%= link_to contest.name, contest_problems_path(contest) %></td>
-    <td><%= contest.introduction %></td>
-    <td><%= format_date(contest.start_time) %> - <%= format_date(contest.end_time) %>
     <td>
-	<% if !@current_user.attended? contest%>
-	    <%= link_to "attend", attend_contest_path(contest), :class=> "btn btn-mini" %>
-	<% else %>
+	<% if @current_user.attended? contest %>
+            <%= link_to contest.name, contest_problems_path(contest) %>
 	    <div class="label label-success"> attended </div>
+	<% else %>
+	    <%= contest.name %>
+	    <%= link_to "attend", attend_contest_path(contest), :class=> "btn btn-mini" %>
 	<% end %>
     </td>
+    <td><%= contest.introduction %></td>
+    <td><%= format_date(contest.start_time) %> - <%= format_date(contest.end_time) %>
   </tr>
 <% end %>
 </table>

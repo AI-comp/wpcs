@@ -17,7 +17,7 @@ gem 'omniauth-twitter'
 # for image uploader
 gem "paperclip", "~> 4.1"
 
-# for retrieving  markdown example from yml file
+# for retrieving markdown example from yml file
 gem 'settingslogic'
 
 # Gems used only for assets and not required
@@ -63,8 +63,8 @@ group :development do
   gem 'rb-fchange', :require => false # for Windows
 
   # Notifier to the Notification Center of Moutain Lion
-  gem 'libnotify'               # for Linux   
-  gem 'terminal-notifier-guard' # for MacOS (10.8)
+  gem 'libnotify' if /linux/ =~ RUBY_PLATFORM # for Linux
+  gem 'terminal-notifier-guard' if /darwin/ =~ RUBY_PLATFORM # for MacOS (10.8)
   gem 'rb-notifu'               # for Windows
 end
 
@@ -83,6 +83,10 @@ group :test do
 
   # Browser testing framework
   gem 'capybara'
+
+  # For performance testing
+  gem 'test-unit'
+  gem 'ruby-prof'
 end
 
 group :development, :test do

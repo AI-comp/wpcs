@@ -17,7 +17,7 @@ class Attendance < ActiveRecord::Base
     score = solved ? problem.calculate_score(type) : 0
     Submission.create! do |s|
       s.solved = solved
-      s.problem_type = type
+      s.problem_type = type.to_s
       s.score = score
       s.problem_id = problem.id
       s.attendance_id = self.id

@@ -22,12 +22,12 @@
       <td><%= link_to problem.title, contest_problem_path(problem.contest, problem) %></td>
       <td class='center'>Small<br>Large</td>
       <td class='center'>
-        <% Problem.types.each do |type| %>
+        <% Problem::TYPES.each do |type| %>
           <div><%= @contest.ended? ? 0 : calculate_score(problem.score(type)) %> / <%= problem.score(type) %></div>
         <% end %>
       </td>
       <td class='center'>
-        <% Problem.types.each do |type| %>
+        <% Problem::TYPES.each do |type| %>
           <div>
             <% submission = @current_user.group.solved_submission_for(problem, type) %>
             <%= submission ? "#{format_date(submission.created_at)} (#{submission.attendance.user.name})" : 'Not Yet' %>
