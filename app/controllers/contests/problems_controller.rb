@@ -46,7 +46,7 @@ class Contests::ProblemsController < AuthController
     redirect_to({ action: 'show' }, alert: 'Too large file') if file && file.size > 100.kilobyte
 
     problem = Problem.find(params[:id])
-    input_type = params[:input_type].to_sym
+    input_type = params[:input_type]
     output = file ? file.read : params[:text_area]
 
     attendance = @current_user.attendance_for(@contest)

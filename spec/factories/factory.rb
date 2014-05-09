@@ -38,8 +38,8 @@ FactoryGirl.define do
 
     after(:create) do |user, evaluator|
       if evaluator.attend_and_solve
-        attend = user.attend(Contest.last)
-        problems = Contest.last.problems.to_a
+        attend = user.attend(Contest.first)
+        problems = Contest.first.problems.to_a
         solve_problems(attend, problems)
       end
     end
