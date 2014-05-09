@@ -20,7 +20,7 @@ class SubmissionTest < ActionDispatch::PerformanceTest
     solve_problems(attend, Contest.first.problems.to_a)
   end
 
-  def test_problems_submit
+  def test_submit_10times
     10.times do
       post_via_redirect '/contests/1/problems/1/submit', id: 1, input_type: Problem::SMALL, text_area: (0..10).to_a.sample
     end

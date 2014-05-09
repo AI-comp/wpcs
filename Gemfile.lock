@@ -308,7 +308,7 @@ DEPENDENCIES
   omniauth-twitter
   paperclip (~> 4.1)
   railroady
-  rails (= 3.2.18)
+  rails (~> 3.2)
   rb-fchange
   rb-fsevent
   rb-inotify
