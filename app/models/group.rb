@@ -23,16 +23,15 @@ class Group < ActiveRecord::Base
   end
 
   def solved_problems_in(contest)
-    # FIXME: this coped with only small problems
-    contest.problems.select { |p| solved_submission_for(p, :small) }
+    att_ids = Attendance.where(user_id: user_ids).select(:id)
+    sbm_ids = Submission.where(solved: true, attendance_id: att_ids).select(:problem_id)
+    Problem.where(id: sbm_ids)
   end
 
   def visible_problems_in(contest)
-    # FIXME: it may be slow query
-    ps = contest.problems
-    solved_problems = solved_problems_in(contest)
-    root_problems = ps.select { |p| p.from_problems.empty? }
-    root_problems | solved_problems | solved_problems.flat_map { |p| p.to_problems }
+    solved_problems = solved_problems_in(contest).select(:id)
+    edges = ProblemEdge.where(from_problem_id: solved_problems)
+    Problem.where(id: edges)
   end
 
   def solved_submission_for(problem, type)
