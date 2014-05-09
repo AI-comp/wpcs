@@ -22,6 +22,19 @@ class Group < ActiveRecord::Base
     Attendance.where(contest_id: contest.id, user_id: user_ids)
   end
 
+  def solved_problems_in(contest)
+    # FIXME: this coped with only small problems
+    contest.problems.select { |p| solved_submission_for(p, :small) }
+  end
+
+  def visible_problems_in(contest)
+    # FIXME: it may be slow query
+    ps = contest.problems
+    solved_problems = solved_problems_in(contest)
+    root_problems = ps.select { |p| p.from_problems.empty? }
+    root_problems | solved_problems | solved_problems.flat_map { |p| p.to_problems }
+  end
+
   def solved_submission_for(problem, type)
     Submission.where(
       problem_id: problem.id,

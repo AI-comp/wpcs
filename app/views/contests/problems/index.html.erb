@@ -21,7 +21,7 @@
     <th class='center'>Solved Time</th>
   </tr>
 
-  <% @problems.order(:title).each do |problem| %>
+  <% @problems.each do |problem| %>
     <tr>
       <td><%= link_to problem.title, contest_problem_path(problem.contest, problem) %></td>
       <td class='center'>Small<br>Large</td>
@@ -167,7 +167,19 @@
     };
 
     var edgeColor = '#456';
-    var nodeColor = '#1abc9c';
+    var visibleNodeColor = '#1abc9c';
+    var hiddenNodeColor = '#bdc3c7';
+
+    var nodeOuterColor = function (d) {
+      return d.visible ? visibleNodeColor :
+                         hiddenNodeColor;
+    }
+
+    var nodeInnerColor = function (d) {
+      return d.solved  ? 'white'          :
+             d.visible ? visibleNodeColor :
+                         hiddenNodeColor;
+    }
 
     var svg = d3.select('#course-wrapper')
       .append('div')
@@ -201,9 +213,9 @@
         .data(nodes)
       .enter()
         .append('circle')
-        .attr('stroke', nodeColor)
+        .attr('stroke', nodeOuterColor)
         .attr('stroke-width', 4)
-        .attr('fill', 'white')
+        .attr('fill', nodeInnerColor)
         .attr('r', 20)
         .attr('cx', function (d) { return d.pos.x; })
         .attr('cy', function (d) { return d.pos.y; })

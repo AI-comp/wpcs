@@ -16,11 +16,14 @@ class Contests::ProblemsController < AuthController
   # GET /contests/1/problems
   # GET /contests/1/problems.json
   def index
-    @problems = @contest.problems
+    @problems = @current_user.group.visible_problems_in(@contest)
     @users = User.contestants_of(@contest)
     @current_user.attend(@contest) unless @current_user.attended? @contest
 
-    @json_nodes = JSON.generate(@problems.map { |p| { id: p.id, title: p.title, text: p.description, x: p.x, y: p.y } })
+    group = @current_user.group
+    visible_problems = group.visible_problems_in(@contest)
+    solved_problems = group.solved_problems_in(@contest)
+    @json_nodes = build_json_nodes(@contest.problems, visible_problems, solved_problems)
 
     @json_edges = JSON.generate(ProblemEdge.all.map { |pe| { f: pe.from_problem_id, t: pe.to_problem_id, curve: 0 } });
 
@@ -79,6 +82,29 @@ class Contests::ProblemsController < AuthController
 
   def check_attendance
       redirect_to contests_path unless @current_user.attended? @contest
+  end
+
+  def build_json_nodes(problems, visible_problems, solved_problems)
+    def build_node(problem)
+      {
+        id: problem.id,
+        title: problem.title,
+        text: problem.description,
+        x: problem.x,
+        y: problem.y,
+      }
+    end
+
+    node_hash = Hash[*problems.flat_map { |p| [p.id, build_node(p)] }]
+    visible_problems.each do |p|
+      node_hash[p.id][:visible] = true
+    end
+    solved_problems.each do |p|
+      node_hash[p.id][:visible] = true
+      node_hash[p.id][:solved] = true
+    end
+
+    JSON.generate(node_hash.values)
   end
 
 end
