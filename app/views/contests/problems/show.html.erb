@@ -1,3 +1,11 @@
+<%= javascript_tag do %>
+  $(function () {
+    $(".submit_btn").click(function () {
+      this.disabled = true;
+    });
+  });
+<% end %>
+
 <div class="page-header">
   <h1><%= @problem.title %></h1>
 </div>
@@ -35,7 +43,7 @@
     <strong>You don't have to submit your source code!</strong>
   </div>
   <div class="field">
-    <%= submit_tag 'Submit', { class: 'btn' } %>
+    <%= submit_tag 'Submit', { class: 'btn submit_btn' } %>
   </div>
 <% end %>
 
@@ -68,6 +76,6 @@
     <strong>You don't have to submit your source code!</strong>
   </div>
   <div class="field">
-    <%= submit_tag 'Submit', { class: 'btn' } %>
+    <%= submit_tag 'Submit', { class: 'btn submit_btn' } %>
   </div>
 <% end %>
