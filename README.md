@@ -36,7 +36,7 @@ https://gist.github.com/olistik/2627011
 
 1. Initialize database and assets
 
-        rake db:drop db:setup assets:clean assets:precompile
+        rake db:migrate:reset assets:clean assets:precompile
 
 1. [Optional] Populate database with mock data (for testing purpose)
 
@@ -63,7 +63,7 @@ https://gist.github.com/olistik/2627011
 
 1. Initialize database and assets
 
-        rake db:drop db:setup assets:clean assets:precompile RAILS_ENV=production
+        rake db:migrate:reset assets:clean assets:precompile RAILS_ENV=production
 
 1. Run a rails sever on your machine in production mode
 
