@@ -73,9 +73,6 @@ https://gist.github.com/olistik/2627011
         sudo apt get install graphviz # if you didn't install graph-viz
         rake diagram:all
 
-- Class diagram (deprecated)  
-https://cacoo.com/diagrams/zJncLkksT8WHeY4b
-
 # Performance Testing
 
 You might have to use ruby with version >= 1.9.3 and <= 2.0.0.
