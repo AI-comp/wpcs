@@ -13,8 +13,6 @@ wpcs
 # Requirements
 * Ruby (it's recommended to use rbenv to install Ruby)
 * Rails
-* MongoDB  
-http://docs.mongodb.org/manual/installation/
 * ImageMagick
 
         sudo apt-get install imagemagick libmagickcore-dev
