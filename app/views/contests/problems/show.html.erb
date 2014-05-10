@@ -1,7 +1,10 @@
 <%= javascript_tag do %>
   $(function () {
     $(".submit_btn").click(function () {
-      this.disabled = true;
+      var self = this;
+      setTimeout(function () {
+        self.disabled = true;
+      }, 1);
     });
   });
 <% end %>
