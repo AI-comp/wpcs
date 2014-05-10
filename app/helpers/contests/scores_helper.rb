@@ -1,10 +1,13 @@
 module Contests::ScoresHelper
   def groups_to_show(contest)
     groups = @current_user.is_admin? ? Group.all : Group.all.reject(&:include_admin?)
-    groups = groups.select { |group|
-      group.users.any? { |user|
-        user.attendances.any? { |att|
-          att.contest == contest } } }
+    groups = groups.select do |group|
+      group.users.any? do |user|
+        user.attendances.any? do |att|
+          att.contest == contest
+        end
+      end
+    end
     groups.sort_by { |group| -group.score_for( @contest ) }
   end
 
