@@ -104,7 +104,7 @@ GEM
       multi_json (~> 1.8)
     guard-pow (2.0.0)
       guard (~> 2.0)
-    guard-rspec (4.2.8)
+    guard-rspec (4.2.9)
       guard (~> 2.1)
       rspec (>= 2.14, < 4.0)
     guard-spork (1.5.1)
