@@ -13,6 +13,9 @@ class Contests::ScoresController < ApplicationController
   # GET /contests/1/score
   # GET /contests/1/score.json
   def show
+    include_admin = @current_user.is_admin?
+    @submissions_table = @contest.all_submissions_table(include_admin)
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @problems }
