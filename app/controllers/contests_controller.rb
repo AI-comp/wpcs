@@ -5,7 +5,7 @@ class ContestsController < AuthController
   # GET /contests
   def index
     # 開催期間に当てはまるコンテストだけ表示する
-    @contests = Contest.visible.order(:start_time)
+    @contests = Contest.order(:start_time)
   end
 
   # GET /contests/1

@@ -1,41 +1,43 @@
 <h1>Contest List</h1>
 
 <p>
-<table class='table table-striped'>
-  <tr>
-    <th>Contest Name</th>
-    <th>Description</th>
-    <th>Contest Period</th>
-  </tr>
+  <table class='table table-striped'>
+    <tr>
+      <th>Contest Name</th>
+      <th>Description</th>
+      <th>Contest Period</th>
+    </tr>
 
-<% @contests.each do |contest| %>
-  <tr>
-    <td>
-	<% if @current_user.attended? contest %>
-      <%= link_to contest.name, contest_problems_path(contest) %>
-      <div class="label label-success"> attended </div>
-	<% else %>
-      <%= contest.name %>
-      <%= link_to "attend", attend_contest_path(contest), :class=> "btn btn-mini" %>
-	<% end %>
-    </td>
-    <td><%= contest.introduction %></td>
-    <td><%= format_date(contest.start_time) %> - <%= format_date(contest.end_time) %>
-  </tr>
-<% end %>
-</table>
+    <% @contests.each do |contest| %>
+      <tr>
+        <td>
+          <% if @current_user.attended? contest %>
+            <%= link_to contest.name, contest_problems_path(contest) %>
+            <div class="label label-success"> attended </div>
+          <% else %>
+            <%= contest.name %>
+            <% if contest.started? %>
+              <%= link_to "attend", attend_contest_path(contest), :class=> "btn btn-mini" %>
+            <% end %>
+          <% end %>
+        </td>
+        <td><%= contest.introduction %></td>
+        <td><%= format_date(contest.start_time) %> - <%= format_date(contest.end_time) %>
+      </tr>
+    <% end %>
+  </table>
 </p>
 
 <% if Rails.env.development? %>
-<div class="alert alert-info">
-  <% if @current_user.is_admin %>
-    <h2>You are Admin</h2>
-    <br>
-    <%= button_to 'Become Contestant', demote_users_path, { class: 'btn btn-success' } %>
-  <% else %>
-    <h2>You are Contestant</h2>
-    <br>
-    <%= button_to 'Become Admin', promote_users_path, { class: 'btn btn-success' } %>
-  <% end %>
-</div>
+  <div class="alert alert-info">
+    <% if @current_user.is_admin %>
+      <h2>You are Admin</h2>
+      <br>
+      <%= button_to 'Become Contestant', demote_users_path, { class: 'btn btn-success' } %>
+    <% else %>
+      <h2>You are Contestant</h2>
+      <br>
+      <%= button_to 'Become Admin', promote_users_path, { class: 'btn btn-success' } %>
+    <% end %>
+  </div>
 <% end %>
