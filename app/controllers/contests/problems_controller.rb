@@ -53,7 +53,15 @@ class Contests::ProblemsController < AuthController
     submission = attendance.submit(problem, output, input_type)
 
     flash[:solved] = submission.solved
-    redirect_to action: 'index'
+    flash[:score] = submission.score.to_s
+
+    other_type = Problem::TYPES.reject { |t| t == input_type }.first
+    other_solved = @current_user.group.solved_submission_for(problem, other_type)
+    if submission.solved && other_solved
+      redirect_to action: 'index'
+    else
+      redirect_to action: 'show'
+    end
   end
 
   def download_small
@@ -74,7 +82,7 @@ class Contests::ProblemsController < AuthController
   end
 
   def check_attendance
-      redirect_to contests_path unless @current_user.attended? @contest
+    redirect_to contests_path unless @current_user.attended? @contest
   end
 
 end
