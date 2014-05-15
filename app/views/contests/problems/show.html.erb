@@ -19,6 +19,7 @@
 
 <h2>Small</h2>
 <pre style="max-height: 200px; overflow: scroll"><%= @problem.small_input %></pre>
+<%= link_to 'Download Small Input', download_small_contest_problem_path(@contest, @problem) %>
 
 <% if @problem.contest.ended? %>
   <!-- show nothing -->
@@ -33,7 +34,6 @@
 <% end %>
 <%= form_tag({action: 'submit'}, multipart: true, id: 'form_small') do %>
   <%= hidden_field_tag 'input_type', :small %>
-  <%= link_to 'Download Small Input', download_small_contest_problem_path(@contest, @problem) %>
   <div class="field">
     <h3>Upload your output file</h3>
     <%= file_field_tag 'files' %>
@@ -52,6 +52,7 @@
 
 <h2>Large</h2>
 <pre style="max-height: 200px; overflow: scroll"><%= @problem.large_input %></pre>
+<%= link_to 'Download Large Input', download_large_contest_problem_path(@contest, @problem) %>
 
 <% if @problem.contest.ended? %>
   <%# show nothing %>
@@ -66,7 +67,6 @@
 <% end %>
 <%= form_tag({action: 'submit'}, multipart: true, id: 'form_large') do %>
   <%= hidden_field_tag 'input_type', :large %>
-  <%= link_to 'Download Large Input', download_large_contest_problem_path(@contest, @problem) %>
   <div class="field">
     <h3>Upload your output file</h3>
     <%= file_field_tag 'files' %>
