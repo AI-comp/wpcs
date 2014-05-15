@@ -52,7 +52,7 @@ class Admin::ImagesController < AdminController
     @image.destroy
 
     respond_to do |format|
-      format.html { redirect_to images_url }
+      format.html { redirect_to action: :index }
     end
   end
 end
