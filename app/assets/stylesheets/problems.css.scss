@@ -75,6 +75,12 @@ div.problem_description {
   table tr:nth-child(2n+1) {
     background-color: #F8F8F8;
   }
+}
 
+.solved_both {
+  background-color: #dff0d8;
+}
 
+.solved_either {
+  background-color: #FCF8E3;
 }
