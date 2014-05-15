@@ -13,7 +13,9 @@
 
 <h2>Small</h2>
 <pre style="max-height: 200px; overflow: scroll"><%= @problem.small_input %></pre>
+<p>
 <%= link_to 'Download Small Input', download_small_contest_problem_path(@contest, @problem) %>
+</p>
 
 <% if @problem.contest.ended? %>
   <!-- show nothing -->
@@ -34,7 +36,7 @@
   </div>
   <div class="field">
     <h3>Or write your answer here</h3>
-    <%= text_area_tag 'text_area' %>
+    <%= text_area_tag 'text_area', nil, rows: 10, class: 'span11' %>
   </div>
   <div class="field">
     <strong>You don't have to submit your source code!</strong>
@@ -46,7 +48,9 @@
 
 <h2>Large</h2>
 <pre style="max-height: 200px; overflow: scroll"><%= @problem.large_input %></pre>
+<p>
 <%= link_to 'Download Large Input', download_large_contest_problem_path(@contest, @problem) %>
+</p>
 
 <% if @problem.contest.ended? %>
   <%# show nothing %>
@@ -67,7 +71,7 @@
   </div>
   <div class="field">
     <h3>Or write your answer here</h3>
-    <%= text_area_tag 'text_area' %>
+    <%= text_area_tag 'text_area', nil, rows: 10, class: 'span11' %>
   </div>
   <div class="field">
     <strong>You don't have to submit your source code!</strong>
