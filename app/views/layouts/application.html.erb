@@ -83,7 +83,9 @@
               <% if @authorized %>
                 <% if @contest %>
                   <li><a>Score: <%= @current_user.group.score_for(@contest) %> </a></li>
-                  <li><%= link_to 'Scoreboard', contest_score_path %></li>
+                  <% unless @current_user.is_admin %>
+                    <li><%= link_to 'Scoreboard', contest_score_path %></li>
+                  <% end %>
                 <% end %>
                 <li class="dropdown">
                   <a href='#' class="dropdown-toggle" data-toggle="dropdown"><%= @current_user.name_or_uid %><b class="caret"></b></a>
