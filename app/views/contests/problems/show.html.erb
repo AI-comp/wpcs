@@ -29,7 +29,7 @@
   <button id="solve_small">Solve Small</button>
 <% end %>
 <%= form_tag({action: 'submit'}, multipart: true, id: 'form_small') do %>
-  <%= hidden_field_tag 'input_type', Problem::SMALL %>
+  <%= hidden_field_tag 'input_type', :small %>
   <div class="field">
     <h3>Upload your output file</h3>
     <%= file_field_tag 'files' %>
@@ -54,10 +54,10 @@
 
 <% if @problem.contest.ended? %>
   <%# show nothing %>
-<% elsif @current_user.solved?(@problem, :large)  %>
+<% elsif @current_user.solved?(@problem, Problem::LARGE)  %>
   <p>You have already solved large.</p>
 <% else %>
-  <% submission = @current_user.group.solved_submission_for(@problem, :large) %>
+  <% submission = @current_user.group.solved_submission_for(@problem, Problem::LARGE) %>
   <% if submission %>
     <p><%= submission.attendance.user.name %> has already solved large at <%= format_date(submission.created_at) %>.</p>
   <% end %>
