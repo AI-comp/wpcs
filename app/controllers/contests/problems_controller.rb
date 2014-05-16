@@ -75,10 +75,9 @@ class Contests::ProblemsController < AuthController
   def download(type)
     p = Problem.find(params[:id])
 
-    id = p.index + 1
-    title = p.title.gsub(' ', '_')
+    id = p.title.first
 
-    send_data(p.input(type), filename: "#{id}. #{title}_#{type}.txt")
+    send_data(p.input(type), filename: "#{id}_#{type}.txt")
   end
 
   def check_attendance
