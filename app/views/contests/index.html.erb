@@ -11,11 +11,15 @@
     <% @contests.each do |contest| %>
       <tr>
         <td>
-          <% if @current_user.attended? contest %>
+          <% if @current_user.attended? contest and contest.started? %>
             <%= link_to contest.name, contest_problems_path(contest) %>
-            <div class="label label-success"> attended </div>
           <% else %>
             <%= contest.name %>
+          <% end %>
+
+          <% if @current_user.attended? contest %>
+            <div class="label label-success"> attended </div>
+          <% else %>
             <% if contest.started? %>
               <%= link_to "attend", attend_contest_path(contest), :class=> "btn btn-mini" %>
             <% end %>

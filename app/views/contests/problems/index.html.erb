@@ -23,7 +23,7 @@
     <tr class='<%= solved_cnt == 2 ? 'solved_both' : (solved_cnt== 1 ? 'solved_either' : '') %>'>
       <td><%= link_to problem.title, contest_problem_path(problem.contest, problem) %></td>
       <td class='center'>Small<br>Large</td>
-      <td class='center '>
+      <td class='center'>
         <% Problem::TYPES.each do |type| %>
           <div><%= @contest.ended? ? 0 : calculate_score(problem.score(type)) %> / <%= problem.score(type) %></div>
         <% end %>
