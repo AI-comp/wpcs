@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= content_for?(:title) ? yield(:title) : "WPCS" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "Waseda Programming Contest System (WPCS)" %></title>
     <%= csrf_meta_tags %>
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
@@ -46,7 +46,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <%= link_to 'Waseda Programming Contest System', root_path, class: 'brand' %>
+          <%= link_to 'WPCS', root_path, class: 'brand' %>
           <div class="container nav-collapse">
             <ul class="nav">
               <% if @authorized %>

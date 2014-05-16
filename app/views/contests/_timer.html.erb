@@ -11,7 +11,7 @@
         var min  = ("00" + String(Math.floor(diff % 3600 / 60))).substr(-2);
         var sec  = ("00" + String(Math.floor(diff % 3600) % 60)).substr(-2);
         var time = hour + ":" + min + ":" + sec;
-        target.html("Time: " + time);
+        target.html(time);
       }
       update();
       setInterval(update, 500);
