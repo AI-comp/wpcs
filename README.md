@@ -61,7 +61,7 @@ https://gist.github.com/olistik/2627011
 
 1. Initialize database and assets
 
-        rake db:migrate:reset assets:clean assets:precompile db:setup RAILS_ENV=production
+        rake db:migrate:reset assets:clean assets:precompile RAILS_ENV=production
 
 1. Run a rails sever on your machine in production mode
 
