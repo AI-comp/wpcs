@@ -70,7 +70,7 @@ https://gist.github.com/olistik/2627011
 # Documents
 - Generate class diagrams for controllers and models
 
-        sudo apt get install graphviz # if you didn't install graph-viz
+        sudo apt-get install graphviz # if you didn't install graph-viz
         rake diagram:all
 
 # Performance Testing
