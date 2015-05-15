@@ -7,6 +7,7 @@
     <th class='center'>Place</th>
     <th>Team Name</th>
     <th class='center'>Score</th>
+    <th class='center'>Variance</th>
     <% @problems.each do |problem| %>
       <th class='center'>
         <%= tooltip problem.title do %>
@@ -30,6 +31,7 @@
       <td class='center'><%= index + 1 %></td>
       <td><%= group.name %></td>
       <td class='center'><%= group.score_for(@contest) %></td>
+      <td class='center'><%= group.variance_for(@contest).round(2) %></td>
       <% @problems.each do |problem| %>
         <td class='center'>
           <div>
