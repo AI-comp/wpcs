@@ -43,7 +43,7 @@ class Contests::ProblemsController < AuthController
     file = params[:files]
 
     redirect_to({ action: 'index' }, alert: 'Contest is already closed.') and return if @contest.ended?
-    redirect_to({ action: 'show' }, alert: 'Too large file') if file && file.size > 100.kilobyte
+    redirect_to({ action: 'show' }, alert: 'Too large file') and return if file && file.size > 100.kilobyte
 
     problem = Problem.find(params[:id])
     input_type = params[:input_type]
