@@ -1,5 +1,6 @@
 language: ruby
 bundler_args: --binstubs=./bundler_stubs --without development
+before_install: gem update bundler
 env:
   - DB=sqlite
 rvm:
@@ -8,7 +9,7 @@ rvm:
 matrix:
   allow_failures:
     - rvm: ruby-head
-script: 
-  - RAILS_ENV=test bundle exec rake db:migrate --trace
+script:
+  - RAILS_ENV=test bundle exec rake db:migrate
   - bundle exec rake db:test:prepare
   - bundle exec rspec spec/
