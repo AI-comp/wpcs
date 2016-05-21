@@ -20,4 +20,16 @@ describe UsersController do
 
   end
 
+  describe 'GET /destroy' do
+    before do
+
+    end
+
+    it 'should respond success' do
+      get :destroy
+      expect(response).not_to be_success
+    end
+
+  end
+
 end
